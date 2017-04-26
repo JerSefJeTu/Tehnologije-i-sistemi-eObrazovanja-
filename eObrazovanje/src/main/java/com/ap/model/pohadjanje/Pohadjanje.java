@@ -1,12 +1,26 @@
-package com.ap.model.workEntities;
+package com.ap.model.pohadjanje;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.ap.model.kurs.Kurs;
+import com.ap.model.polaganjeIspita.PolaganjeIspita;
 import com.ap.model.users.Student;
-
+@Entity
 public class Pohadjanje {
-
+	@Id
+	@GeneratedValue
 	private Long id;
+	
+	@ManyToOne
 	private Kurs kurs;
+	@ManyToOne
 	private Student student;
+	
+	@OneToOne
 	private PolaganjeIspita polaganje;
 	
 	public Pohadjanje(){
@@ -20,6 +34,7 @@ public class Pohadjanje {
 		this.student = student;
 		this.polaganje = polaganje;
 	}
+	
 
 	public Long getId() {
 		return id;

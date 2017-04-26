@@ -2,8 +2,18 @@ package com.ap.model.users;
 
 import java.util.Date;
 
-public class Administrator extends User {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
+@Entity
+@DiscriminatorValue("ADMIN")
+@PrimaryKeyJoinColumn(name = "KORISNIK_ID")
+public class Administrator extends Korisnik {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 
 	

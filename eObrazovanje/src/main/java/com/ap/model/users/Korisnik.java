@@ -2,8 +2,20 @@ package com.ap.model.users;
 
 import java.util.Date;
 
-public abstract class User {
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TIP_KORISNIKA")
+public abstract class Korisnik {
+
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -16,11 +28,11 @@ public abstract class User {
 	private String phoneNumber;
 	private String eMail;
 	
-	public User(){
+	public Korisnik(){
 		
 	}
 	
-	public User(String firstName, String lastName, Long jMBG, String userName, String password, Date dateOfBirth,
+	public Korisnik(String firstName, String lastName, Long jMBG, String userName, String password, Date dateOfBirth,
 			String placeOfOrigin, String currentAddress, String phoneNumber, String eMail) {
 		super();
 		this.firstName = firstName;

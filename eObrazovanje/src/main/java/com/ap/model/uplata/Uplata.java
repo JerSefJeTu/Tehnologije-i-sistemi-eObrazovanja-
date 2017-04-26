@@ -1,12 +1,19 @@
-package com.ap.model.workEntities;
+package com.ap.model.uplata;
 
 import java.util.Date;
 
-import com.ap.model.users.Student;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+import com.ap.model.users.Student;
+@Entity
 public class Uplata {
-	
+	@Id
+	@GeneratedValue
 	private Long id;
+	@ManyToOne
 	private Student student;
 	private double iznos;
 	private String svrhaUplate;

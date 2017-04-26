@@ -1,40 +1,58 @@
-package com.ap.model.workEntities;
+package com.ap.model.kurs;
+
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.ap.model.users.Student;
-import com.ap.model.users.Teacher;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.ap.model.pohadjanje.Pohadjanje;
+import com.ap.model.predmet.Predmet;
+import com.ap.model.users.Predavac;
+
+@Entity
 public class Kurs {
-
+	@Id
+	@GeneratedValue
 	private Long id;
 	private String naziv;
+	
+	@ManyToOne
 	private Predmet predmet;
 	private Date datumPocetka;
 	private Date datumKraja;
-	private Set<Student> studenti=new HashSet<Student>();
-	private Set<Teacher> predavaci=new HashSet<Teacher>();
+	
+	@ManyToMany(mappedBy = "kursevi", fetch = FetchType.LAZY)
+	private Set<Predavac> predavaci=new HashSet<Predavac>();
+	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "kurs")
 	private Set<Pohadjanje> pohadjanja=new HashSet<Pohadjanje>();
 	
 	public Kurs(){
 		
 	}
 	
-	public Kurs(Long id, String naziv, Predmet predmet, Date datumPocetka, Date datumKraja, Set<Student> studenti,
-			Set<Teacher> predavaci, Set<Pohadjanje> pohadjanja) {
+	public Kurs(Long id, String naziv, Predmet predmet, Date datumPocetka, Date datumKraja,
+			Set<Predavac> predavaci, Set<Pohadjanje> pohadjanja) {
 		super();
 		this.id = id;
 		this.naziv = naziv;
 		this.predmet = predmet;
 		this.datumPocetka = datumPocetka;
 		this.datumKraja = datumKraja;
-		this.studenti = studenti;
 		this.predavaci = predavaci;
 		this.pohadjanja = pohadjanja;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -75,19 +93,13 @@ public class Kurs {
 		this.datumKraja = datumKraja;
 	}
 
-	public Set<Student> getStudenti() {
-		return studenti;
-	}
 
-	public void setStudenti(Set<Student> studenti) {
-		this.studenti = studenti;
-	}
 
-	public Set<Teacher> getPredavaci() {
+	public Set<Predavac> getPredavaci() {
 		return predavaci;
 	}
 
-	public void setPredavaci(Set<Teacher> predavaci) {
+	public void setPredavaci(Set<Predavac> predavaci) {
 		this.predavaci = predavaci;
 	}
 

@@ -1,9 +1,23 @@
 package com.ap.model.users;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.ap.model.pohadjanje.Pohadjanje;
+@Entity
 public class VrstaPredavaca {
 
 	private String naziv;
+	@Id
+	@GeneratedValue
 	private Long id;
+	@OneToMany(mappedBy="vrstaPredavaca")
+	private Set<Predavac> predavaci=new HashSet<Predavac>();
 	
 	public VrstaPredavaca(){
 		
