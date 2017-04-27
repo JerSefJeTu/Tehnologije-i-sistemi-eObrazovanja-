@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.ap.model.kurs.Kurs;
-import com.ap.model.users.Predavac;
 
 @Entity
 public class Predmet {

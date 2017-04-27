@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 
 import com.ap.model.pohadjanje.Pohadjanje;
 import com.ap.model.predmet.Predmet;
-import com.ap.model.users.Predavac;
+import com.ap.model.users.predavac.Predavac;
 
 @Entity
 public class Kurs {

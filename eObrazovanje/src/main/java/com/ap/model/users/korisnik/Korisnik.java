@@ -1,4 +1,4 @@
-package com.ap.model.users;
+package com.ap.model.users.korisnik;
 
 import java.util.Date;
 

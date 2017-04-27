@@ -5,8 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
-import com.ap.model.users.Student;
+import com.ap.model.users.student.Student;
 
 @Entity
 public class Dokument {

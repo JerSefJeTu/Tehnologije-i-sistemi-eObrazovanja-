@@ -1,4 +1,4 @@
-package com.ap.model.users;
+package com.ap.model.users.student;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -14,6 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import com.ap.model.dokument.Dokument;
 import com.ap.model.pohadjanje.Pohadjanje;
 import com.ap.model.uplata.Uplata;
+import com.ap.model.users.korisnik.Korisnik;
 
 
 @Entity

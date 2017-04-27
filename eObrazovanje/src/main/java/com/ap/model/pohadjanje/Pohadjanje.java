@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 
 import com.ap.model.kurs.Kurs;
 import com.ap.model.polaganjeIspita.PolaganjeIspita;
-import com.ap.model.users.Student;
+import com.ap.model.users.student.Student;
 @Entity
 public class Pohadjanje {
 	@Id

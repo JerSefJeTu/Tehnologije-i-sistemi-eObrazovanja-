@@ -1,4 +1,4 @@
-package com.ap.model.users;
+package com.ap.model.users.administrator;
 
 import java.util.Date;
 
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.ap.model.users.korisnik.Korisnik;
 @Entity
 @DiscriminatorValue("ADMIN")
 @PrimaryKeyJoinColumn(name = "KORISNIK_ID")

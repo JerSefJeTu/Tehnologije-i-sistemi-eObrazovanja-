@@ -1,4 +1,4 @@
-package com.ap.model.users;
+package com.ap.model.users.predavac;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -18,6 +18,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.ap.model.kurs.Kurs;
 import com.ap.model.predispitnaObaveza.PredispitnaObaveza;
+import com.ap.model.users.korisnik.Korisnik;
+import com.ap.model.users.vrstaPredavaca.VrstaPredavaca;
 
 @Entity
 @DiscriminatorValue("PREDAVAC")

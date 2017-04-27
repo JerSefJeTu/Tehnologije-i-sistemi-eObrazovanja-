@@ -12,10 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.ap.model.polaganjeIspita.PolaganjeIspita;
-import com.ap.model.users.Predavac;
+import com.ap.model.users.predavac.Predavac;
 @Entity
 public class PredispitnaObaveza {
 	@Id

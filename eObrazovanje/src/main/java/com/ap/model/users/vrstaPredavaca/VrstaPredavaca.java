@@ -1,4 +1,4 @@
-package com.ap.model.users;
+package com.ap.model.users.vrstaPredavaca;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.ap.model.pohadjanje.Pohadjanje;
+import com.ap.model.users.predavac.Predavac;
 @Entity
 public class VrstaPredavaca {
 
