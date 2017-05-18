@@ -27,7 +27,9 @@ public class PredispitnaObaveza {
 	@ManyToMany(cascade =CascadeType.MERGE)
 	@JoinTable(name = "predispitna_predavac", joinColumns = { @JoinColumn(name = "predispitna_id") }, inverseJoinColumns = { @JoinColumn(name = "predavac_id") })
 	private Set<Predavac> dezurniPredavaci=new HashSet<Predavac>();
+	
 	private double brojBodova;
+	
 	private double minBodova;
 	@ManyToOne
 	private PolaganjeIspita polaganjeIspita;

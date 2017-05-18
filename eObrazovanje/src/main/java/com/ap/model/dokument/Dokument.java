@@ -13,6 +13,7 @@ public class Dokument {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	private String naziv;
 	
 	@ManyToOne

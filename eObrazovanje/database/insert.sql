@@ -1,4 +1,6 @@
+use eobrazovanje;
 set foreign_key_checks = 0;
+
 
 -- delete all rows
 truncate table administrator;
@@ -23,5 +25,8 @@ insert into predmet (naziv) values ('Osnove Programiranja');
 insert into predmet (naziv) values ('XML Tehnologije');
 
 insert into kurs (naziv,predmet_id) values('Osnove Programiranja 2015' ,1);
+
+insert into korisnik(user_name,password,tip_korisnika) values('admin','$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK','ADMIN');
+insert into administrator(korisnik_id) values(1);
 
 

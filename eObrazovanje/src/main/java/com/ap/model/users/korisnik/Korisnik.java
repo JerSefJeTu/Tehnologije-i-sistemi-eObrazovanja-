@@ -27,6 +27,7 @@ public abstract class Korisnik {
 	private String currentAddress;
 	private String phoneNumber;
 	private String eMail;
+
 	
 	public Korisnik(){
 		

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ap.model.users.student.Student;
+
 
 @RestController
 @RequestMapping(value="api/Kurs")
@@ -70,6 +72,7 @@ public class KursController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		
 	}
 	
 }
