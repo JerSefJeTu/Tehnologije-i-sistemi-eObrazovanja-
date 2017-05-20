@@ -5,16 +5,23 @@ import java.util.Date;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+
+import com.ap.model.users.administrator.Administrator;
+import com.ap.model.users.predavac.Predavac;
+import com.ap.model.users.student.Student;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "TIP_KORISNIKA")
 public abstract class Korisnik {
 
-	@Id
+	@javax.persistence.Id 
 	@GeneratedValue
 	private Long id;
 	private String firstName;

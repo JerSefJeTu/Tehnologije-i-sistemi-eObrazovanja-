@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.users.security.TokenUtils;
+import com.ap.web.dto.LoginDTO;
 
 
 
@@ -30,14 +31,14 @@ public class KorisnikController {
 	@Autowired
 	TokenUtils tokenUtils;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<String> login(@RequestBody Korisnik korisnik) {
+	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
+	public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
         try {
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-					korisnik.getUserName(), korisnik.getPassword());
+					loginDTO.getUsername(), loginDTO.getPassword());
 			Authentication authentication = authenticationManager.authenticate(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            UserDetails details = userDetailsService.loadUserByUsername(korisnik.getUserName());
+            UserDetails details = userDetailsService.loadUserByUsername(loginDTO.getUsername());
             return new ResponseEntity<String>(tokenUtils.generateToken(details), HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<String>("Invalid login", HttpStatus.BAD_REQUEST);
