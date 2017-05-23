@@ -60,8 +60,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 			.authorizeRequests()
 				.antMatchers("/index.html", "/api/login", "/api/register").permitAll() 
-				.antMatchers(HttpMethod.POST, "/api/**")
-					.hasAuthority("ADMIN") //only administrator can add and edit data
+				.antMatchers(HttpMethod.GET, "/api/Predmet")
+					.hasAuthority("ADMIN")
+					.antMatchers(HttpMethod.GET, "/api/Kurs")
+					.hasAuthority("STUDENT")
+					.antMatchers(HttpMethod.GET, "/api/Uplata")
+					.hasAuthority("PREDAVAC") 
 				.anyRequest().authenticated().and().formLogin();
 		
 		// Custom JWT based authentication
