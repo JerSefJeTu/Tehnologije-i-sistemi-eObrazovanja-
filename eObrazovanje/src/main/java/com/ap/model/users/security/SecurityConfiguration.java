@@ -66,8 +66,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.hasAuthority("STUDENT")
 					.antMatchers(HttpMethod.GET, "/api/Uplata")
 					.hasAuthority("PREDAVAC") 
-				.anyRequest().authenticated().and().formLogin();
-		
+//				.anyRequest().authenticated().and().formLogin().loginPage("/index.html");
+					.anyRequest().authenticated().and().formLogin();
 		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
 				UsernamePasswordAuthenticationFilter.class);
