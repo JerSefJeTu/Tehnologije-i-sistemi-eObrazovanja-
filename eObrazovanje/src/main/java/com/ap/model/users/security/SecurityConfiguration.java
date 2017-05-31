@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -59,14 +60,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 			.authorizeRequests()
-				.antMatchers("/index.html", "/api/login", "/api/register").permitAll() 
-				.antMatchers(HttpMethod.GET, "/api/Predmet")
+				.antMatchers("/index.html","/proba.html","/login.html", "/api/login", "/api/register").permitAll()
+				.antMatchers("/css/**", "/js/**", "/img/**", "**/favicon.ico").anonymous()
+				.antMatchers(HttpMethod.GET, "/api/**")
 					.hasAuthority("ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/Kurs")
 					.hasAuthority("STUDENT")
 					.antMatchers(HttpMethod.GET, "/api/Uplata")
 					.hasAuthority("PREDAVAC") 
-				.anyRequest().authenticated().and().formLogin();
+				.anyRequest().authenticated();
 		
 		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
