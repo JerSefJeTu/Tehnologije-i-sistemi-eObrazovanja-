@@ -5,13 +5,16 @@
         <meta name="description" content=""/>
         <meta name="author" content=""/>
         <link rel="icon" href="ico.jpg"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <script src="js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/decor.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="application/javascript" src="js/bootstrap.js"></script>
+        <link rel="stylesheet" href="css/style.css"/>
+        <script type="text/javascript" src="js/decor.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="js/moment.js"></script>
+        <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
         <title>Student GUI</title>
     </head>
     <body>
@@ -30,12 +33,13 @@
                 <div class="panel-heading" id="naslov">
                    <h3 class="panel-title">Korisnički panel</h3>
                 </div>
-               <div class="panel-body">
+               <div id="userGuiContent" class="panel-body">
                 <nav class="nav nav-tabs" role="tablist">
-                   <li role="presentation" class="active"><a href="#">Studije</a></li>
-                   <li role="presentation"><a href="#">Finansije</a></li>
+                   <li role="presentation"><a href="#">Studije</a></li>
+                   <li role="presentation" class="active"><a href="#">Finansije</a></li>
                    <li role="presentation"><a href="">Profil</a></li>
                 </nav>
+                <div id="userGuiContentStudije">
                 <div id="pretragaPredmeta" class="input-group">
                     <input type="text" class="form-control" placeholder="Pretraga predmeta..." name="search">
                     <div class="input-group-btn">
@@ -141,7 +145,7 @@
                     <!-- spam -->
                     
                 </div> <!-- studentstudijediv -->
-            <div id="paginacija">
+            <div id="paginacijaStudije">
             <ul class="pagination pagination-sm">
               <li><a href=""><span>&laquo;</span></a></li>
               <li class="active"><a href="#">1</a></li>
@@ -152,8 +156,222 @@
               <li><a href=""><span>&raquo;</span></a></li>
             </ul>
             </div>
+                   </div> <!-- userGuiContentStudije -->
+                   <div id="userGuiContentFinansije">
+                      <div class="row">
+                       <div class="col-md-4">
+                         <div class="form-group">
+                               <div class="input-group date" id="pretragaFinansijaPocetniDatum">
+                                <input type="text" class="form-control" placeholder="Izaberite početni datum..."/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                </div>
+                            </div>
+                            <script>
+                                $(function() {
+                                    $("#pretragaFinansijaPocetniDatum").datepicker();
+                                });
+                           </script>
+                          </div> <!-- prvi date picker-->
+                        <div class="col-md-4">
+                         <div class="form-group">
+                               <div class="input-group date" id="pretragaFinansijaKrajnjiDatum">
+                                <input type="text" class="form-control" placeholder="Izaberite krajnji datum..."/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                                </div>
+                            </div>
+                            <script>
+                                $(function() {
+                                    $("#pretragaFinansijaKrajnjiDatum").datepicker();
+                                });
+                           </script>
+                          </div> <!-- drugi date picker-->
+                          <div class="col-md-4">
+                              <button class="btn btn-default" style="float:right;margin-right:33%;margin-left:3%">Poništi</button>
+                              <button class="btn btn-primary" style="float:right">Traži</button>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                               <div class="input-group">
+                                <input type="number" min="0" class="form-control" placeholder="Unesite minimalni iznos...">
+                              </div>
+                          </div>
+                          <div class="col-md-4" style="margin-bottom:3%">
+                               <div class="input-group">
+                                <input type="number" min="0" class="form-control" placeholder="Unesite maksimalni iznos...">
+                              </div>
+                          </div>
+                          
+                </div>
+                      </div>
+                       <div class="row">
+                            <div class="col-md-8">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>#</td>
+                                            <td>Datum</td>
+                                            <td>Iznos</td>
+                                            <td>Svrha</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>01.05.2017.</td>
+                                            <td>8500</td>
+                                            <td>
+                                               <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate školarine">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>13.05.2017.</td>
+                                            <td>20000</td>
+                                            <td>
+                                               <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan lectus et eros ullamcorper, in commodo risus pellentesque. Suspendisse id erat pellentesque, molestie turpis ac, sodales dui. Pellentesque et purus at dui molestie egestas quis quis urna. Quisque lobortis facilisis mi in vestibulum. Nunc vel vestibulum dui, nec accumsan risus. Curabitur dictum mauris eu hendrerit pellentesque. Nam rhoncus volutpat lorem, eu finibus augue molestie in.">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>18.05.2017.</td>
+                                            <td>1000</td>
+                                            <td>
+                                               <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Vežbanke">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>19.05.2017.</td>
+                                            <td>1850</td>
+                                            <td>
+                                               <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Prijava ispita iz matematike 1">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>22.05.2017.</td>
+                                            <td>95000</td>
+                                            <td>
+                                               <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Mito i korupcija">
+                                                <span class="glyphicon glyphicon-info-sign"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div id="paginacijaFinansije">
+            <ul class="pagination pagination-sm">
+              <li><a href=""><span>&laquo;</span></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href=""><span>&raquo;</span></a></li>
+            </ul>
+                            </div>
+                       </div>
+                   </div>
             </div> <!--panel body-->
+            <div id="infoDiv">
+                <div class="container">
+                    <div class="row">
+                        <h3 style="margin-bottom:2%">
+                            <span class="label label-info">Nastavno osoblje</span>
+                        </h3>
+                        <div class="col-md-5">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Ime</th>
+                                <th>Prezime</th>
+                                <th>Uloga</th>
+                                <th>E-mail</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Goran</td>
+                                <td>Savić</td>
+                                <td>Profesor</td>
+                                <td><a href="mailto:savic.goran@ftn.uns.ac.rs">savic.goran@ftn.uns.ac.rs</a></td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>Milan</td>
+                                <td>Segedinac</td>
+                                <td>Asistent</td>
+                                <td><a href="mailto:segedinac.milan@ftn.uns.ac.rs">segedinac.milan@ftn.uns.ac.rs</a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <h3 style="margin-bottom:2%">
+                            <span class="label label-info">Nastavne obaveze</span>
+                        </h3>
+                        <div class="col-md-5">
+                            <table class="table table-hover">
+                             <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Naziv</th>
+                                <th>Minimum</th>
+                                <th>Maksimum</th>
+                                <th>Bodovi</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Kolokvijum 1</td>
+                                <td>10</td>
+                                <td>30</td>
+                                <td><strong>17</strong></td>
+                              </tr>
+                              <tr>
+                                <td>2</td>
+                                <td>Kolokvijum 2</td>
+                                <td>10</td>
+                                <td>30</td>
+                                <td><strong>14</strong></td>
+                              </tr>
+                              <tr>
+                                <td>3</td>
+                                <td>Projekat</td>
+                                <td>25</td>
+                                <td>40</td>
+                                <td><strong>28</strong></td>
+                              </tr>
+                              <tr>
+                                  <td colspan=4>Ukupno</td>
+                                  <td><strong>59</strong></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+
+                    <button type="button" class="btn btn-lg btn-primary">Nazad</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
