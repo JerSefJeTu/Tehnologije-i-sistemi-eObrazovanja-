@@ -31,16 +31,21 @@
 		<a ng-if="!isLoggedIn()&&getCurrentState()!=='login'" ui-sref="login"><button>log in</button></a>
 		<div ui-view></div>
         <div id="content">
-<!--
-           <div id="loginDiv">
-                <div id="naslov">Prijava</div>
-                <span>Korisničko ime</span><input id="username" type="text">
-                <br/>
-                <span>Lozinka</span><input id="password" type="password">
-                <br/>
-                <button id="prijava" class="btn btn-primary">Prijava</button>
+           <div class="panel panel-primary" id="loginDiv">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Prijava</h3>
+                </div>
+                <div class="panel-body">
+                    
+                    <span>Korisničko ime</span>
+                    <input id="username" type="text">
+                    <br/>
+                    <span>Lozinka</span><input id="password" type="password">
+                    <br/>
+                    <button id="prijava" class="btn btn-primary">Prijava</button>
+                </div>
             </div>
--->
+
             <div class="panel panel-primary" id="userGuiDiv">
                 <div class="panel-heading" id="naslov">
                    <h3 class="panel-title">Korisnički panel</h3>
@@ -411,7 +416,7 @@
                         </div>
                         </div>
 
-                    <button type="button" class="btn btn-lg btn-primary">Nazad</button>
+                    <button type="button" class="btn btn-primary">Nazad</button>
                     </div>
                 </div>
                 
