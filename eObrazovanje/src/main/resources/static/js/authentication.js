@@ -44,6 +44,7 @@
         }
 
         function logout() {
+        	console.log("logout");
             delete $localStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
             $state.go('login');

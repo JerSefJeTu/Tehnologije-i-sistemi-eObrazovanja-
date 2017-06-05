@@ -26,7 +26,7 @@
      
         if ($localStorage.currentUser) {
             $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
-            console.log($http.defaults.headers.common.Authorization);
+            
         }
 
     

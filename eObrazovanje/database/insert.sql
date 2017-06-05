@@ -32,7 +32,7 @@ insert into administrator(korisnik_id) values(1);
 insert into korisnik(user_name,password,tip_korisnika) values('predavac','$2a$10$YNBzKhqMEAz6VT3ShzmpruOiUrytz3tLec/nwyN/GTifF/leWq7cK','PREDAVAC');
 insert into predavac(korisnik_id,aktivan) values(2,true);
 
-insert into korisnik(user_name,password,tip_korisnika) values('student','$2a$10$a/wDPpymAawmvgHnSpaWaeem6Wr.QXDtp2ECeFA63EmtWO5X2ejeu','STUDENT');
+insert into korisnik(user_name,password,tip_korisnika) values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT');
 insert into student(korisnik_id,stanje) values(3,0);
 
 
