@@ -10,6 +10,12 @@ body {
 	width: 60%;
     margin-left: 20%;
     margin-top: 2%;
+    display: none;
+}
+#loginDiv {
+	width: 25%;
+    margin-left: 35%;
+    margin-top: 15%;
 }
 #loginDiv span {
     float: left;
@@ -86,10 +92,10 @@ body {
 	margin-left: 22%;
 }
 #userGuiContentStudije {
-/*	display: none;*/
+	display: none;
 }
 #userGuiContentFinansije {
-	display: none;
+/*	display: none;*/
 }
 .popover-content {
     word-break: break-word;
