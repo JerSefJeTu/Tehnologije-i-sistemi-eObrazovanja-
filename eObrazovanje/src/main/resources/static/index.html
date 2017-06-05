@@ -36,8 +36,8 @@
                <div id="userGuiContent" class="panel-body">
                 <nav class="nav nav-tabs" role="tablist">
                    <li role="presentation"><a href="#">Studije</a></li>
-                   <li role="presentation" class="active"><a href="#">Finansije</a></li>
-                   <li role="presentation"><a href="">Profil</a></li>
+                   <li role="presentation"><a href="#">Finansije</a></li>
+                   <li role="presentation" class="active"><a href="">Profil</a></li>
                 </nav>
                 <div id="userGuiContentStudije">
                 <div id="pretragaPredmeta" class="input-group">
@@ -158,6 +158,11 @@
             </div>
                    </div> <!-- userGuiContentStudije -->
                    <div id="userGuiContentFinansije">
+                     <ul class="nav nav-pills" role="tablist" style="margin-bottom:1%">
+                         <li role="presentation" class="active"><a href="">Sve</a></li>
+                         <li role="presentation"><a href="">Priliv</a></li>
+                         <li role="presentation"><a href="">Odliv</a></li>
+                     </ul>
                       <div class="row">
                        <div class="col-md-4">
                          <div class="form-group">
@@ -201,12 +206,12 @@
                               </div>
                           </div>
                           <div class="col-md-4" style="margin-bottom:3%">
-                               <div class="input-group">
+                               <div style="width:80%" class="input-group">
                                 <input type="number" min="0" class="form-control" placeholder="Unesite maksimalni iznos...">
                               </div>
                           </div>
                           
-                </div>
+<!--                </div>-->
                       </div>
                        <div class="row">
                             <div class="col-md-8">
@@ -272,7 +277,32 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div id="paginacijaFinansije">
+                                
+                       </div>
+                       <div class="col-md-4 panel-group">
+                           <div class="panel panel-primary">
+                               <div class="panel-heading">
+                                   <h5 class="panel-title">
+                                       <a href="#racunInfo" data-toggle="collapse">Podaci o računu</a>
+                                   </h5>
+                               </div>
+                           </div>
+                           <div id="racunInfo" class="panel-collapse collapse">
+                               <ul class="list-group">
+                                   <div class="panel panel-default">
+                                       <div class="panel-heading">Stanje na računu</div>
+                                       <div class="panel-body"><strong>127000</strong></div>
+                                   </div>
+                                   <div class="panel panel-default" style="margin-bottom:3%">
+                                       <div class="panel-heading">Poziv na broj</div>
+                                       <div class="panel-body"><strong>127-46600271-49</strong></div>
+                                   </div>
+                                   <button style="width:100%" class="btn btn-primary">Plati</button>
+                               </ul>
+                           </div>
+                       </div>
+                       <div class="row">
+                           <div id="paginacijaFinansije">
             <ul class="pagination pagination-sm">
               <li><a href=""><span>&laquo;</span></a></li>
               <li class="active"><a href="#">1</a></li>
@@ -285,7 +315,8 @@
                             </div>
                        </div>
                    </div>
-            </div> <!--panel body-->
+            </div>
+                </div> <!--panel body-->
             <div id="infoDiv">
                 <div class="container">
                     <div class="row">
@@ -371,6 +402,7 @@
                     <button type="button" class="btn btn-lg btn-primary">Nazad</button>
                     </div>
                 </div>
+                
             </div>
         </div>
     </body>
