@@ -86,10 +86,10 @@ body {
 	margin-left: 22%;
 }
 #userGuiContentStudije {
-/*	display: none;*/
+	display: none;
 }
 #userGuiContentFinansije {
-	display: none;
+/* 	display: none; */
 }
 .popover-content {
     word-break: break-word;

@@ -32,7 +32,7 @@
                         $localStorage.currentUser = currentUser;
                         console.log($localStorage);
                         
-                        $http.defaults.headers.common.Authorization = response.token;
+                        $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
                         
                         callback(true);
                         $state.go('main');

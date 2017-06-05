@@ -3,7 +3,7 @@
 	.controller('probaCtrl', function($scope,$http) {
 		
 		$scope.predmet = function () {
-			 $http.get("http://localhost:8080/api/Kurs").
+			 $http.get("/api/Kurs").
 		        then(function(data, status, headers, config) {
 		            // this callback will be called asynchronously
 		            // when the response is available

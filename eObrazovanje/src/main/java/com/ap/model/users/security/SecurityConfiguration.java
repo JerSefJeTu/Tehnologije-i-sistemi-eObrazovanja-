@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -62,18 +61,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/index.html","/proba.html","/login.html", "/api/login", "/api/register").permitAll()
 				.antMatchers("/css/**", "/js/**", "/img/**", "**/favicon.ico").anonymous()
-				.antMatchers(HttpMethod.GET, "/api/**")
-					.hasAuthority("ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/Kurs")
-					.hasAuthority("STUDENT")
+					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
 					.antMatchers(HttpMethod.GET, "/api/Uplata")
-					.hasAuthority("PREDAVAC") 
-
+					.access("hasAnyAuthority('STUDENT','ADMIN')")
+					.antMatchers(HttpMethod.GET, "/api/**")
+					.access("hasAnyAuthority('ADMIN')")
 				.anyRequest().authenticated();
 		
-
-//				.anyRequest().authenticated().and().formLogin().loginPage("/index.html");
-
 		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
 				UsernamePasswordAuthenticationFilter.class);
