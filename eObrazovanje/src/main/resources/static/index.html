@@ -22,28 +22,15 @@
         <script type="text/javascript" src="js/decor.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-        <script src="js/moment.js"></script>
         <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
         <title>Student GUI</title>
     </head>
     <body ng-app="app">
-    <button ng-if="isLoggedIn()" ng-click="logout()">log out</button>
-		<a ng-if="!isLoggedIn()&&getCurrentState()!=='login'" ui-sref="login"><button>log in</button></a>
-		<div ui-view></div>
-        <div id="content">
-           <div class="panel panel-primary" id="loginDiv">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Prijava</h3>
-                </div>
-                <div class="panel-body">
-                    
-                    <span>Korisničko ime</span>
-                    <input id="username" type="text">
-                    <br/>
-                    <span>Lozinka</span><input id="password" type="password">
-                    <br/>
-                    <button id="prijava" class="btn btn-primary">Prijava</button>
-                </div>
+    
+		
+        <div ui-view id="content">
+           <div ui-view>
+           
             </div>
 
             <div class="panel panel-primary" id="userGuiDiv">

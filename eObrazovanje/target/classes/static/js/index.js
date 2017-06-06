@@ -10,7 +10,7 @@
         $stateProvider
        .state('main', {
           url: '/main',
-          templateUrl: 'proba.html',
+          templateUrl: 'index.html',
           controller: 'probaCtrl'
         
          

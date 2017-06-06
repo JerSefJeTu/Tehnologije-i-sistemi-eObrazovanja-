@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 			.authorizeRequests()
 				.antMatchers("/index.html","/proba.html","/login.html", "/api/login", "/api/register").permitAll()
-				.antMatchers("/css/**", "/js/**", "/img/**", "**/favicon.ico").anonymous()
+				.antMatchers("/css/**", "/js/**", "/img/**", "**/favicon.ico","/res/**").anonymous()
 					.antMatchers(HttpMethod.GET, "/api/Kurs")
 					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
 					.antMatchers(HttpMethod.GET, "/api/Uplata")
