@@ -35,7 +35,7 @@
                         $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
                         
                         callback(true);
-                        $state.go('main');
+                        $state.go('student');
                      
                 }).catch( function(response) {
                 	callback(false);

@@ -7,10 +7,10 @@
                 <div class="panel-body">
                     
                     <span>Korisničko ime</span>
-                    <input id="username" type="text">
+                    <input id="username" type="text" ng-model="user.username">
                     <br/>
-                    <span>Lozinka</span><input id="password" type="password">
+                    <span>Lozinka</span><input id="password" type="password" ng-model="user.password">
                     <br/>
-                    <button id="prijava" class="btn btn-primary">Prijava</button>
+                    <button id="prijava" class="btn btn-primary" ng-click="login()">Prijava</button>
                 </div>
 </div>

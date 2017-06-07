@@ -6,12 +6,33 @@
     .config(config)
     .run(run);
     function config($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/main');
+        $urlRouterProvider.otherwise('/student');
         $stateProvider
-       .state('main', {
-          url: '/main',
-          templateUrl: 'proba.html',
+       .state('student', {
+          url: '/student',
+          templateUrl: 'studentFrame.html',
           controller: 'probaCtrl'
+        
+         
+      })
+      .state('student.studije', {
+          url: '/studije',
+          templateUrl: 'studentStudije.html'
+          
+        
+         
+      })
+      .state('student.finansije', {
+          url: '/finansije',
+          templateUrl: 'studentFinansije.html'
+          
+        
+         
+      })
+      .state('student.profil', {
+          url: '/profil',
+          templateUrl: 'studentProfil.html'
+          
         
          
       })

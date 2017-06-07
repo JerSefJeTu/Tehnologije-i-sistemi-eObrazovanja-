@@ -1,8 +1,9 @@
 package com.ap.model.pohadjanje;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +21,12 @@ public class PohadjanjeController {
 	@Autowired
 	PohadjanjeService pohadjanjeService;
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Pohadjanje>> getKursevi(){
-		List<Pohadjanje> pohadjanja = pohadjanjeService.findAll();
-		return new ResponseEntity<>(pohadjanja, HttpStatus.OK);
+	@RequestMapping(method=RequestMethod.GET ,value = "/student/get", 
+		      params = { "page", "size" })
+	public ResponseEntity<Page<Pohadjanje>> getKursevi(@RequestParam("page") int page, @RequestParam("size") int size){
+		
+		 Page<Pohadjanje> resultPage = pohadjanjeService.findPaginated(page, size);
+		return new ResponseEntity<>(resultPage, HttpStatus.OK);
 		
 	}
 	
