@@ -59,14 +59,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 			.authorizeRequests()
-				.antMatchers("/index.html", "/api/login", "/api/register").permitAll() 
-				.antMatchers(HttpMethod.GET, "/api/Predmet")
-					.hasAuthority("ADMIN")
+				.antMatchers("/index.html","/proba.html","/login.html", "/api/login", "/api/register","ico.jpg").permitAll()
+				.antMatchers("/css/**", "/js/**", "/img/**", "**/favicon.ico","/res/**,/static/**").anonymous()
 					.antMatchers(HttpMethod.GET, "/api/Kurs")
-					.hasAuthority("STUDENT")
+					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
 					.antMatchers(HttpMethod.GET, "/api/Uplata")
-					.hasAuthority("PREDAVAC") 
-				.anyRequest().authenticated().and().formLogin();
+					.access("hasAnyAuthority('STUDENT','ADMIN')")
+					.antMatchers(HttpMethod.GET, "/api/**")
+					.access("hasAnyAuthority('ADMIN')")
+				.anyRequest().authenticated();
 		
 		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),

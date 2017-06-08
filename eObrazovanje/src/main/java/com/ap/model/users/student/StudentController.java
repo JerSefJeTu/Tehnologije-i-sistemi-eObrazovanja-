@@ -21,14 +21,14 @@ public class StudentController {
 	StudentService studentService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Student>> getKursevi(){
-		List<Student> pohadjanja = studentService.findAll();
-		return new ResponseEntity<>(pohadjanja, HttpStatus.OK);
+	public ResponseEntity<List<Student>> getStudenti(){
+		List<Student> student = studentService.findAll();
+		return new ResponseEntity<>(student, HttpStatus.OK);
 		
 	}
 	
 	@RequestMapping(value="/getById", method=RequestMethod.GET)
-	public ResponseEntity<Student> getKurs(@RequestParam("id") Long id){
+	public ResponseEntity<Student> getStudent(@RequestParam("id") Long id){
 		Student Student = studentService.findOne(id);
 		if(Student == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,7 +38,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Student> saveKurs(@RequestBody Student Student){
+	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
 		
 		
 	
@@ -47,7 +47,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
-	public ResponseEntity<Student> updateKurs(@RequestBody Student Student){
+	public ResponseEntity<Student> updateStudent(@RequestBody Student Student){
 		//a Student must exist
 		
 		if (Student == null) {

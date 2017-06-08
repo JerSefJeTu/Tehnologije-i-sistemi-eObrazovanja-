@@ -21,14 +21,14 @@ public class UplataController {
 	UplataService uplataService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Uplata>> getKursevi(){
-		List<Uplata> pohadjanja = uplataService.findAll();
-		return new ResponseEntity<>(pohadjanja, HttpStatus.OK);
+	public ResponseEntity<List<Uplata>> getUplata(){
+		List<Uplata> uplata = uplataService.findAll();
+		return new ResponseEntity<>(uplata, HttpStatus.OK);
 		
 	}
 	
 	@RequestMapping(value="/getById", method=RequestMethod.GET)
-	public ResponseEntity<Uplata> getKurs(@RequestParam("id") Long id){
+	public ResponseEntity<Uplata> getUplata(@RequestParam("id") Long id){
 		Uplata Uplata = uplataService.findOne(id);
 		if(Uplata == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,7 +38,7 @@ public class UplataController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Uplata> saveKurs(@RequestBody Uplata Uplata){
+	public ResponseEntity<Uplata> saveUplata(@RequestBody Uplata Uplata){
 		
 		
 	
@@ -47,7 +47,7 @@ public class UplataController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
-	public ResponseEntity<Uplata> updateKurs(@RequestBody Uplata Uplata){
+	public ResponseEntity<Uplata> updateUplata(@RequestBody Uplata Uplata){
 		//a Uplata must exist
 		
 		if (Uplata == null) {
@@ -61,7 +61,7 @@ public class UplataController {
 	}
 	
 	@RequestMapping( method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKurs(@RequestParam("id") Long id){
+	public ResponseEntity<Void> deleteUplata(@RequestParam("id") Long id){
 		Uplata Uplata = uplataService.findOne(id);
 		if (Uplata != null){
 			uplataService.remove(id);

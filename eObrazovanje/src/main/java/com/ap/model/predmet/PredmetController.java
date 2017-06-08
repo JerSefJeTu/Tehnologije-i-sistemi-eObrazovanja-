@@ -21,14 +21,14 @@ public class PredmetController {
 	PredmetService predmetService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Predmet>> getKursevi(){
-		List<Predmet> pohadjanja = predmetService.findAll();
-		return new ResponseEntity<>(pohadjanja, HttpStatus.OK);
+	public ResponseEntity<List<Predmet>> getPredmet(){
+		List<Predmet> predmet = predmetService.findAll();
+		return new ResponseEntity<>(predmet, HttpStatus.OK);
 		
 	}
 	
 	@RequestMapping(value="/getById", method=RequestMethod.GET)
-	public ResponseEntity<Predmet> getKurs(@RequestParam("id") Long id){
+	public ResponseEntity<Predmet> getPredmet(@RequestParam("id") Long id){
 		Predmet Predmet = predmetService.findOne(id);
 		if(Predmet == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -38,7 +38,7 @@ public class PredmetController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Predmet> saveKurs(@RequestBody Predmet Predmet){
+	public ResponseEntity<Predmet> savePredmet(@RequestBody Predmet Predmet){
 		
 		
 	
@@ -47,7 +47,7 @@ public class PredmetController {
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
-	public ResponseEntity<Predmet> updateKurs(@RequestBody Predmet Predmet){
+	public ResponseEntity<Predmet> updatePredmet(@RequestBody Predmet Predmet){
 		//a Predmet must exist
 		
 		if (Predmet == null) {
@@ -61,7 +61,7 @@ public class PredmetController {
 	}
 	
 	@RequestMapping( method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKurs(@RequestParam("id") Long id){
+	public ResponseEntity<Void> deletePredmet(@RequestParam("id") Long id){
 		Predmet Predmet = predmetService.findOne(id);
 		if (Predmet != null){
 			predmetService.remove(id);

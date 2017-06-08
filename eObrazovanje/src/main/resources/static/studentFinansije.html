@@ -1,0 +1,156 @@
+<div id="userGuiContentFinansije">
+    <ul class="nav nav-pills" role="tablist" style="margin-bottom:1%">
+        <li role="presentation" class="active"><a href="">Sve</a></li>
+        <li role="presentation"><a href="">Priliv</a></li>
+        <li role="presentation"><a href="">Odliv</a></li>
+    </ul>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="input-group date" id="pretragaFinansijaPocetniDatum">
+                    <input type="text" class="form-control" placeholder="Izaberite početni datum..."/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <script>
+                $(function() {
+                    $("#pretragaFinansijaPocetniDatum").datepicker();
+                });
+           </script>
+        </div> <!-- prvi date picker-->
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="input-group date" id="pretragaFinansijaKrajnjiDatum">
+                    <input type="text" class="form-control" placeholder="Izaberite krajnji datum..."/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <script>
+                $(function() {
+                    $("#pretragaFinansijaKrajnjiDatum").datepicker();
+                });
+           </script>
+        </div> <!-- drugi date picker-->
+        <div class="col-md-4">
+          <button class="btn btn-default" style="float:right;margin-right:33%;margin-left:3%">Poništi</button>
+          <button class="btn btn-primary" style="float:right">Traži</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="number" min="0" class="form-control" placeholder="Unesite minimalni iznos...">
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-bottom:3%">
+            <div style="width:80%" class="input-group">
+                <input type="number" min="0" class="form-control" placeholder="Unesite maksimalni iznos...">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>#</td>
+                        <td>Datum</td>
+                        <td>Iznos</td>
+                        <td>Svrha</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>01.05.2017.</td>
+                        <td>8500</td>
+                        <td>
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate školarine">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>13.05.2017.</td>
+                        <td>20000</td>
+                        <td>
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan lectus et eros ullamcorper, in commodo risus pellentesque. Suspendisse id erat pellentesque, molestie turpis ac, sodales dui. Pellentesque et purus at dui molestie egestas quis quis urna. Quisque lobortis facilisis mi in vestibulum. Nunc vel vestibulum dui, nec accumsan risus. Curabitur dictum mauris eu hendrerit pellentesque. Nam rhoncus volutpat lorem, eu finibus augue molestie in.">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>18.05.2017.</td>
+                        <td>1000</td>
+                        <td>
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Vežbanke">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>19.05.2017.</td>
+                        <td>1850</td>
+                        <td>
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Prijava ispita iz matematike 1">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>22.05.2017.</td>
+                        <td>95000</td>
+                        <td>
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Mito i korupcija">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+       </div>
+       <div class="col-md-4 panel-group">
+           <div class="panel panel-primary">
+               <div class="panel-heading">
+                   <h5 class="panel-title">
+                       <a href="#racunInfo" data-toggle="collapse">Podaci o računu</a>
+                   </h5>
+               </div>
+           </div>
+           <div id="racunInfo" class="panel-collapse collapse">
+               <ul class="list-group">
+                   <div class="panel panel-default">
+                       <div class="panel-heading">Stanje na računu</div>
+                       <div class="panel-body"><strong>127000</strong></div>
+                   </div>
+                   <div class="panel panel-default" style="margin-bottom:3%">
+                       <div class="panel-heading">Poziv na broj</div>
+                       <div class="panel-body"><strong>127-46600271-49</strong></div>
+                   </div>
+                   <button style="width:100%" class="btn btn-primary">Plati</button>
+               </ul>
+           </div>
+       </div>
+        <div class="row">
+            <div id="paginacijaFinansije">
+                <ul class="pagination pagination-sm">
+                    <li><a href=""><span>&laquo;</span></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href=""><span>&raquo;</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
