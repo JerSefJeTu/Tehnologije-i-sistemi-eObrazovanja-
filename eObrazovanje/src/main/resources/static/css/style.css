@@ -77,13 +77,16 @@ body {
     width: 50%;
 }
 #userGuiContent {
-/*	display: none;*/
+	display: none;
 }
 #infoDiv {
     overflow: hidden;
-/*    display: none;*/
+    display: none;
 /*    margin-left: 3%;*/
 /*    margin-bottom: 3%;*/
+}
+#teacherGuiContentKursevi {
+/*	display: none;*/
 }
 #infoDiv button {
     margin-left: 50%;
@@ -107,4 +110,16 @@ body {
 #paginacijaFinansije {
 	float:left;
     margin-left: 30%;
+}
+#paginacijaKurseva {
+	padding-left: 25%;
+}
+#paginacijaPredmetaPredavac {
+	padding-left: 25%;
+}
+#pretragaKurseva {
+	margin-bottom: 3%;
+}
+#pretragaPredmetaPredavac {
+	margin-bottom: 3%;
 }
