@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value="api/Uplata")
+@RequestMapping(value="api/uplata")
 public class UplataController {
 	
 	@Autowired

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value="api/PolaganjeIspita")
+@RequestMapping(value="api/polaganjeIspita")
 public class PolaganjeIspitaController {
 	
 	@Autowired

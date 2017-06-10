@@ -15,7 +15,7 @@ import com.ap.model.users.student.Student;
 
 
 @RestController
-@RequestMapping(value="api/Kurs")
+@RequestMapping(value="api/kurs")
 public class KursController {
 
 	@Autowired

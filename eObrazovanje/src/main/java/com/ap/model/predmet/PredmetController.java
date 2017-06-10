@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value="api/Predmet")
+@RequestMapping(value="api/predmet")
 public class PredmetController {
 	
 	@Autowired

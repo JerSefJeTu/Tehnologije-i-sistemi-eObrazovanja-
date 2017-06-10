@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value="api/Pohadjanje")
+@RequestMapping(value="api/pohadjanje")
 public class PohadjanjeController {
 	
 	@Autowired

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value="api/PredispitnaObaveza")
+@RequestMapping(value="api/predispitnaObaveza")
 public class PredispitnaObavezaController {
 	
 	@Autowired

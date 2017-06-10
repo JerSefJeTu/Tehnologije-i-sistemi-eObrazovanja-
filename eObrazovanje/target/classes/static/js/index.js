@@ -50,9 +50,27 @@
             
         }
 
+        
+        $rootScope.$on('$stateChangeStart', function(e, toState  , toParams
+                , fromState, fromParams) {
+
+				var isLogin = toState.name === "login";
+				if(isLogin){
+				return; // no need to redirect 
+				}
+				
+				// now, redirect only not authenticated
+				
+				var userInfo = authenticationSvc.getUserInfo();
+				
+				if(isLoggedIn === false) {
+				e.preventDefault(); // stop current execution
+				$state.go('login');// go to login
+				}
+				});
     
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          var publicStates = ['login','main',/*'entry',*/''];
+          var publicStates = ['login','student',/*'entry',*/''];
           var restrictedState = publicStates.indexOf(toState.name) === -1;
           if(restrictedState && !AuthenticationService.getCurrentUser()){
             $state.go('login');
