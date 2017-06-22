@@ -11,4 +11,17 @@ $(document).ready(function(){
             that.addClass("active");
         }
     });
+    $("#addKursBtn").on("click",function(e){
+        alert("!!");
+    });
+    $('.list-group.single-select').on("click", "a", function(e){
+        e.preventDefault();
+       $(this).siblings(".active").removeClass("active");
+        $(this).addClass("active");
+    });
+    $('.pagination').on("click","li", function(e){
+        that=$(this);
+        that.siblings(".active").removeClass("active");
+        that.addClass("active");
+    });
 });
