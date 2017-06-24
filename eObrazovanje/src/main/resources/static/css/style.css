@@ -77,7 +77,7 @@ body {
     width: 50%;
 }
 #userGuiContent {
-	display: none;
+	/* display: none; */
 }
 #infoDiv {
     overflow: hidden;

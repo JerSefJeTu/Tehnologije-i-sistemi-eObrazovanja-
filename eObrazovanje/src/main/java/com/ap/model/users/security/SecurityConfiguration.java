@@ -59,7 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 			.authorizeRequests()
-				.antMatchers("/","/index.html","/proba.html","/login.html", "/api/login", "/api/register","ico.jpg").permitAll()
+				.antMatchers("/","/*.html", "/api/login", "/api/register","ico.jpg").permitAll()
 				.antMatchers("/css/**","/fonts/**", "/js/**", "/img/**", "**/favicon.ico","/res/**").anonymous()
 					.antMatchers(HttpMethod.GET, "/api/kurs")
 					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
