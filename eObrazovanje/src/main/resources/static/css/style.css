@@ -77,7 +77,7 @@ body {
     width: 50%;
 }
 #userGuiContent {
-	display: none;
+/* 	display: none; */
 }
 #infoDiv {
     overflow: hidden;
@@ -96,7 +96,7 @@ body {
 	margin-left: 22%;
 }
 #userGuiContentStudije {
-	display: none;
+	/* display: none; */
 }
 #userGuiContentFinansije {
 	/* display: none; */

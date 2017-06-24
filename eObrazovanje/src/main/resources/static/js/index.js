@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['proba','login','ui.router', 'authentication']);
+	var app = angular.module('app',['proba','login','ui.router', 'authentication','ui.router.state.events']);
 	
 	
 	app
