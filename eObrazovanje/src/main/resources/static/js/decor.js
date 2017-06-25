@@ -24,4 +24,9 @@ $(document).ready(function(){
         that.siblings(".active").removeClass("active");
         that.addClass("active");
     });
+    $('.nav.nav-tabs').on("click","li",function(e){
+       that=$(this);
+        that.siblings(".active").removeClass("active");
+        that.addClass("active");
+    });
 });

@@ -43,6 +43,17 @@
 
        .state('predavac.nastava', {
           url: '/nastava',
+          templateUrl: 'predavacNastavaTop.html'
+
+      })
+          .state('predavac.nastava.kursevi', {
+          url: '/kursevi',
+          templateUrl: 'predavacNastavaKurs.html'
+
+      })
+      
+            .state('predavac.nastava.kursevi.info', {
+          url: '/info',
           templateUrl: 'predavacNastavaInfoKursa.html'
 
       })
