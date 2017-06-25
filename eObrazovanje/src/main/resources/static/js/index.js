@@ -1,6 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['authentication',
-	'login','ui.router','student','main']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events']);
 
 
 	app
@@ -49,7 +48,7 @@
         controller: 'loginCtrl'
     });
 
-	$locationProvider.html5Mode(true);
+	
    }
     // pogledati run
    function run($rootScope, $http, $location, $localStorage, AuthenticationService, $state) {
@@ -58,21 +57,30 @@
 
         }
 
-        /*$rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          var publicStates = ['login','main','entry',''];
+        $rootScope.$on('$stateChangeStart', function(e, toState  , toParams
+                , fromState, fromParams) {
+
+				var isLogin = toState.name === "login";
+				if(isLogin){
+				return; // no need to redirect 
+				}
+				
+				// now, redirect only not authenticated
+				
+				
+				
+				if(AuthenticationService.getCurrentUser()) {
+				e.preventDefault(); // stop current execution
+				$state.go('login');// go to login
+				}
+				});
+    
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+          var publicStates = ['login','student',/*'entry',*/''];
           var restrictedState = publicStates.indexOf(toState.name) === -1;
           if(restrictedState && !AuthenticationService.getCurrentUser()){
             $state.go('login');
           }
-        });*/
-
-        $rootScope.$on("$routeChangeStart", function(event){
-        	if(!AuthenticationService.isLoggedIn()) {
-				event.preventDefault();
-				$state.go('login');
-			} else {
-				console.log("ULOGOVAn");
-			}
         });
 
 

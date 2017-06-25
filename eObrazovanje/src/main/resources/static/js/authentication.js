@@ -15,11 +15,11 @@
         function login(user, callback) {
             $http.post('/api/login', user)
                 .then(function (response) {
-                   
+
                 	var token = response.data;
                 	console.log(token);
-                   
-                        
+
+
                         var currentUser = { username: user.username, token: token.payload}
                         console.log(currentUser);
                         var tokenPayload = jwtHelper.decodeToken(token.payload);
@@ -28,15 +28,23 @@
                         	console.log(tokenPayload.role);
                             currentUser.role = tokenPayload.role;
                         }
-                      
+
                         $localStorage.currentUser = currentUser;
                         console.log($localStorage);
-                        
+
                         $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
-                        
+
                         callback(true);
-                        $state.go('student');
-                     
+
+                        if(currentUser.role == "ADMIN") {
+                        	$state.go('admin');
+                        } else if(currentUser.role == "PREDAVAC") {
+                        	$state.go('predavac');
+                        } else if(currentUser.role == "STUDENT") {
+                        	$state.go('student.studije');
+                        }
+
+
                 }).catch( function(response) {
                 	callback(false);
                 console.log("invalid login");
@@ -52,6 +60,14 @@
 
         function getCurrentUser() {
             return $localStorage.currentUser;
+        }
+
+        function isLoggedIn() {
+            if(getCurrentUser) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 })();
