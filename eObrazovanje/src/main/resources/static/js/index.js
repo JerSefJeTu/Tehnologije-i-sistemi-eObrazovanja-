@@ -16,7 +16,7 @@
        .state('student', {
           url: '/student',
           templateUrl: 'studentFrame.html',
-          controller: 'studentCtrl'
+          
 
 
       })
@@ -69,19 +69,14 @@
 				
 				
 				
-				if(AuthenticationService.getCurrentUser()) {
+				if($rootScope.isLoggedIn()===false) {
+					console.log("redirekcija na login")
 				e.preventDefault(); // stop current execution
 				$state.go('login');// go to login
 				}
 				});
     
-        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          var publicStates = ['login','student',/*'entry',*/''];
-          var restrictedState = publicStates.indexOf(toState.name) === -1;
-          if(restrictedState && !AuthenticationService.getCurrentUser()){
-            $state.go('login');
-          }
-        });
+       
 
 
         $rootScope.logout = function () {
@@ -96,7 +91,7 @@
               return AuthenticationService.getCurrentUser().role;
             }
         }
-		/*
+		
         $rootScope.isLoggedIn = function () {
             if (AuthenticationService.getCurrentUser()){
               return true;
@@ -105,7 +100,7 @@
               return false;
             }
         }
-		*/
+		
         $rootScope.getCurrentState = function () {
           return $state.current.name;
         }

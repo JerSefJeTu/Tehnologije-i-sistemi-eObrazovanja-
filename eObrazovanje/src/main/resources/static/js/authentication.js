@@ -35,14 +35,20 @@
                         $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
 
                         callback(true);
-
-                        if(currentUser.role == "ADMIN") {
-                        	$state.go('admin');
-                        } else if(currentUser.role == "PREDAVAC") {
-                        	$state.go('predavac');
-                        } else if(currentUser.role == "STUDENT") {
-                        	$state.go('student.studije');
+                        for (i = 0; i < currentUser.role.length; i++) { 
+                        	console.log(currentUser.role[i])
+                        	if(currentUser.role[i].authority == "ADMIN") {
+                        		console.log("admin")
+                            	$state.go('admin');
+                            } else if(currentUser.role[i].authority == "PREDAVAC") {
+                            	console.log("predavac")
+                            	$state.go('predavac');
+                            } else if(currentUser.role[i].authority == "STUDENT") {
+                            	console.log("Student")
+                            	$state.go('student.studije');
+                            }
                         }
+                        
 
 
                 }).catch( function(response) {
