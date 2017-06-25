@@ -6,7 +6,7 @@
     .config(config)
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-        //$urlRouterProvider.otherwise('/index');
+        $urlRouterProvider.otherwise('/student');
         $stateProvider
 		.state('index', {
 			url: '/',
@@ -31,16 +31,30 @@
           url: '/finansije',
           templateUrl: 'studentFinansije.html'
 
-
-
       })
       .state('student.profil', {
           url: '/profil',
           templateUrl: 'studentProfil.html'
 
-
+      })
+      .state('predavac', {
+          url: '/predavac',
+          templateUrl: 'predavacFrame.html'
 
       })
+      
+       .state('predavac.nastava', {
+          url: '/nastava',
+          templateUrl: 'predavacNastavaInfoKursa.html'
+
+      })
+      
+      .state('predavac.ocene', {
+          url: '/ocene',
+          templateUrl: 'predavacOcene.html'
+
+      })
+
 
        .state('login', {
         url: '/login',
