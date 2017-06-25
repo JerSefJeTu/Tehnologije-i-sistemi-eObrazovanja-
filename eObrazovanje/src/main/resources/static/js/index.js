@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events', 'student']);
 
 
 	app
@@ -16,9 +16,7 @@
        .state('student', {
           url: '/student',
           templateUrl: 'studentFrame.html',
-          
-
-
+		  controller: 'StudentsCtrl'
       })
       .state('student.studije', {
           url: '/studije',
@@ -42,13 +40,13 @@
           templateUrl: 'predavacFrame.html'
 
       })
-      
+
        .state('predavac.nastava', {
           url: '/nastava',
           templateUrl: 'predavacNastavaInfoKursa.html'
 
       })
-      
+
       .state('predavac.ocene', {
           url: '/ocene',
           templateUrl: 'predavacOcene.html'
@@ -62,7 +60,7 @@
         controller: 'loginCtrl'
     });
 
-	
+
    }
     // pogledati run
    function run($rootScope, $http, $location, $localStorage, AuthenticationService, $state) {
@@ -73,24 +71,21 @@
 
         $rootScope.$on('$stateChangeStart', function(e, toState  , toParams
                 , fromState, fromParams) {
-
 				var isLogin = toState.name === "login";
 				if(isLogin){
-				return; // no need to redirect 
+				return; // no need to redirect
 				}
-				
+
 				// now, redirect only not authenticated
-				
-				
-				
+
+
+
 				if($rootScope.isLoggedIn()===false) {
 					console.log("redirekcija na login")
 				e.preventDefault(); // stop current execution
 				$state.go('login');// go to login
 				}
 				});
-    
-       
 
 
         $rootScope.logout = function () {
@@ -105,7 +100,7 @@
               return AuthenticationService.getCurrentUser().role;
             }
         }
-		
+
         $rootScope.isLoggedIn = function () {
             if (AuthenticationService.getCurrentUser()){
               return true;
@@ -114,7 +109,7 @@
               return false;
             }
         }
-		
+
         $rootScope.getCurrentState = function () {
           return $state.current.name;
         }

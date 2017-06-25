@@ -42,7 +42,7 @@
                             	$state.go('admin');
                             } else if(currentUser.role[i].authority == "PREDAVAC") {
                             	console.log("predavac")
-                            	$state.go('predavac');
+                            	$state.go('predavac.nastava');
                             } else if(currentUser.role[i].authority == "STUDENT") {
                             	console.log("Student")
                             	$state.go('student.studije');
