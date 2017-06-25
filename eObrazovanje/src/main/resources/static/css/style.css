@@ -3,7 +3,7 @@
     margin: 0;
 }
 body {
-    background: url(../res/mrlja.png) no-repeat fixed center;
+    background: url(../res/pozadina5.jpg) no-repeat fixed center;
     background-size: cover;
 }
 #userGuiDiv {
@@ -86,7 +86,7 @@ body {
 /*    margin-bottom: 3%;*/
 }
 #teacherGuiContentKursevi {
-/*	display: none;*/
+	display: none;
 }
 #infoDiv button {
     margin-left: 50%;
