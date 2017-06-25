@@ -86,7 +86,7 @@ body {
 /*    margin-bottom: 3%;*/
 }
 #teacherGuiContentKursevi {
-	display: none;
+	/* display: none; */
 }
 #infoDiv button {
     margin-left: 50%;
