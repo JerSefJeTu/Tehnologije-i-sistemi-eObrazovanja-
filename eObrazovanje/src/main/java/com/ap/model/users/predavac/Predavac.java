@@ -18,12 +18,18 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.ap.model.kurs.Kurs;
 import com.ap.model.predispitnaObaveza.PredispitnaObaveza;
+import com.ap.model.predmet.Predmet;
 import com.ap.model.users.korisnik.Korisnik;
 import com.ap.model.users.vrstaPredavaca.VrstaPredavaca;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @DiscriminatorValue("PREDAVAC")
 @PrimaryKeyJoinColumn(name = "KORISNIK_ID")
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 public class Predavac extends Korisnik {
 	@Id
 	@GeneratedValue
@@ -33,6 +39,11 @@ public class Predavac extends Korisnik {
 	@JoinTable(name = "predavac_kursevi", joinColumns = { @JoinColumn(name = "predavac_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "kurs_id") })
 	private Set<Kurs> kursevi = new HashSet<Kurs>();
+	
+	@ManyToMany(cascade = CascadeType.MERGE)
+	@JoinTable(name = "predavac_predmeti", joinColumns = { @JoinColumn(name = "predavac_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "predmet_id") })
+	private Set<Predmet> predmeti = new HashSet<Predmet>();
 
 	@ManyToOne
 	private VrstaPredavaca vrstaPredavaca;
@@ -91,5 +102,15 @@ public class Predavac extends Korisnik {
 	public void setPredispitneObaveze(Set<PredispitnaObaveza> predispitneObaveze) {
 		this.predispitneObaveze = predispitneObaveze;
 	}
+
+	public Set<Predmet> getPredmeti() {
+		return predmeti;
+	}
+
+	public void setPredmeti(Set<Predmet> predmeti) {
+		this.predmeti = predmeti;
+	}
+	
+	
 
 }

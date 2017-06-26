@@ -13,9 +13,7 @@
         <div class="col-md-6"><button style="width:100%" class="btn btn-danger" id="delKursBtn">Remove</button></div>
     </div>
     <div class="list-group single-select" id="predavacKurseviLista">
-        <a  ui-sref=".info" class="list-group-item">Matematika 1 2014</a>
-        <a ui-sref=".info" class="list-group-item active">Matematika 1 2015</a>
-        <a ui-sref=".info" class="list-group-item">Matematika 2 2015</a>
+        <a ng-click="izborKursa(kurs.id)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi">{{kurs.naziv}}</a>
     </div>
     <div id="paginacijaKurseva">
         <ul class="pagination pagination-sm">

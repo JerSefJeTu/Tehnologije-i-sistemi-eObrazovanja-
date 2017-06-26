@@ -24,6 +24,10 @@ import com.ap.web.dto.TokenDTO;
 @RestController
 public class KorisnikController {
 
+	
+	@Autowired
+	KorisnikService korisnikService;
+	
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
@@ -52,13 +56,13 @@ public class KorisnikController {
         }
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value= "/getUserByUsername")
-	public ResponseEntity<Korisnik> getKorisnik(@RequestParam("username") String username) {
-		Korisnik korisnik = korisnikRepository.findByUserName(username);
-		if(korisnik == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+	@RequestMapping(value = "/api/getUser", method = RequestMethod.GET)
+	public ResponseEntity<Korisnik> getUser(@RequestParam("username") String username) {
+        try {
+		    Korisnik korisnik =korisnikService.findByUsername(username);
+            return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<Korisnik>( HttpStatus.BAD_REQUEST);
+        }
 	}
 }

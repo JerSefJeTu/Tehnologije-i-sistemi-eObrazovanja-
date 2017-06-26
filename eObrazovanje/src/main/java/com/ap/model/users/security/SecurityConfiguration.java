@@ -61,14 +61,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/","/*.html", "/api/login", "/api/register","ico.jpg").permitAll()
 				.antMatchers("/css/**","/fonts/**", "/js/**", "/img/**", "**/favicon.ico","/res/**").anonymous()
-					.antMatchers(HttpMethod.GET, "/api/kurs")
+					.antMatchers(HttpMethod.GET,"/api/getUser","/api/predmet/**","/api/student/**","/api/kurs/**")
 					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
-					.antMatchers(HttpMethod.GET, "/api/uplata")
+					.antMatchers(HttpMethod.GET, "/**")
 					.access("hasAnyAuthority('STUDENT','ADMIN')")
 					.antMatchers(HttpMethod.GET, "/**")
 					.access("hasAnyAuthority('STUDENT')")
 					.antMatchers(HttpMethod.GET, "/api/**")
-					.access("hasAnyAuthority('ADMIN')")
+					.access("hasAnyAuthority('STUDENT','ADMIN')")
 				.anyRequest().authenticated();
 		
 		// Custom JWT based authentication

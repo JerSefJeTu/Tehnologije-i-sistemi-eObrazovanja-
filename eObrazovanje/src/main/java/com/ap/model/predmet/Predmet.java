@@ -7,11 +7,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.ap.model.kurs.Kurs;
+import com.ap.model.users.predavac.Predavac;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Predmet {
@@ -19,6 +24,9 @@ public class Predmet {
 	@GeneratedValue
 	private Long id;
 	private String naziv;
+
+	@ManyToMany(mappedBy = "predmeti", fetch = FetchType.LAZY)
+	private Set<Predavac> predavaci=new HashSet<Predavac>();
 	
 	@OneToMany(cascade = { ALL }, fetch = LAZY, mappedBy = "predmet")
 	private Set<Kurs> kursevi=new HashSet<Kurs>();
@@ -47,6 +55,22 @@ public class Predmet {
 
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
+	}
+
+	public Set<Predavac> getPredavaci() {
+		return predavaci;
+	}
+
+	public void setPredavaci(Set<Predavac> predavaci) {
+		this.predavaci = predavaci;
+	}
+
+	public Set<Kurs> getKursevi() {
+		return kursevi;
+	}
+
+	public void setKursevi(Set<Kurs> kursevi) {
+		this.kursevi = kursevi;
 	}
 	
 	
