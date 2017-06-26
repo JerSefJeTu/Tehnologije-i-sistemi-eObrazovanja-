@@ -33,6 +33,7 @@ public class PredispitnaObaveza {
 	private double brojBodova;
 	
 	private double minBodova;
+	private double maxbodova;
 	@ManyToOne
 	@JsonIgnore
 	private PolaganjeIspita polaganjeIspita;
@@ -42,7 +43,7 @@ public class PredispitnaObaveza {
 	}
 
 	public PredispitnaObaveza(Long id, Date datumPolaganja, boolean polozio, String nazivObaveze,
-			Set<Predavac> dezurniPredavaci, double brojBodova, double minBodova,PolaganjeIspita polaganjeIspita) {
+			Set<Predavac> dezurniPredavaci, double brojBodova, double minBodova,PolaganjeIspita polaganjeIspita,double maxBodova) {
 		super();
 		this.id = id;
 		this.datumPolaganja = datumPolaganja;
@@ -52,9 +53,18 @@ public class PredispitnaObaveza {
 		this.brojBodova = brojBodova;
 		this.minBodova = minBodova;
 		this.polaganjeIspita=polaganjeIspita;
+		this.maxbodova=maxBodova;
 	}
 	
 	
+
+	public double getMaxbodova() {
+		return maxbodova;
+	}
+
+	public void setMaxbodova(double maxbodova) {
+		this.maxbodova = maxbodova;
+	}
 
 	public Long getId() {
 		return id;

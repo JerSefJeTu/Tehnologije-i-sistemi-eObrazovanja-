@@ -2,6 +2,9 @@ package com.ap.model.pohadjanje;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -13,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.ap.model.kurs.Kurs;
+import com.ap.model.kurs.KursService;
+import com.ap.web.dto.PohadjanjeDTO;
 
 
 
@@ -24,15 +28,12 @@ public class PohadjanjeController {
 	
 	@Autowired
 	PohadjanjeService pohadjanjeService;
+	@Autowired
+	KursService kursService;
 	
-	@RequestMapping(method=RequestMethod.GET ,value = "/student/get", 
+	@RequestMapping(method=RequestMethod.GET, 
 		      params = { "page", "size" })
 	public ResponseEntity<Page<Pohadjanje>> getKursevi(@RequestParam("page") int page, @RequestParam("size") int size){
-		ObjectMapper mapper = new ObjectMapper();
-		SimpleModule module = new SimpleModule();
-		module.addSerializer(Pohadjanje.class, new PohadjanjeSerializer());
-		mapper.registerModule(module);
-		Pohadjanje pohadjanje = pohadjanjeService.findOne(2L);
 		 Page<Pohadjanje> resultPage = pohadjanjeService.findPaginated(page, size);
 		return new ResponseEntity<>(resultPage, HttpStatus.OK);
 		
@@ -86,6 +87,18 @@ public class PohadjanjeController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(value="/findByKurs" ,method=RequestMethod.GET)
+	public ResponseEntity<List<PohadjanjeDTO>> getPohadjanjabyKurs(@RequestParam("idKursa") Long idKursa){
+		Kurs kurs = kursService.findOne(idKursa);
+		List<Pohadjanje> pohadjanja = pohadjanjeService.findByKurs(kurs);
+		List<PohadjanjeDTO> pohadjanjeDTOs = new ArrayList<>();
+		for (Pohadjanje pohadjanje : pohadjanja) {
+			pohadjanjeDTOs.add(new PohadjanjeDTO(pohadjanje));
+		}
+		return new ResponseEntity<>(pohadjanjeDTOs, HttpStatus.OK);
+		
 	}
 	
 }
