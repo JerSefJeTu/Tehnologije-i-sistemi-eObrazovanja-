@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 
 import com.ap.model.polaganjeIspita.PolaganjeIspita;
 import com.ap.model.users.predavac.Predavac;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class PredispitnaObaveza {
 	@Id
@@ -26,12 +27,14 @@ public class PredispitnaObaveza {
 	
 	@ManyToMany(cascade =CascadeType.MERGE)
 	@JoinTable(name = "predispitna_predavac", joinColumns = { @JoinColumn(name = "predispitna_id") }, inverseJoinColumns = { @JoinColumn(name = "predavac_id") })
+	@JsonIgnore
 	private Set<Predavac> dezurniPredavaci=new HashSet<Predavac>();
 	
 	private double brojBodova;
 	
 	private double minBodova;
 	@ManyToOne
+	@JsonIgnore
 	private PolaganjeIspita polaganjeIspita;
 	
 	public PredispitnaObaveza(){

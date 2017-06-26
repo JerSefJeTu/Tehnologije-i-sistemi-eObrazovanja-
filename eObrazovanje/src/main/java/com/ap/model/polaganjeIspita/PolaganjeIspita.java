@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 
 import com.ap.model.pohadjanje.Pohadjanje;
 import com.ap.model.predispitnaObaveza.PredispitnaObaveza;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class PolaganjeIspita {
 	@Id
@@ -21,6 +22,7 @@ public class PolaganjeIspita {
 	private double brojBodova;
 	private int ocena;
 	@OneToOne(mappedBy="polaganje")
+	@JsonIgnore
 	private Pohadjanje pohadjanje;
 	
 	public PolaganjeIspita(){

@@ -36,6 +36,7 @@ public class StudentController {
 		
 		return new ResponseEntity<>(Student, HttpStatus.OK);
 	}
+
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){

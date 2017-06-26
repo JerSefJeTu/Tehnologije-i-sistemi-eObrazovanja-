@@ -65,6 +65,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
 					.antMatchers(HttpMethod.GET, "/api/uplata")
 					.access("hasAnyAuthority('STUDENT','ADMIN')")
+					.antMatchers(HttpMethod.GET, "/**")
+					.access("hasAnyAuthority('STUDENT')")
 					.antMatchers(HttpMethod.GET, "/api/**")
 					.access("hasAnyAuthority('ADMIN')")
 				.anyRequest().authenticated();

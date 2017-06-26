@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
 
 
 @RestController
@@ -25,11 +28,21 @@ public class PohadjanjeController {
 	@RequestMapping(method=RequestMethod.GET ,value = "/student/get", 
 		      params = { "page", "size" })
 	public ResponseEntity<Page<Pohadjanje>> getKursevi(@RequestParam("page") int page, @RequestParam("size") int size){
-		
+		ObjectMapper mapper = new ObjectMapper();
+		SimpleModule module = new SimpleModule();
+		module.addSerializer(Pohadjanje.class, new PohadjanjeSerializer());
+		mapper.registerModule(module);
+		Pohadjanje pohadjanje = pohadjanjeService.findOne(2L);
 		 Page<Pohadjanje> resultPage = pohadjanjeService.findPaginated(page, size);
 		return new ResponseEntity<>(resultPage, HttpStatus.OK);
 		
 	}
+	
+	/*@RequestMapping(method = RequestMethod.GET,  value="/student",
+			params = {"id"})
+	public ResponseEntity<String> getPohadjanjeByStudent(@RequestParam("id") long id) {
+		
+	}*/
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Pohadjanje> getKurs(@PathVariable Long id){

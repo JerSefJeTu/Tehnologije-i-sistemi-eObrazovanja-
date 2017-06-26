@@ -3,7 +3,9 @@
            .controller('StudentsCtrl',
             function($scope, $localStorage, StudentsResource, AuthenticationService){
                console.log('uslo u kontroler');
-               console.log(AuthenticationService.getCurrentUser());
-               
+               var username = AuthenticationService.getCurrentUser().username;
+            StudentsResource.getStudentByUsername(username).then(function(item){
+                   console.log(item.data);
+                });
            });
 }(angular));
