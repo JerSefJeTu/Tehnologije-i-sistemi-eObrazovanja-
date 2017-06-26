@@ -44,7 +44,7 @@
 		     
 		      var kurs= new Kurs.get({id:idKursa})
 		      $scope.sviStudent = new Student.query();
-		      console.log($scope.sviStudent);
+		     
 		     
 
 		      

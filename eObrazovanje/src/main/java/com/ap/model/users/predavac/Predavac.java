@@ -22,6 +22,7 @@ import com.ap.model.predmet.Predmet;
 import com.ap.model.users.korisnik.Korisnik;
 import com.ap.model.users.vrstaPredavaca.VrstaPredavaca;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -35,6 +36,7 @@ public class Predavac extends Korisnik {
 	@GeneratedValue
 	private Long id;
 
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "predavac_kursevi", joinColumns = { @JoinColumn(name = "predavac_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "kurs_id") })

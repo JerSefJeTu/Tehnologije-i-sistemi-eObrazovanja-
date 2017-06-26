@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.ap.model.kurs.Kurs;
+
 @Service
 public class PohadjanjeService {
 
@@ -34,4 +36,7 @@ public class PohadjanjeService {
         return pohadjanjeRepository.findAll(new PageRequest(page, size));
     }
 	
+	public List<Pohadjanje> findByKurs(Kurs kurs) {
+		return pohadjanjeRepository.findByKurs(kurs);
+	}
 }

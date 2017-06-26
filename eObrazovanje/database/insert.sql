@@ -19,6 +19,9 @@ truncate table uplata;
 truncate table vrsta_predavaca;
 truncate table predavac_predmeti;
 truncate table predavac_kursevi;
+truncate table polaganje_ispita;
+truncate table predispitna_obaveza;
+truncate table pohadjanje;
 set foreign_key_checks = 1;
 
 
@@ -38,8 +41,12 @@ insert into predavac(korisnik_id,aktivan) values(2,true);
 insert into korisnik(user_name,password,tip_korisnika,first_name)values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','govnusina');
 insert into student(korisnik_id,stanje) values(3,0);
 insert into korisnik(user_name,password,tip_korisnika,first_name)values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','govnusina');
-insert into student(korisnik_id,stanje) values(3,0);
+insert into student(korisnik_id,stanje) values(4,0);
+insert into korisnik(user_name,password,tip_korisnika,first_name)values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','govnusina');
+insert into student(korisnik_id,stanje) values(5,0);
 
 insert into predavac_predmeti values(2,1);
 insert into predavac_kursevi values(2,1);
-
+insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id)values(11,10,15,1,1);
+insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(1,2,3);

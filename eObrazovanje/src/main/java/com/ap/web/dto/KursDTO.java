@@ -1,6 +1,10 @@
 package com.ap.web.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.ap.model.kurs.Kurs;
+import com.ap.model.pohadjanje.Pohadjanje;
 
 public class KursDTO {
 	
@@ -9,16 +13,15 @@ public class KursDTO {
 	public KursDTO() {
 		super();
 	}
+	
+	
+	
+	
 	public KursDTO(Kurs kurs) {
-		this(kurs.getId(), kurs.getNaziv());
-	}
-	
-	
-	
-	public KursDTO(Long id, String naziv) {
 		super();
-		this.id = id;
-		this.naziv = naziv;
+		this.id = kurs.getId();
+		this.naziv = kurs.getNaziv();
+
 	}
 	public Long getId() {
 		return id;
