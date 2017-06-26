@@ -27,5 +27,9 @@ public class KorisnikService {
 	public void remove(Long id) {
 		korisnikRepository.delete(id);
 	}
+	
+	public Korisnik findByUsername(String username) {
+		return korisnikRepository.findByUserName(username);
+	}
 
 }

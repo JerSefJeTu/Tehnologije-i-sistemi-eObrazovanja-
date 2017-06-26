@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac']);
 
 
 	app
@@ -40,29 +40,36 @@
       .state('predavac', {
           url: '/predavac',
           templateUrl: 'predavacFrame.html'
+        	  
 
       })
       
        .state('predavac.nastava', {
           url: '/nastava',
-          templateUrl: 'predavacNastavaTop.html'
+          templateUrl: 'predavacNastavaTop.html',
+          controller:'PredavacCtrl'
+          
 
       })
           .state('predavac.nastava.kursevi', {
           url: '/kursevi',
-          templateUrl: 'predavacNastavaKurs.html'
+          templateUrl: 'predavacNastavaKurs.html',
+          controller:'kursCtrl'
+         
 
       })
       
             .state('predavac.nastava.kursevi.info', {
           url: '/info',
-          templateUrl: 'predavacNastavaInfoKursa.html'
+          templateUrl: 'predavacNastavaInfoKursa.html',
+          controller:'kursCtrl'
+        	  
 
       })
       
       .state('predavac.ocene', {
           url: '/ocene',
-          templateUrl: 'predavacOcene.html'
+          templateUrl: 'predavacOceneKurs.html'
 
       })
 

@@ -18,7 +18,12 @@ import javax.persistence.OneToMany;
 import com.ap.model.pohadjanje.Pohadjanje;
 import com.ap.model.predmet.Predmet;
 import com.ap.model.users.predavac.Predavac;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class, 
+		  property = "id")
 @Entity
 public class Kurs {
 	@Id
@@ -30,6 +35,7 @@ public class Kurs {
 	private Predmet predmet;
 	private Date datumPocetka;
 	private Date datumKraja;
+	
 	
 	@ManyToMany(mappedBy = "kursevi", fetch = FetchType.LAZY)
 	private Set<Predavac> predavaci=new HashSet<Predavac>();

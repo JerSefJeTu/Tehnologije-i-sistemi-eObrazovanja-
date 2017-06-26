@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ap.web.dto.PredmetDto;
+
 
 
 @RestController
@@ -29,13 +31,13 @@ public class PredmetController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Predmet> getPredmet(@PathVariable Long id){
+	public ResponseEntity<PredmetDto> getPredmet(@PathVariable Long id){
 		Predmet Predmet = predmetService.findOne(id);
 		if(Predmet == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(Predmet, HttpStatus.OK);
+		return new ResponseEntity<>(new PredmetDto(Predmet), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")

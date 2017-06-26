@@ -62,14 +62,8 @@
                     </div>
                 </div>
                 <div id="sviStudenti" class="list-group">
-                    <a href="" class="list-group-item">Imenko Prezimenkovic</a>
-                    <a href="" class="list-group-item">Petar Petrovic</a>
-                    <a href="" class="list-group-item">Jovan Jovanovic</a>
-                    <a href="" class="list-group-item">Hedy Lamarr</a>
-                    <a href="" class="list-group-item">Nikola Tesla</a>
-                    <a href="" class="list-group-item">Jorge Mario Bergoglio</a>
-                    <a href="" class="list-group-item">Albert Einstein</a>
-                    <a href="" class="list-group-item">Margaret Hamilton</a>
+                    <a href="" class="list-group-item" ng-repeat="student in sviStudent">{{student.firstName}}</a>
+                   
                 </div>
                 <button class="btn btn-success" style="width:100%">Dodaj</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">

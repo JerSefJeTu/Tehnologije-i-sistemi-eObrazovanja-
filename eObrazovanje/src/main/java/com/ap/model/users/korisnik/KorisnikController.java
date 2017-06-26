@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.users.security.TokenUtils;
@@ -23,6 +24,10 @@ import com.ap.web.dto.TokenDTO;
 @RestController
 public class KorisnikController {
 
+	
+	@Autowired
+	KorisnikService korisnikService;
+	
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
@@ -45,6 +50,17 @@ public class KorisnikController {
             return new ResponseEntity<TokenDTO>(tokenDto, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<TokenDTO>( HttpStatus.BAD_REQUEST);
+        }
+	}
+	
+	
+	@RequestMapping(value = "/api/getUser", method = RequestMethod.GET)
+	public ResponseEntity<Korisnik> getUser(@RequestParam("username") String username) {
+        try {
+		    Korisnik korisnik =korisnikService.findByUsername(username);
+            return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<Korisnik>( HttpStatus.BAD_REQUEST);
         }
 	}
 }

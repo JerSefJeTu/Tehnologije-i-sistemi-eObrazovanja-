@@ -61,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/","/*.html", "/api/login", "/api/register","ico.jpg").permitAll()
 				.antMatchers("/css/**","/fonts/**", "/js/**", "/img/**", "**/favicon.ico","/res/**").anonymous()
-					.antMatchers(HttpMethod.GET, "/api/kurs")
+					.antMatchers(HttpMethod.GET,"/api/getUser","/api/predmet/**","/api/student/**","/api/kurs/**")
 					.access("hasAnyAuthority('PREDAVAC','ADMIN')")
 					.antMatchers(HttpMethod.GET, "/api/uplata")
 					.access("hasAnyAuthority('STUDENT','ADMIN')")

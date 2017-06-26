@@ -11,8 +11,8 @@
                                 </div>
                             </div>
                             <div class="list-group single-select">
-                                <a ui-sref=".kursevi" class="list-group-item active">Matematika</a>
-                                <a ui-sref=".kursevi" class="list-group-item">Statistika</a>
+                                <a ng-click="kurseviPredmeta(predmet.id)" ui-sref=".kursevi" class="list-group-item" ng-repeat="predmet in predavac.predmeti">{{predmet.naziv}}</a>
+                               
                             </div>
                             <div id="paginacijaPredmetaPredavac">
                                 <ul class="pagination pagination-sm">
