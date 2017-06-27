@@ -50,14 +50,16 @@ insert into korisnik(user_name,password,tip_korisnika,first_name)values('mita','
 insert into student(korisnik_id,stanje) values(7,0);
 
 insert into predavac_predmeti values(2,1);
+insert into predavac_predmeti values(2,2);
 insert into predavac_kursevi values(2,1);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
-insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id)values(11,10,15,1,1);
-insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id)values(11,10,15,1,1);
-insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id)values(11,10,15,1,1);
+insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,1,'Kolokvijum 1');
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,1,'Kolokvijum 2');
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,1,'Usmeni');
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(1,1,3);
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(1,2,4);
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(2,3,5);

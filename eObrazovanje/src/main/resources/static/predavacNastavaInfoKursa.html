@@ -16,32 +16,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr ng-repeat="obaveza in obaveze">
                     <td>1</td>
-                    <td>Kolokvijum 1</td>
-                    <td>15</td>
-                    <td>30</td>
+                    <td>{{obaveza.nazivObaveze}}</td>
+                    <td>{{obaveza.minBodova}}</td>
+                    <td>{{obaveza.maxBodova}}</td>
                     <td>
                     <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
                     </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kolokvijum 2</td>
-                    <td>15</td>
-                    <td>30</td>
-                    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Ispit</td>
-                    <td>25</td>
-                    <td>40</td>
-                    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
-                    </td>
+                
+                
                 </tr>
             </tbody>
         </table>
