@@ -132,4 +132,16 @@ public class PohadjanjeController {
 		return new ResponseEntity<>(pages, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/findByStudent/{idStudenta}", method=RequestMethod.GET)
+	public ResponseEntity<List<PohadjanjeDTO>> getPohadjanjaByStudentID(@PathVariable("idStudenta") Long idStudenta) {
+		Student student = studentService.findOne(idStudenta);
+		List<Pohadjanje> pohadjanja = pohadjanjeService.findByStudent(student);
+		List<PohadjanjeDTO> pohadjanjaDTO = new ArrayList<>();
+		for(Pohadjanje pohadjanje : pohadjanja) {
+			pohadjanjaDTO.add(new PohadjanjeDTO(pohadjanje));
+		}
+		
+		return new ResponseEntity<>(pohadjanjaDTO, HttpStatus.OK);
+	}
+	
 }
