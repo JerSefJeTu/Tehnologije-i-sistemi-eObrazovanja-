@@ -3,7 +3,9 @@ package com.ap.model.pohadjanje;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -101,15 +103,17 @@ public class PohadjanjeController {
 		}
 	}
 	
-	@RequestMapping(value="/findByKurs" ,method=RequestMethod.GET)
-	public ResponseEntity<List<PohadjanjeDTO>> getPohadjanjabyKurs(@RequestParam("idKursa") Long idKursa){
+	@RequestMapping(value="/findByKurs/{idKursa}" ,method=RequestMethod.GET)
+	public ResponseEntity<Map<String, ArrayList<PohadjanjeDTO>>> getPohadjanjabyKurs(@PathVariable Long idKursa){
 		Kurs kurs = kursService.findOne(idKursa);
 		List<Pohadjanje> pohadjanja = pohadjanjeService.findByKurs(kurs);
 		List<PohadjanjeDTO> pohadjanjeDTOs = new ArrayList<>();
 		for (Pohadjanje pohadjanje : pohadjanja) {
 			pohadjanjeDTOs.add(new PohadjanjeDTO(pohadjanje));
 		}
-		return new ResponseEntity<>(pohadjanjeDTOs, HttpStatus.OK);
+		Map<String, ArrayList<PohadjanjeDTO>> pohadjanjaMapa = new HashMap<>();
+		pohadjanjaMapa.put("pohadjanja", new ArrayList<>(pohadjanjeDTOs));
+		return new ResponseEntity<>(pohadjanjaMapa, HttpStatus.OK);
 		
 	}
 	
