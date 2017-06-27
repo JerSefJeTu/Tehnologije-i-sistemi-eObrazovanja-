@@ -84,21 +84,28 @@
                    });
                }
 
-               //studentsObj --> TODO napraviti da student ima pristup svemu sto
-               //je vezano za njega
-
-               studentsObj.getPohadjanja = function(id, page, size) {
+               studentsObj.getPohadjanjaPages = function(id, page, size) {
                    return $http.get(GET_STUDENT_ATTENDING_BY_ID + id,
                    {params:{"page" : page,
                             "size" : size}
                     })
                     .then(function(data, status){
-                        pohadjanja = data;
-                        return pohadjanja;
+                        return data;
                     })
                     .catch(function(data, status){
                         console.log(status);
                     });
+               }
+
+               studentsObj.getPohadjanja = function(id) {
+                   return $http.get(GET_STUDENT_ATTENDING_BY_ID + id)
+                   .then(function(data, status){
+                       pohadjanja = data;
+                       return pohadjanja;
+                   })
+                   .catch(function(data, status){
+                       console.log(status);
+                   });
                }
 
                return studentsObj;
