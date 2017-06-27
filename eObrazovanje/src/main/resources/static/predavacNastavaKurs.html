@@ -3,7 +3,7 @@
         <h4 style="text-align:center;">Kurs</h4>
     </div>
     <div id="pretragaKurseva" class="input-group">
-        <input type="text" class="form-control" placeholder="Pretraga kurseva..." name="search">
+        <input type="text" class="form-control" ng-model="search.pretragaKurseva.naziv" placeholder="Pretraga kurseva..." name="search">
         <div class="input-group-btn">
             <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
         </div>
@@ -13,7 +13,7 @@
         <div class="col-md-6"><button style="width:100%" class="btn btn-danger" id="delKursBtn">Remove</button></div>
     </div>
     <div class="list-group single-select" id="predavacKurseviLista">
-        <a ng-click="izborKursa(kurs.id)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi">{{kurs.naziv}}</a>
+        <a ng-click="izborKursa(kurs.id)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}</a>
     </div>
     <div id="paginacijaKurseva">
         <ul class="pagination pagination-sm">

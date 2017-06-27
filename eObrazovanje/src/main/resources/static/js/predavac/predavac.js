@@ -1,5 +1,5 @@
 (function (angular) {
-	angular.module('predavac',['predavac.resource','predmet.resource','student.resource','kurs.resource'])
+	angular.module('predavac',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource'])
 	.controller('PredavacCtrl', function($scope, $location,Predmet ,Predavac,$localStorage,$http) {
 		var loadEntries = function () {
 					
@@ -37,13 +37,26 @@
 	        
 	    };
 	})
-	.controller('kursCtrl', function($scope, $location,Predmet,Student ,Kurs,Predavac,$localStorage,$http){
+	.controller('kursCtrl', function($scope, $location,Predmet,Student,Pohadjanja ,Kurs,Predavac,$localStorage,$http){
+		
+		$scope.pohadjanje = new Pohadjanja();
 		$scope.izborKursa = function(idKursa){
 	    	
 		      
 		     
-		      var kurs= new Kurs.get({id:idKursa})
+		      
 		      $scope.sviStudent = new Student.query();
+		      $scope.pohadjanje.$findByKurs({'idKursa':idKursa}).then(function(item){
+		    	 
+	                
+	                $scope.pohadjanja = item;
+	                console.log($scope.pohadjanja.pohadjanja);
+	 
+	            });;
+		      
+		      
+		      
+		     
 		     
 		     
 

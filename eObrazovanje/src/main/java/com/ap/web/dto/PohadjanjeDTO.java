@@ -43,14 +43,6 @@ public class PohadjanjeDTO {
 	}
 
 
-	public PohadjanjeDTO(Long id, KursDTO kurs, StudentDTO student, PolaganjeDTO polaganje) {
-		super();
-		this.id = id;
-		this.kurs = kurs;
-		this.student = student;
-		this.polaganje = polaganje;
-	}
-
 
 	public KursDTO getKurs() {
 		return kurs;

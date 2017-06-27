@@ -56,13 +56,13 @@
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
-                    <input type="text" class="form-control" placeholder="Pretraga studenata..." name="search">
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga studenata..." name="search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
                 <div id="sviStudenti" class="list-group">
-                    <a href="" class="list-group-item" ng-repeat="student in sviStudent">{{student.firstName}}</a>
+                    <a href="" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
                    
                 </div>
                 <button class="btn btn-success" style="width:100%">Dodaj</button>
@@ -83,17 +83,17 @@
     <div class="col-md-6">
        <div class="panel panel-success">
            <div class="panel-heading">
-               <h3 class="panel-title" style="text-align:center;">Upisani studenti <span class="badge">38</span></h3>
+               <h3 class="panel-title" style="text-align:center;">Upisani studenti <span class="badge">{{pohadjanja.pohadjanja.length}}</span></h3>
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
-                    <input type="text" class="form-control" placeholder="Pretraga studenata..." name="search">
+                    <input type="text" class="form-control" ng-model="search.pretragaStudenataKursa.firstname" placeholder="Pretraga studenata..." name="search">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
                 <div id="upisaniStudenti" class="list-group checked-list-box">
-                    <a href="" class="list-group-item">Marko Marković</a>
+                    <a href="" class="list-group-item" ng-repeat="pohadjanje in pohadjanja.pohadjanja | filter:search.pretragaStudenataKursa.firstname">{{pohadjanje.student.firstname}}</a>
                 </div>
                 <button class="btn btn-danger" style="width:100%">Ukloni</button>
                 <div id="paginacijaUpisanihStudenata" style="padding-left:25%;">

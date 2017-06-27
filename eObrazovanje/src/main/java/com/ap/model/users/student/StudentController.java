@@ -1,5 +1,6 @@
 package com.ap.model.users.student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -19,6 +20,8 @@ import com.ap.web.dto.StudentDTO;
 
 
 
+
+
 @RestController
 @RequestMapping(value="api/student")
 public class StudentController {
@@ -27,9 +30,13 @@ public class StudentController {
 	StudentService studentService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Student>> getStudenti(){
-		List<Student> student = studentService.findAll();
-		return new ResponseEntity<>(student, HttpStatus.OK);
+	public ResponseEntity<List<StudentDTO>> getStudenti(){
+		List<Student> studenti = studentService.findAll();
+		List<StudentDTO> studentDTOs = new ArrayList<>();
+		for (Student student : studenti) {
+			studentDTOs.add(new StudentDTO(student));
+		}
+		return new ResponseEntity<>(studentDTOs, HttpStatus.OK);
 		
 	}
 	
