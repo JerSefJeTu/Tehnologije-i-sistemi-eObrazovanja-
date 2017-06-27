@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.ap.model.kurs.Kurs;
+import com.ap.model.users.student.Student;
 
 @Service
 public class PohadjanjeService {
@@ -38,5 +39,9 @@ public class PohadjanjeService {
 	
 	public List<Pohadjanje> findByKurs(Kurs kurs) {
 		return pohadjanjeRepository.findByKurs(kurs);
+	}
+	
+	public List<Pohadjanje> findByStudent(Student student) {
+		return pohadjanjeRepository.findByStudent(student);
 	}
 }

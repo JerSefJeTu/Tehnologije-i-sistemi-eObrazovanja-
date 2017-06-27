@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.users.security.TokenUtils;
 import com.ap.web.dto.LoginDTO;
+import com.ap.web.dto.StudentDTO;
 import com.ap.web.dto.TokenDTO;
 
 
@@ -56,13 +57,4 @@ public class KorisnikController {
         }
 	}
 	
-	@RequestMapping(value = "/api/getUser", method = RequestMethod.GET)
-	public ResponseEntity<Korisnik> getUser(@RequestParam("username") String username) {
-        try {
-		    Korisnik korisnik =korisnikService.findByUsername(username);
-            return new ResponseEntity<Korisnik>(korisnik, HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<Korisnik>( HttpStatus.BAD_REQUEST);
-        }
-	}
 }

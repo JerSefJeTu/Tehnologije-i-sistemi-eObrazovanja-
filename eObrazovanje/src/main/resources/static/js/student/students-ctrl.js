@@ -5,7 +5,9 @@
                console.log('uslo u kontroler');
                var username = AuthenticationService.getCurrentUser().username;
             StudentsResource.getStudentByUsername(username).then(function(item){
-                   console.log(item.data);
+                    console.log("======================");
+                   console.log(item);
+                   console.log($localStorage.currentUser);
                 });
            });
 }(angular));

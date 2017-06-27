@@ -16,6 +16,7 @@ public class PohadjanjeDTO {
 	
 	
 	private PolaganjeDTO polaganje;
+	
 
 
 	public PohadjanjeDTO(Pohadjanje pohadjanje) {

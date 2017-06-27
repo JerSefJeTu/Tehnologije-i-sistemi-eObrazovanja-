@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.kurs.Kurs;
 import com.ap.model.kurs.KursService;
+import com.ap.model.users.student.Student;
+import com.ap.model.users.student.StudentService;
 import com.ap.web.dto.PohadjanjeDTO;
 
 
@@ -30,12 +34,20 @@ public class PohadjanjeController {
 	PohadjanjeService pohadjanjeService;
 	@Autowired
 	KursService kursService;
+	@Autowired
+	StudentService studentService;
 	
 	@RequestMapping(method=RequestMethod.GET, 
 		      params = { "page", "size" })
-	public ResponseEntity<Page<Pohadjanje>> getKursevi(@RequestParam("page") int page, @RequestParam("size") int size){
-		 Page<Pohadjanje> resultPage = pohadjanjeService.findPaginated(page, size);
-		return new ResponseEntity<>(resultPage, HttpStatus.OK);
+	public ResponseEntity<Page<PohadjanjeDTO>> getKursevi(@RequestParam("page") int page, @RequestParam("size") int size){
+		List<Pohadjanje> pohadjanja = pohadjanjeService.findAll();
+		List<PohadjanjeDTO> pohadjanjeDTO = new ArrayList<>();
+		for(Pohadjanje p : pohadjanja) {
+			pohadjanjeDTO.add(new PohadjanjeDTO(p));
+		}
+		Page<PohadjanjeDTO> pages = 
+				new PageImpl<>(pohadjanjeDTO, new PageRequest(page, size), pohadjanjeDTO.size());
+		return new ResponseEntity<>(pages, HttpStatus.OK);
 		
 	}
 	
@@ -99,6 +111,21 @@ public class PohadjanjeController {
 		}
 		return new ResponseEntity<>(pohadjanjeDTOs, HttpStatus.OK);
 		
+	}
+	
+	@RequestMapping(value="/findByStudent/{idStudenta}", method=RequestMethod.GET,
+			params={"page", "size"})
+	public ResponseEntity<Page<PohadjanjeDTO>> getPohadjanjaByStudent(@PathVariable("idStudenta") Long idStudenta,
+			@RequestParam("page") int page, @RequestParam("size") int size) {
+		Student student = studentService.findOne(idStudenta);
+		List<Pohadjanje> pohadjanja = pohadjanjeService.findByStudent(student);
+		List<PohadjanjeDTO> pohadjanjaDTO = new ArrayList<>();
+		for(Pohadjanje pohadjanje : pohadjanja) {
+			pohadjanjaDTO.add(new PohadjanjeDTO(pohadjanje));
+		}
+		Page<PohadjanjeDTO> pages = 
+				new PageImpl<>(pohadjanjaDTO, new PageRequest(page, size), pohadjanjaDTO.size());
+		return new ResponseEntity<>(pages, HttpStatus.OK);
 	}
 	
 }

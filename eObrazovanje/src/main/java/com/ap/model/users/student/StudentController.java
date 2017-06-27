@@ -2,6 +2,8 @@ package com.ap.model.users.student;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ap.model.users.korisnik.Korisnik;
+import com.ap.web.dto.StudentDTO;
 
 
 
@@ -38,6 +43,18 @@ public class StudentController {
 		return new ResponseEntity<>(Student, HttpStatus.OK);
 	}
 
+	
+	@RequestMapping(value="/findByUsername", method = RequestMethod.GET)
+	public ResponseEntity<StudentDTO> getUser(@RequestParam("username") String username) {
+        try {
+		    Student student = studentService.findByUserName(username);
+		    StudentDTO studentDTO = new StudentDTO(student);
+		    
+            return new ResponseEntity<StudentDTO>(studentDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<StudentDTO>( HttpStatus.BAD_REQUEST);
+        }
+	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
