@@ -38,9 +38,8 @@
 
                studentsObj.getStudentByUsername = function(username) {
                    return $http.get(GET_STUDENT_BY_USERNAME,
-                   {params:{"username" : username}}
+                   {params:{"username" : username}})
                    .then(function(data, status) {
-                       console.log("DATADATA: " + data);
                        return data;
                    })
                    .catch(function(data, status) {
