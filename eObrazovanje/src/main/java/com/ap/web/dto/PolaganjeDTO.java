@@ -53,21 +53,4 @@ public class PolaganjeDTO {
 		this.ocena = ocena;
 	}
 	
-	/*public double procenatPredispitnih() {
-		double sum = 0;
-		double sumMax = 0;
-		double sumMin = 0;
-		for(PredsipitnaObavezaDTO p : this.predispitneObaveze) {
-			if(!p.getNazivObaveze().toLowerCase().contains("kolokvijum")) {
-				sum += p.getBrojBodova();
-				sumMax += p.getMaxBodova();
-				sumMin += p.getMinBodova();
-			}
-		}
-		
-		double onePercent = sumMax / 100;
-		
-		
-	}*/
-	
 }

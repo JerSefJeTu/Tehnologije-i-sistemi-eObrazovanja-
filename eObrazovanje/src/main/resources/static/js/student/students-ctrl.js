@@ -2,70 +2,65 @@
     angular.module('student', ['authentication'])
            .controller('StudentsCtrl',
             function($scope, $localStorage, StudentsResource, AuthenticationService){
+
                var username = AuthenticationService.getCurrentUser().username;
                var student = {};
                var pohadjanja = {};
 
             StudentsResource.getStudentByUsername(username).then(function(item){
-                var obj = item.data;
-                createStudent(obj);
-            });
+                student = item.data;
+                $scope.student = student;
 
-            $scope.student = student;
-            console.log($scope.student);
+                function examComputation(pohadjanja) {
+                    for(p in pohadjanja) {
 
-            StudentsResource.getPohadjanja(student.id).then(function(item){
-                pohadjanja = item;
-                $scope.pohadjanja = pohadjanja;
-                console.log($scope.pohadjanja);
-                examComputation(pohadjanja);
-            });
+                        let pohadjanje = pohadjanja[p];
 
-            function examComputation(pohadjanja) {
-                for(pohadjanje in pohadjanja) {
-                    let sum = 0;
-                    let sumMax = 0;
-                    let sumMin = 0;
+                        let sum = 0;
+                        let sumMax = 0;
+                        let sumMin = 0;
 
-                    for(obaveza in pohadjanje.predispitneObaveze) {
-                        if(!obaveza.toLowerCase().includes("kolokvijum")) {
-                            sum += obaveza.brojBodova;
-                            sumMax += obaveza.maxBodova;
-                            sumMin += obaveza.minBodova;
+                        let sumColloquium = 0;
+                        let sumColloquiumMax = 0;
+                        let sumColloquiumMin = 0;
+
+                        for(po in pohadjanje.polaganje.predispitneObaveze) {
+
+                            let obaveza = pohadjanje.polaganje.predispitneObaveze[po];
+
+                            if(!obaveza.nazivObaveze.toLowerCase().includes("kolokvijum")) {
+                                sum += obaveza.brojBodova;
+                                sumMax += obaveza.maxBodova;
+                                sumMin += obaveza.minBodova;
+                            } else {
+                                sumColloquium += obaveza.brojBodova;
+                                sumColloquiumMax += obaveza.maxBodova;
+                                sumColloquiumMin += obaveza.minBodova;
+                            }
                         }
+
+                        let onePercent = sumMax / 100;
+                        let totalPercent = sum / onePercent;
+                        let maxPercent = sumMax / onePercent;
+                        let minPercent = sumMin / onePercent;
+
+                        let onePercentCol = sumColloquiumMax / 100;
+                        let totalPercentCol = sumColloquium / onePercent;
+                        let maxPercentCol = sumColloquiumMax / onePercentCol;
+                        let minPercentCol = sumColloquiumMin / onePercentCol;
+
+                        pohadjanje['totalBodovaPredispitne'] = totalPercent;
+                        pohadjanje['maxBodovaPredispitne'] = maxPercent;
+                        pohadjanje['minBodovaPredispitne'] = minPercent;
                     }
-
-                    let onePercent = sumMax / 100;
-                    let totalPercent = sum / onePercent;
-                    let maxPercent = sumMax / onePercent;
-                    let minPercent = sumMin / onePercent;
-
-                    pohadjanje.totalBodovaPredispitne = totalPercent;
-                    pohadjanje.maxBodovaPredispitne = maxPercent;
-                    pohadjanje.minBodovaPredispitne = minPercent;
+                    console.log(pohadjanja);
                 }
-                console.log(pohadjanja);
-            }
 
-            $scope.show = function() {
-                console.log(pohadjanja);
-            }
 
-            function createStudent(obj) {
-                student.id = obj.id;
-                student.stanje = obj.stanje;
-                student.firstname = obj.firstname;
-                student.lastname = obj.lastname;
-                student.username = obj.username;
-                student.dateOfBirth = obj.dateOfBirth;
-                student.placeOfOrigin = obj.placeOfOrigin;
-                student.currentAddress = obj.currentAddress;
-                student.phoneNumber = obj.phoneNumber;
-                student.email = obj.email;
-                student.dokumenti = obj.dokumenti;
-                student.uplate = obj.uplate;
-                student.jmbg = obj.jmbg;
-            }
-
+                StudentsResource.getPohadjanja(student.id).then(function(item){
+                   $scope.pohadjanja = item.data;
+                   examComputation(item.data);
+               });
            });
+        });
 }(angular));
