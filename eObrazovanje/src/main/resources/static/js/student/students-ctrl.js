@@ -77,10 +77,20 @@
                     console.log(pohadjanja);
                 }
 
+                function createDummyArray(range) {
+                    var array = [];
+                    for(i = 0; i < range; i++) {
+                        array[i] = i + 1;
+                    }
 
-                StudentsResource.getPohadjanja(student.id).then(function(item){
-                   $scope.pohadjanja = item.data;
-                   examComputation(item.data);
+                    return array;
+                }
+
+                StudentsResource.getPohadjanjaPages(student.id, 0, 4).then(function(item){
+                    console.log(item);
+                   $scope.pohadjanja = item.data.content;
+                   $scope.totalPages = createDummyArray(item.data.totalPages);
+                   examComputation(item.data.content);
                    console.log($scope.pohadjanja);
                });
            });
@@ -148,5 +158,10 @@
             }
         }
 
-        });
+
+        // Paginacija
+        // $scope.pagination = function()
+        //
+        // }
+    });
 }(angular));

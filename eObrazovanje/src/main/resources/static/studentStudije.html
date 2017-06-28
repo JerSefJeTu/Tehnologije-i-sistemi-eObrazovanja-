@@ -40,11 +40,9 @@
     <div id="paginacijaStudije">
         <ul class="pagination pagination-sm">
           <li><a href=""><span>&laquo;</span></a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
+          <li ng-class="page == 1 ? 'active' : ''" ng-repeat="page in totalPages">
+              <a href="#">{{page}}</a>
+          </li>
           <li><a href=""><span>&raquo;</span></a></li>
         </ul>
     </div>
