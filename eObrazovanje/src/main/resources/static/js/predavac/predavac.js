@@ -61,7 +61,14 @@
 		loadEntries();
 	
         $scope.alert = function() {
-            alert("!!!");
+            alert("dodavanje");
+        }
+        $scope.brisanjeKursaInit = function(idKursa,naziv) {
+            $scope.nazivKursaInit=naziv;
+            $scope.idKursaInit=idKursa;
+        }
+        $scope.brisanjeKursa = function(){
+            
         }
 		$scope.save = function () {
 			if(!$scope.blogEntry._id){
