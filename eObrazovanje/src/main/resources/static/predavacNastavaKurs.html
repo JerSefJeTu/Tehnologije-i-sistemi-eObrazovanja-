@@ -10,10 +10,10 @@
     </div>
     <div class="row" style="margin-bottom:3%">
         <div class="col-md-6"><button class="btn btn-success" style="width:100%" id="addKursBtn" data-toggle="modal" data-target="#dodavanjeKursa">Add</button></div>
-        <div class="col-md-6"><button style="width:100%" class="btn btn-danger" id="delKursBtn">Remove</button></div>
+        <div class="col-md-6"><button style="width:100%" ng-click="" class="btn btn-danger" id="delKursBtn" data-toggle="modal" data-target="#brisanjeKursa">Remove</button></div>
     </div>
     <div class="list-group single-select" id="predavacKurseviLista">
-        <a ng-click="izborKursa(kurs.id)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}</a>
+        <a ng-click="izborKursa(kurs.id)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}<div style="float:right;"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs" data-toggle="modal" ng-click='brisanjeKursaInit(kurs.id,kurs.naziv)' data-target="#brisanjeKursa"><span class="glyphicon glyphicon-remove"></span></button></div></a>
     </div>
     <div id="paginacijaKurseva">
         <ul class="pagination pagination-sm">
@@ -48,6 +48,68 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Zatvori</button>
                 <button class="btn btn-success" ng-click="alert()" style="float:right;">Sačuvaj</button>
+              </div>
+            </div>
+
+          </div>
+    </div>
+    
+    <div id="brisanjeKursa" class="modal fade" role="dialog">
+          <div class="modal-dialog" style="margin-top:10%">
+
+            <!-- Modal content-->
+            <div class="panel panel-primary">
+              <div class="panel panel-heading">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="panel-title" style="text-align:center;">Brisanje kursa</h3>
+              </div>
+              <div class="panel-body">
+                <div class="page-header">
+                    <h5>Da li ste sigurni da želite da obrišete kurs:</h5>
+                </div>
+                <div class="col-md-12">
+                   <p><strong>{{nazivKursaInit}}</strong></p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
+                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Briši</button>
+              </div>
+            </div>
+
+          </div>
+    </div>
+    
+    <div id="dodavanjeObaveza" class="modal fade" role="dialog">
+          <div class="modal-dialog" style="margin-top:10%">
+
+            <!-- Modal content-->
+            <div class="panel panel-primary">
+              <div class="panel panel-heading">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="panel-title" style="text-align:center;">Dodavanje nastavnih obaveza</h3>
+              </div>
+              <div class="panel-body">
+                <div class="col-md-6" style="margin-top:1%">
+                    <div><strong>Naziv obaveze</strong></div>
+                    <div><strong>Minimalni broj bodova</strong></div>
+                    <div><strong>Maksimalni broj bodova</strong></div>
+                </div>
+                <div class="col-md-6">
+                   <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Unesite naziv obaveze..." name="search">
+                    </div>
+                    <div id="unosNazivaKursa" class="input-group">
+                        <input type="number" class="form-control" placeholder="Unesite min. broj bodova..." name="search">
+                    </div>
+                    <div id="unosNazivaKursa" class="input-group">
+                        <input type="number" class="form-control" placeholder="Unesite max. broj bodova..." name="search">
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
+                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Sačuvaj</button>
               </div>
             </div>
 

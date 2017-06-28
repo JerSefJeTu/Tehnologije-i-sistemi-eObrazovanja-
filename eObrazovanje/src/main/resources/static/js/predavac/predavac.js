@@ -1,6 +1,6 @@
 (function (angular) {
 	angular.module('predavac',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource'])
-	.controller('PredavacCtrl', function($scope, $location,Predmet ,Predavac,$localStorage,$http, ngDialog) {
+	.controller('PredavacCtrl', function($scope, $location,Predmet ,Predavac,$localStorage,$http) {
 		var loadEntries = function () {
 					
 			$scope.predavac = new Predavac.get({username: $localStorage.currentUser.username});
@@ -9,7 +9,14 @@
 		loadEntries();
 	
         $scope.alert = function() {
-            alert("!!!");
+            alert("dodavanje");
+        }
+        $scope.brisanjeKursaInit = function(idKursa,naziv) {
+            $scope.nazivKursaInit=naziv;
+            $scope.idKursaInit=idKursa;
+        }
+        $scope.brisanjeKursa = function(){
+            
         }
 		$scope.save = function () {
 			if(!$scope.blogEntry._id){
