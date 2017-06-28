@@ -1,7 +1,12 @@
 package com.ap.model.users.student;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.websocket.server.PathParam;
 
@@ -13,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.ap.model.dokument.Dokument;
 import com.ap.model.users.korisnik.Korisnik;
 import com.ap.web.dto.StudentDTO;
 
@@ -95,6 +104,27 @@ public class StudentController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, consumes = {"multipart/form-data"})
+	@ResponseBody
+	public  void  saveEBook(@RequestPart("knjiga") Dokument dokument,@RequestPart("file") MultipartFile file) throws IOException{
+		String storagePath = ResourceBundle.getBundle("app").getString("storage");
+		 try {
+
+	            // Get the file and save it somewhere
+	            byte[] bytes = file.getBytes();
+	            Path path = Paths.get(storagePath + dokument.getNaziv());
+	            Files.write(path, bytes);
+
+	            
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	
+		
+			
 	}
 	
 }
