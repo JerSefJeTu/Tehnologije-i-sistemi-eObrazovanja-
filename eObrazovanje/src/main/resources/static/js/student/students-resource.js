@@ -41,7 +41,7 @@
                    {params:{"username" : username}})
                    .then(function(data, status) {
                        var convertDate=new Date(data.data.dateOfBirth);
-                       data.data.dateOfBirth=convertDate.getDate()+"."+convertDate.getMonth()+"."+convertDate.getFullYear()+".";
+                       data.data.dateOfBirth=convertDate.getDate()+"."+(convertDate.getMonth()+1)+"."+convertDate.getFullYear()+".";
                        return data;
                    })
                    .catch(function(data, status) {

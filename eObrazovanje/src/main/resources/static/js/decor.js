@@ -48,4 +48,5 @@ $(document).ready(function(){
         that.siblings(".active").removeClass("active");
         that.addClass("active");
     });
+    
 });
