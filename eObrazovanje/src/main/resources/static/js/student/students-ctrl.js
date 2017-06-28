@@ -45,13 +45,34 @@
                         let minPercent = sumMin / onePercent;
 
                         let onePercentCol = sumColloquiumMax / 100;
-                        let totalPercentCol = sumColloquium / onePercent;
+                        let totalPercentCol = sumColloquium / onePercentCol;
                         let maxPercentCol = sumColloquiumMax / onePercentCol;
                         let minPercentCol = sumColloquiumMin / onePercentCol;
 
-                        pohadjanje['totalBodovaPredispitne'] = totalPercent;
-                        pohadjanje['maxBodovaPredispitne'] = maxPercent;
-                        pohadjanje['minBodovaPredispitne'] = minPercent;
+                        if(isNaN(maxPercent) || isNaN(minPercent)) {
+                            pohadjanje['predispitneObaveze'] = 'nema obaveza';
+                        } else {
+                            if(!isNaN(totalPercent) && totalPercent >= minPercent) {
+                                pohadjanje['predispitneObaveze'] = 'polozeno';
+                            } else {
+                                pohadjanje['predispitneObaveze'] = 'nije polozeno';
+                            }
+                        }
+                        pohadjanje['predispitneBodovi'] = totalPercent;
+
+                        if(isNaN(maxPercentCol) || isNaN(minPercentCol)) {
+                            pohadjanje['kolokvijum'] = 'nema kolokvijuma';
+                        } else {
+                            if(!isNaN(totalPercentCol) &&
+                                totalPercentCol >= minPercentCol) {
+                                pohadjanje['kolokvijum'] = 'polozeno';
+                            } else {
+                                pohadjanje['kolokvijum'] = 'nije polozeno';
+                            }
+                        }
+
+                        pohadjanje['kolokvijumBodovi'] = totalPercentCol;
+
                     }
                     console.log(pohadjanja);
                 }
@@ -60,7 +81,72 @@
                 StudentsResource.getPohadjanja(student.id).then(function(item){
                    $scope.pohadjanja = item.data;
                    examComputation(item.data);
+                   console.log($scope.pohadjanja);
                });
            });
+
+    // <-- UI  -->
+
+        // Predispitne obaveze
+        $scope.predispitneObavezeClass = function(pohadjanje) {
+            if(pohadjanje.predispitneObaveze === 'nema obaveza') {
+                return 'progress-bar progress-bar-striped';
+            } else {
+                return 'progress-bar progress-bar-info';
+            }
+        }
+
+        $scope.predispitneObavezeLabel = function(pohadjanje) {
+            if(pohadjanje.predispitneObaveze === 'nema obaveza') {
+                return 'Nema predispitnih obaveza';
+            } else {
+                return pohadjanje.predispitneBodovi.toFixed(1) + '% predispitnih obaveza';
+            }
+        }
+
+        $scope.predispitneObavezeWidth = function(pohadjanje) {
+            if(pohadjanje.predispitneObaveze === 'nema obaveza') {
+                return 100;
+            } else {
+                return pohadjanje.predispitneBodovi;
+            }
+        }
+
+        // Kolokvijumi
+        $scope.kolokvijumClass = function(pohadjanje) {
+            if(pohadjanje.kolokvijum === 'nema kolokvijuma') {
+                return 'progress-bar progress-bar-striped';
+            } else {
+                return 'progress-bar progress-bar-primary';
+            }
+        }
+
+        $scope.kolokvijumWidth = function(pohadjanje) {
+            if(pohadjanje.kolokvijum === 'nema kolokvijuma') {
+                return 100;
+            } else {
+                return pohadjanje.kolokvijumBodovi;
+            }
+        }
+
+        $scope.kolokvijumLabel = function(pohadjanje) {
+            if(pohadjanje.kolokvijum === 'nema kolokvijuma') {
+                return 'Nema kolokvijuma';
+            } else {
+                return pohadjanje.kolokvijumBodovi.toFixed(1) + '% kolokvijuma';
+            }
+        }
+
+        $scope.cardClass = function(pohadjanje) {
+            if(pohadjanje.polaganje.brojBodova >= 51) {
+                return 'panel panel-success';
+            } else if(pohadjanje.polaganje.brojBodova <= 0 ||
+                isNaN(pohadjanje.polaganje.brojBodova)) {
+                return 'panel panel-default';
+            } else {
+                return 'panel panel-warning';
+            }
+        }
+
         });
 }(angular));

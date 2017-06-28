@@ -22,8 +22,8 @@ public class PolaganjeDTO {
 			this.predispitneObaveze.add(predsipitnaObavezaDTO);
 		}
 		
-		this.brojBodova = this.getBrojBodova();
-		this.ocena = this.getOcena();
+		this.brojBodova = polaganjeIspita.getBrojBodova();
+		this.ocena = polaganjeIspita.getOcena();
 	}
 	public PolaganjeDTO() {
 		super();
