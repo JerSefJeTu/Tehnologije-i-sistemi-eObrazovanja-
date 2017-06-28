@@ -17,11 +17,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="obaveza in obaveze">
-<<<<<<< HEAD
                     <td>{{$index +1}}</td>
-=======
-                    <td>...</td>
->>>>>>> branch 'master' of https://github.com/JerSefJeTu/Tehnologije-i-sistemi-eObrazovanja-.git
+
                     <td>{{obaveza.nazivObaveze}}</td>
                     <td>{{obaveza.minBodova}}</td>
                     <td>{{obaveza.maxBodova}}</td>
@@ -130,7 +127,7 @@
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                    <button class="btn btn-success" ng-click="dodavanjeObaveze()" style="float:right">SaÄ�uvaj</button>
+                    <button class="btn btn-success" ng-click="dodavanjeObaveze()" style="float:right">Sačuvaj</button>
                 </div>
             </form>
           </div>
@@ -168,7 +165,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-            <button class="btn btn-success" ng-click="brisanjeKursa()" style="float:right">SaÄ�uvaj</button>
+            <button class="btn btn-success" ng-click="brisanjeKursa()" style="float:right">Sačuvaj</button>
           </div>
         </div>
 
@@ -185,7 +182,7 @@
               </div>
               <div class="panel-body">
                 <div class="page-header">
-                    <h5>Da li ste sigurni da Å¾elite da obriÅ¡ete nastavnu obavezu:</h5>
+                    <h5>Da li ste sigurni da želite da obrišete nastavnu obavezu:</h5>
                 </div>
                 <div class="col-md-12">
                    <p><strong>{{nazivObavezeInit}}</strong></p>
@@ -193,7 +190,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeObaveze()" style="float:right;width:10%">BriÅ¡i</button>
+                <button class="btn btn-danger" ng-click="brisanjeObaveze()" style="float:right;width:10%">Briši</button>
               </div>
             </div>
 
