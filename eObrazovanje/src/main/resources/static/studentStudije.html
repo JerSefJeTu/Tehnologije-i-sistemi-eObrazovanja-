@@ -12,26 +12,28 @@
     </ul>
     <div id="studentStudijeDiv">
        <div ng-repeat="pohadjanje in pohadjanja" class="kartica">
-        <div class="panel panel-default">
+        <div class="{{cardClass(pohadjanje)}}">
             <div class="panel-heading">
                 <h3 class="panel-title">{{pohadjanje.kurs.naziv}}</h3>
             </div>
             <div class="panel-body">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:0%"><span>0% ispita</span>
+                    <!-- <div ng-class="chooseClass(pohadjanje)" -->
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:{{pohadjanje.polaganje.brojBodova}}%"><span>{{pohadjanje.polaganje.brojBodova}}% ispita</span>
                     </div>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%"><span>0% predispitnih obaveza</span>
+                    <div class="{{predispitneObavezeClass(pohadjanje)}}" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{predispitneObavezeWidth(pohadjanje)}}%"><span>{{predispitneObavezeLabel(pohadjanje)}}</span>
                     </div>
                 </div>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%"><span>Nema kolokvijuma</span>
+                    <div class="{{kolokvijumClass(pohadjanje)}}" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{kolokvijumWidth(pohadjanje)}}%"><span>{{kolokvijumLabel(pohadjanje)}}</span>
                     </div>
                 </div>
             </div>
            </div>
         </div>
+
         <!-- spam -->
 
     </div> <!-- studentstudijediv -->

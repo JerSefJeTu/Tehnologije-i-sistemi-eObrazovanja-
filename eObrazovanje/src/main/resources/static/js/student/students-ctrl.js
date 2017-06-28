@@ -2,97 +2,177 @@
     angular.module('student', ['authentication','uplata.resource'])
            .controller('StudentsCtrl',
             function($scope, $localStorage, StudentsResource, AuthenticationService){
+
                var username = AuthenticationService.getCurrentUser().username;
                var student = {};
                var pohadjanja = {};
 
             StudentsResource.getStudentByUsername(username).then(function(item){
-                var obj = item.data;
-                createStudent(obj);
-            });
+                student = item.data;
+                $scope.student = student;
 
-            $scope.student = student;
-            console.log($scope.student);
+                function examComputation(pohadjanja) {
+                    for(p in pohadjanja) {
 
-            StudentsResource.getPohadjanja(student.id).then(function(item){
-                pohadjanja = item;
-                $scope.pohadjanja = pohadjanja;
-                console.log($scope.pohadjanja);
-                examComputation(pohadjanja);
-            });
+                        let pohadjanje = pohadjanja[p];
 
-            function examComputation(pohadjanja) {
-                for(pohadjanje in pohadjanja) {
-                    let sum = 0;
-                    let sumMax = 0;
-                    let sumMin = 0;
+                        let sum = 0;
+                        let sumMax = 0;
+                        let sumMin = 0;
 
-                    for(obaveza in pohadjanje.predispitneObaveze) {
-                        if(!obaveza.toLowerCase().includes("kolokvijum")) {
-                            sum += obaveza.brojBodova;
-                            sumMax += obaveza.maxBodova;
-                            sumMin += obaveza.minBodova;
+                        let sumColloquium = 0;
+                        let sumColloquiumMax = 0;
+                        let sumColloquiumMin = 0;
+
+                        for(po in pohadjanje.polaganje.predispitneObaveze) {
+
+                            let obaveza = pohadjanje.polaganje.predispitneObaveze[po];
+
+                            if(!obaveza.nazivObaveze.toLowerCase().includes("kolokvijum")) {
+                                sum += obaveza.brojBodova;
+                                sumMax += obaveza.maxBodova;
+                                sumMin += obaveza.minBodova;
+                            } else {
+                                sumColloquium += obaveza.brojBodova;
+                                sumColloquiumMax += obaveza.maxBodova;
+                                sumColloquiumMin += obaveza.minBodova;
+                            }
                         }
+
+                        let onePercent = sumMax / 100;
+                        let totalPercent = sum / onePercent;
+                        let maxPercent = sumMax / onePercent;
+                        let minPercent = sumMin / onePercent;
+
+                        let onePercentCol = sumColloquiumMax / 100;
+                        let totalPercentCol = sumColloquium / onePercentCol;
+                        let maxPercentCol = sumColloquiumMax / onePercentCol;
+                        let minPercentCol = sumColloquiumMin / onePercentCol;
+
+                        if(isNaN(maxPercent) || isNaN(minPercent)) {
+                            pohadjanje['predispitneObaveze'] = 'nema obaveza';
+                        } else {
+                            if(!isNaN(totalPercent) && totalPercent >= minPercent) {
+                                pohadjanje['predispitneObaveze'] = 'polozeno';
+                            } else {
+                                pohadjanje['predispitneObaveze'] = 'nije polozeno';
+                            }
+                        }
+                        pohadjanje['predispitneBodovi'] = totalPercent;
+
+                        if(isNaN(maxPercentCol) || isNaN(minPercentCol)) {
+                            pohadjanje['kolokvijum'] = 'nema kolokvijuma';
+                        } else {
+                            if(!isNaN(totalPercentCol) &&
+                                totalPercentCol >= minPercentCol) {
+                                pohadjanje['kolokvijum'] = 'polozeno';
+                            } else {
+                                pohadjanje['kolokvijum'] = 'nije polozeno';
+                            }
+                        }
+
+                        pohadjanje['kolokvijumBodovi'] = totalPercentCol;
+
                     }
-
-                    let onePercent = sumMax / 100;
-                    let totalPercent = sum / onePercent;
-                    let maxPercent = sumMax / onePercent;
-                    let minPercent = sumMin / onePercent;
-
-                    pohadjanje.totalBodovaPredispitne = totalPercent;
-                    pohadjanje.maxBodovaPredispitne = maxPercent;
-                    pohadjanje.minBodovaPredispitne = minPercent;
+                    console.log(pohadjanja);
                 }
-                console.log(pohadjanja);
-            }
 
-            $scope.show = function() {
-                console.log(pohadjanja);
-            }
 
-            function createStudent(obj) {
-                student.id = obj.id;
-                student.stanje = obj.stanje;
-                student.firstname = obj.firstname;
-                student.lastname = obj.lastname;
-                student.username = obj.username;
-                student.dateOfBirth = obj.dateOfBirth;
-                student.placeOfOrigin = obj.placeOfOrigin;
-                student.currentAddress = obj.currentAddress;
-                student.phoneNumber = obj.phoneNumber;
-                student.email = obj.email;
-                student.dokumenti = obj.dokumenti;
-                student.uplate = obj.uplate;
-                student.jmbg = obj.jmbg;
-            }
+                StudentsResource.getPohadjanja(student.id).then(function(item){
+                   $scope.pohadjanja = item.data;
+                   examComputation(item.data);
+                   console.log($scope.pohadjanja);
+               });
+           });
 
-           }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
-        	   
-        	   
-        	   $scope.uplata = new Uplata();
-        	   $scope.uplata.$findByStudent({'UserName':$localStorage.currentUser.username}).then(function(item){
-  		    	 
+    // <-- UI  -->
+
+        // Predispitne obaveze
+        $scope.predispitneObavezeClass = function(pohadjanje) {
+            if(pohadjanje.predispitneObaveze === 'nema obaveza') {
+                return 'progress-bar progress-bar-striped';
+            } else {
+                return 'progress-bar progress-bar-info';
+            }
+        }
+
+        $scope.predispitneObavezeLabel = function(pohadjanje) {
+            if(pohadjanje.predispitneObaveze === 'nema obaveza') {
+                return 'Nema predispitnih obaveza';
+            } else {
+                return pohadjanje.predispitneBodovi.toFixed(1) + '% predispitnih obaveza';
+            }
+        }
+
+        $scope.predispitneObavezeWidth = function(pohadjanje) {
+            if(pohadjanje.predispitneObaveze === 'nema obaveza') {
+                return 100;
+            } else {
+                return pohadjanje.predispitneBodovi;
+            }
+        }
+
+        // Kolokvijumi
+        $scope.kolokvijumClass = function(pohadjanje) {
+            if(pohadjanje.kolokvijum === 'nema kolokvijuma') {
+                return 'progress-bar progress-bar-striped';
+            } else {
+                return 'progress-bar progress-bar-primary';
+            }
+        }
+
+        $scope.kolokvijumWidth = function(pohadjanje) {
+            if(pohadjanje.kolokvijum === 'nema kolokvijuma') {
+                return 100;
+            } else {
+                return pohadjanje.kolokvijumBodovi;
+            }
+        }
+
+        $scope.kolokvijumLabel = function(pohadjanje) {
+            if(pohadjanje.kolokvijum === 'nema kolokvijuma') {
+                return 'Nema kolokvijuma';
+            } else {
+                return pohadjanje.kolokvijumBodovi.toFixed(1) + '% kolokvijuma';
+            }
+        }
+
+        $scope.cardClass = function(pohadjanje) {
+            if(pohadjanje.polaganje.brojBodova >= 51) {
+                return 'panel panel-success';
+            } else if(pohadjanje.polaganje.brojBodova <= 0 ||
+                isNaN(pohadjanje.polaganje.brojBodova)) {
+                return 'panel panel-default';
+            } else {
+                return 'panel panel-warning';
+            }
+        }
+
+        }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
+     	   
+     	   
+     	   $scope.uplata = new Uplata();
+     	   $scope.uplata.$findByStudent({'UserName':$localStorage.currentUser.username}).then(function(item){
+		    	 
 	                console.log( $scope.uplata);
 	                
 	               
 	                $scope.uplate=$scope.uplata;
 	 
 	            });
-        	   
-        	     
-        	   $scope.Filter= function(){
-        		   
-        		   
-        		   for (var i = 0; i <  $scope.uplata.uplate.length; i++) {
-        			   console.log($scope.range.maxPrice);
+     	   
+     	     
+     	   $scope.Filter= function(){
+     		   
+     		   
+     		   for (var i = 0; i <  $scope.uplata.uplate.length; i++) {
+     			   console.log($scope.range.maxPrice);
 					if($scope.uplata.uplate[i].iznos <= $scope.range.minPrice && $scope.uplata.uplate[i].iznos >= $scope.range.maxPrice){
 						console.log("uslo u if");
 						$scope.uplate.uplate.remove(i);
 					}
 				}
-        	   };
-        	  
-       	});
-    
+     	   };
+     	  
+    	});
 }(angular));
