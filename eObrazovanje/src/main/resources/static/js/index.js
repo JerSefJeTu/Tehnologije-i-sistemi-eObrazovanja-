@@ -5,7 +5,9 @@
     .config(config)
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('/student');
+   
+
+        
         $stateProvider
 		.state('index', {
 			url: '/',
@@ -26,7 +28,8 @@
       })
       .state('student.finansije', {
           url: '/finansije',
-          templateUrl: 'studentFinansije.html'
+          templateUrl: 'studentFinansije.html',
+          controller:'uplateController'
 
       })
       .state('student.profil', {

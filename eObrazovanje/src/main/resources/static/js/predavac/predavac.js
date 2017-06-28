@@ -1,33 +1,17 @@
 (function (angular) {
 	angular.module('predavac',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource'])
-    .factory('PredavacFact', function(){
-        
-    })
 	.controller('PredavacCtrl', function($scope, $location,Predmet ,Predavac,$localStorage,$http) {
 		var loadEntries = function () {
 					
 			$scope.predavac = new Predavac.get({username: $localStorage.currentUser.username});
-			console.log($scope.predavac);
+			console.log($scope.predavac); 
 		}
 		loadEntries();
 	
         $scope.alert = function() {
-            alert("dodavanje");
+            alert($scope.idPredmeta=idPredmeta);
         }
-//        $scope.brisanjeKursaInit = function(idKursa,naziv) {
-//            $scope.nazivKursaInit=naziv;
-//            $scope.idKursaInit=idKursa;
-//        }
-//        $scope.brisanjeKursa = function(){
-//            
-//        }
-//        $scope.brisanjeObavezeInit = function(idObaveze, naziv) {
-//            $scope.idObavezeInit = idObaveze;
-//            $scope.nazivObavezeInit = naziv;
-//        }
-//        $scope.brisanjeObaveze = function(){
-//            alert("brise se "+$scope.nazivObavezeInit+", kursa "+$scope.nazivKursaInit);
-//        }
+
 		$scope.save = function () {
 			if(!$scope.blogEntry._id){
 				$scope.blogEntry.$save(loadEntries);

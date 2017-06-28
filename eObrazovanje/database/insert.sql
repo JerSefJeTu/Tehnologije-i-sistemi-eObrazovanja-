@@ -57,11 +57,26 @@ insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
+
+insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
+insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
+insert into polaganje_ispita(broj_bodova,ocena)values(22,2);
 insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,1,'Kolokvijum 1');
 insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,1,'Kolokvijum 2');
 insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,1,'Usmeni');
+
+
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,2,'Projekat');
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,2,'Kolokvijum');
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,polaganje_ispita_id,naziv_obaveze)values(11,10,15,1,2,'Pisemeni');
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(1,1,3);
-insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(1,2,4);
+insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(2,2,4);
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(2,3,5);
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(2,4,6);
 insert into pohadjanje(kurs_id,polaganje_id,student_korisnik_id)values(2,5,7);
+
+insert into uplata(iznos,svrha_uplate,student_korisnik_id)values(111,'Skolarina',3);
+insert into uplata(iznos,svrha_uplate,student_korisnik_id)values(111,'Skolarina',3);
+insert into uplata(iznos,svrha_uplate,student_korisnik_id)values(111,'Skolarina',3);
+
+

@@ -1,6 +1,9 @@
 package com.ap.model.uplata;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ap.model.pohadjanje.Pohadjanje;
+import com.ap.model.users.student.StudentService;
+import com.ap.web.dto.PohadjanjeDTO;
+import com.ap.web.dto.UplataDTO;
+
 
 
 @RestController
@@ -20,6 +28,8 @@ public class UplataController {
 	
 	@Autowired
 	UplataService uplataService;
+	@Autowired
+	StudentService studentService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<Uplata>> getUplata(){
@@ -70,6 +80,22 @@ public class UplataController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(method=RequestMethod.GET,value="/findByStudent")
+	public ResponseEntity<Map<String, ArrayList<UplataDTO>>> findByUser(@RequestParam("UserName")String userName){
+		
+		List<Uplata> uplate = uplataService.findByStudent(studentService.findByUserName(userName));
+		
+		List<UplataDTO> uplataDTOs = new ArrayList<>();
+		for(Uplata uplata : uplate) {
+			uplataDTOs.add(new UplataDTO(uplata));
+		}
+		
+		Map<String, ArrayList<UplataDTO>> uplateMapa = new HashMap<>();
+		uplateMapa.put("uplate", new ArrayList<>(uplataDTOs));
+		return new ResponseEntity<>(uplateMapa, HttpStatus.OK);
+		
 	}
 	
 }

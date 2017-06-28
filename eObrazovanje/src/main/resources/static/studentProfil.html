@@ -6,15 +6,15 @@
         </div>
         <div class="col-md-9">
             <div class="page-header" style="margin-top:0">
-                <h4>Lični podaci</h4>
+                <h4>LiÄ�ni podaci</h4>
             </div>
             <div class="row" style="margin-left:0">
                 <div class="col-md-3">
                     <div class="row"><span><strong>Ime</strong></span></div>
                     <div class="row"><span><strong>Prezime</strong></span></div>
                     <div class="row"><span><strong>JMBG</strong></span></div>
-                    <div class="row"><span><strong>Datum rođenja</strong></span></div>
-                    <div class="row"><span><strong>Mesto rođenja</strong></span></div>
+                    <div class="row"><span><strong>Datum roÄ‘enja</strong></span></div>
+                    <div class="row"><span><strong>Mesto roÄ‘enja</strong></span></div>
                     <div class="row"><span><strong>Adresa stanovanja</strong></span></div>
                     <div class="row"><span><strong>Broj telefona</strong></span></div>
                     <div class="row"><span><strong>E-mail adresa</strong></span></div>
@@ -56,7 +56,9 @@
                         </table>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-default">Dodaj dokument</button>
+                         <input type="file" name="file" file-model = "myFile" value="Dodaj dokument">
+                         <input type="text" ng-model="imeFajla" placeholder="Unesi Ime Fajla" >
+                         <button ng-click = "uploadFile()">Upload</button>
                     </div>
                 </div>
             </div>

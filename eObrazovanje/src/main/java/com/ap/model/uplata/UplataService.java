@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ap.model.users.student.Student;
+
 
 
 @Service
@@ -27,5 +29,9 @@ public class UplataService {
 
 	public void remove(Long id) {
 		uplataRepository.delete(id);
+	}
+	
+	public List<Uplata> findByStudent(Student student) {
+		return uplataRepository.findByStudent(student);
 	}
 }
