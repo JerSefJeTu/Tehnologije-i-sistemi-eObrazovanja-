@@ -1,5 +1,5 @@
 (function(angular){
-    angular.module('student', ['authentication'])
+    angular.module('student', ['authentication','uplata.resource'])
            .controller('StudentsCtrl',
             function($scope, $localStorage, StudentsResource, AuthenticationService){
                var username = AuthenticationService.getCurrentUser().username;
@@ -67,5 +67,32 @@
                 student.jmbg = obj.jmbg;
             }
 
-           });
+           }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
+        	   
+        	   
+        	   $scope.uplata = new Uplata();
+        	   $scope.uplata.$findByStudent({'UserName':$localStorage.currentUser.username}).then(function(item){
+  		    	 
+	                console.log( $scope.uplata);
+	                
+	               
+	                $scope.uplate=$scope.uplata;
+	 
+	            });
+        	   
+        	     
+        	   $scope.Filter= function(){
+        		   
+        		   
+        		   for (var i = 0; i <  $scope.uplata.uplate.length; i++) {
+        			   console.log($scope.range.maxPrice);
+					if($scope.uplata.uplate[i].iznos <= $scope.range.minPrice && $scope.uplata.uplate[i].iznos >= $scope.range.maxPrice){
+						console.log("uslo u if");
+						$scope.uplate.uplate.remove(i);
+					}
+				}
+        	   };
+        	  
+       	});
+    
 }(angular));

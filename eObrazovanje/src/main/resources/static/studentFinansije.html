@@ -1,3 +1,5 @@
+
+
 <div id="userGuiContentFinansije">
     <ul class="nav nav-pills" role="tablist" style="margin-bottom:1%">
         <li role="presentation" class="active"><a href="">Sve</a></li>
@@ -8,7 +10,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <div class="input-group date" id="pretragaFinansijaPocetniDatum">
-                    <input type="text" class="form-control" placeholder="Izaberite početni datum..."/>
+                    <input type="text" class="form-control" placeholder="Izaberite poÄ�etni datum..."/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -36,19 +38,19 @@
            </script>
         </div> <!-- drugi date picker-->
         <div class="col-md-4">
-          <button class="btn btn-default" style="float:right;margin-right:33%;margin-left:3%">Poništi</button>
-          <button class="btn btn-primary" style="float:right">Traži</button>
+          <button class="btn btn-default" style="float:right;margin-right:33%;margin-left:3%">PoniÅ¡ti</button>
+          <button class="btn btn-primary" ng-click="Filter()" style="float:right">TraÅ¾i</button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <div class="input-group">
-                <input type="number" min="0" class="form-control" placeholder="Unesite minimalni iznos...">
+                <input type="number" min="0" class="form-control" ng-model="range.minPrice" placeholder="Unesite minimalni iznos...">
             </div>
         </div>
         <div class="col-md-4" style="margin-bottom:3%">
             <div style="width:80%" class="input-group">
-                <input type="number" min="0" class="form-control" placeholder="Unesite maksimalni iznos...">
+                <input type="number" min="0" class="form-control" ng-model="range.maxPrice" placeholder="Unesite maksimalni iznos...">
             </div>
         </div>
     </div>
@@ -64,71 +66,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
+                    <tr ng-repeat="uplata in uplata.uplate">
+                        <td></td>
                         <td>01.05.2017.</td>
-                        <td>8500</td>
+                        <td>{{uplata.iznos | currency  }} RSD</td>
                         <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate školarine">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>13.05.2017.</td>
-                        <td>20000</td>
-                        <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan lectus et eros ullamcorper, in commodo risus pellentesque. Suspendisse id erat pellentesque, molestie turpis ac, sodales dui. Pellentesque et purus at dui molestie egestas quis quis urna. Quisque lobortis facilisis mi in vestibulum. Nunc vel vestibulum dui, nec accumsan risus. Curabitur dictum mauris eu hendrerit pellentesque. Nam rhoncus volutpat lorem, eu finibus augue molestie in.">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>18.05.2017.</td>
-                        <td>1000</td>
-                        <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Vežbanke">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>19.05.2017.</td>
-                        <td>1850</td>
-                        <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Prijava ispita iz matematike 1">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>22.05.2017.</td>
-                        <td>95000</td>
-                        <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Mito i korupcija">
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate Å¡kolarine">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div range-slider="range-slider" 
+         min="sliderConfig.min" 
+         max="sliderConfig.max" 
+         model-min="sliderConfig.userMin" 
+         model-max="sliderConfig.userMax">
+    </div>
        </div>
        <div class="col-md-4 panel-group">
            <div class="panel panel-primary">
                <div class="panel-heading">
                    <h5 class="panel-title">
-                       <a href="#racunInfo" data-toggle="collapse">Podaci o računu</a>
+                       <a href="#racunInfo" data-toggle="collapse">Podaci o raÄ�unu</a>
                    </h5>
                </div>
            </div>
            <div id="racunInfo" class="panel-collapse collapse">
                <ul class="list-group">
                    <div class="panel panel-default">
-                       <div class="panel-heading">Stanje na računu</div>
+                       <div class="panel-heading">Stanje na raÄ�unu</div>
                        <div class="panel-body"><strong>127000</strong></div>
                    </div>
                    <div class="panel panel-default" style="margin-bottom:3%">

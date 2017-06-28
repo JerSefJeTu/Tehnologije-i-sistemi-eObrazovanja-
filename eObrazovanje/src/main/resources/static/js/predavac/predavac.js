@@ -54,7 +54,7 @@
 	                console.log($scope.obaveze);
 	                console.log($scope.pohadjanja);
 	 
-	            });;
+	            });
 		      
 		      
 		      
@@ -66,6 +66,7 @@
 		        
 		    };
 	});
+	
 }(angular));
 
 
