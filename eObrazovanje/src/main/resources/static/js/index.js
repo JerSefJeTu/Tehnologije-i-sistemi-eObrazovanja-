@@ -31,8 +31,8 @@
       })
       .state('student.profil', {
           url: '/profil',
-          templateUrl: 'studentProfil.html'
-
+          templateUrl: 'studentProfil.html',
+          controller: 'StudentsCtrl'
       })
       .state('predavac', {
           url: '/predavac',

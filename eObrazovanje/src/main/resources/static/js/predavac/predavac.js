@@ -50,7 +50,9 @@
 		    	 
 	                
 	                $scope.pohadjanja = item;
-	                console.log($scope.pohadjanja.pohadjanja);
+	                $scope.obaveze= $scope.pohadjanja.pohadjanja[0].polaganje.predispitneObaveze;
+	                console.log($scope.obaveze);
+	                console.log($scope.pohadjanja);
 	 
 	            });;
 		      

@@ -40,6 +40,8 @@
                    return $http.get(GET_STUDENT_BY_USERNAME,
                    {params:{"username" : username}})
                    .then(function(data, status) {
+                       var convertDate=new Date(data.data.dateOfBirth);
+                       data.data.dateOfBirth=convertDate.getDate()+"."+convertDate.getMonth()+"."+convertDate.getFullYear()+".";
                        return data;
                    })
                    .catch(function(data, status) {
