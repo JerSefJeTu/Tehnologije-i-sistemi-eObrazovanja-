@@ -37,7 +37,7 @@
       .state('predavac', {
           url: '/predavac',
           templateUrl: 'predavacFrame.html'
-        	  
+
 
       })
 
@@ -45,31 +45,40 @@
           url: '/nastava',
           templateUrl: 'predavacNastavaTop.html',
           controller:'PredavacCtrl'
-          
+
 
       })
           .state('predavac.nastava.kursevi', {
           url: '/kursevi',
           templateUrl: 'predavacNastavaKurs.html',
           controller:'kursCtrl'
-         
+
 
       })
-      
-            .state('predavac.nastava.kursevi.info', {
+
+        .state('predavac.nastava.kursevi.info', {
           url: '/info',
           templateUrl: 'predavacNastavaInfoKursa.html',
           controller:'kursCtrl'
-        	  
+
 
       })
 
       .state('predavac.ocene', {
           url: '/ocene',
-          templateUrl: 'predavacOceneKurs.html'
-
+          templateUrl: 'predavacOceneTop.html',
+		  controller: 'PredavacCtrl'
       })
 
+	  .state('predavac.ocene.kurs', {
+		  url: '/kurs',
+		  templateUrl: 'predavacOceneKurs.html'
+	  })
+
+	  .state('predavac.ocene.kurs.information', {
+		  url: '/information',
+		  templateUrl: 'predavacOceneInfoKursa.html'
+	  })
 
        .state('login', {
         url: '/login',

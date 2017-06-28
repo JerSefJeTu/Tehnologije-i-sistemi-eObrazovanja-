@@ -6,6 +6,7 @@
                var username = AuthenticationService.getCurrentUser().username;
                var student = {};
                var pohadjanja = {};
+               var pohadjanja_final = {};
 
             StudentsResource.getStudentByUsername(username).then(function(item){
                 student = item.data;
@@ -87,11 +88,8 @@
                 }
 
                 StudentsResource.getPohadjanjaPages(student.id, 0, 4).then(function(item){
-                    console.log(item);
                    $scope.pohadjanja = item.data.content;
                    $scope.totalPages = createDummyArray(item.data.totalPages);
-                   examComputation(item.data.content);
-                   console.log($scope.pohadjanja);
                });
            });
 
@@ -148,7 +146,7 @@
         }
 
         $scope.cardClass = function(pohadjanje) {
-            if(pohadjanje.polaganje.brojBodova >= 51) {
+            if(pohadjanje.polaganje.brojBodova >= 55) {
                 return 'panel panel-success';
             } else if(pohadjanje.polaganje.brojBodova <= 0 ||
                 isNaN(pohadjanje.polaganje.brojBodova)) {
@@ -158,6 +156,29 @@
             }
         }
 
+        // $scope.allExams() = function() {
+        //     // TODO
+        // }
+        //
+        // $scope.passedExams = function() {
+        //     if(pohadjanje.brojBodova >= 55) {
+        //         return pohadjanje;
+        //     }
+        // }
+        //
+        // $scope.failedExams = function() {
+        //     if(pohadjanje.brojBodova < 55) {
+        //         return pohadjanje;
+        //     }
+        // }
+
+        // TODO
+        // function refreshData() {
+        //     StudentsResource.getPohadjanjaPages(student.id, 0, 4).then(function(item){
+        //        $scope.pohadjanja = item.data.content;
+        //        $scope.totalPages = createDummyArray(item.data.totalPages);
+        //    });
+        // }
 
         // Paginacija
         // $scope.pagination = function()
