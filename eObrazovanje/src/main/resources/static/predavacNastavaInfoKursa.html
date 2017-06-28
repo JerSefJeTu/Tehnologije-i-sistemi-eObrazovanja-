@@ -10,20 +10,20 @@
                     <th>Naziv obaveze</th>
                     <th>Min. bodova</th>
                     <th>Max. bodova</th>
-                    <th><button class="btn btn-success btn-xs">
+                    <th><button class="btn btn-success btn-xs" data-toggle="modal" data-target="#dodavanjeObaveze">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="obaveza in obaveze">
-                    <td>...</td>
+                    <td>{{$index +1}}</td>
                     <td>{{obaveza.nazivObaveze}}</td>
                     <td>{{obaveza.minBodova}}</td>
                     <td>{{obaveza.maxBodova}}</td>
                     <td>
-                    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-                    <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-danger btn-xs" ng-click='brisanjeObavezeInit(obaveza.id,obaveza.nazivObaveze)' data-toggle="modal" data-target="#brisanjeObaveze"><span class="glyphicon glyphicon-remove"></span></button>
                     </td>
                 
                 
@@ -97,36 +97,99 @@
     </div>
 </div>
 </div>
-<div id="dodavanjeObaveza" class="modal fade" role="dialog">
+<div id="dodavanjeObaveze" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="margin-top:10%">
+
+        <!-- Modal content-->
+        <div class="panel panel-primary">
+          <div class="panel panel-heading">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="panel-title" style="text-align:center;">Dodavanje nastavnih obaveza</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-5">
+                <div style="margin-top:3%"><strong>Naziv obaveze</strong></div>
+                <div style="margin-top:5%"><strong>Minimalni broj bodova</strong></div>
+                <div style="margin-top:5%"><strong>Maksimalni broj bodova</strong></div>
+            </div>
+              <form>
+            <div class="col-md-7">
+               <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" ng-model="obaveza.naziv" placeholder="Unesite naziv obaveze..." name="search">
+                </div>
+                <div style="width:70%" class="input-group">
+                    <input type="number" class="form-control" ng-model="obaveza.min" placeholder="Unesite min. broj bodova..." name="search">
+                </div>
+                <div style="width:70%" class="input-group">
+                    <input type="number" class="form-control" ng-model="obaveza.max" placeholder="Unesite max. broj bodova..." name="search">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
+                    <button class="btn btn-success" ng-click="dodavanjeObaveze()" style="float:right">SaÄ�uvaj</button>
+                </div>
+            </form>
+          </div>
+          
+        </div>
+
+      </div>
+</div>
+<div id="izmenaObaveze" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="margin-top:10%">
+
+        <!-- Modal content-->
+        <div class="panel panel-primary">
+          <div class="panel panel-heading">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="panel-title" style="text-align:center;">Dodavanje nastavnih obaveza</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-5">
+                <div style="margin-top:3%"><strong>Naziv obaveze</strong></div>
+                <div style="margin-top:5%"><strong>Minimalni broj bodova</strong></div>
+                <div style="margin-top:5%"><strong>Maksimalni broj bodova</strong></div>
+            </div>
+            <div class="col-md-7">
+               <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" placeholder="......." name="search">
+                </div>
+                <div style="width:70%" class="input-group">
+                    <input type="number" class="form-control" placeholder="Unesite min. broj bodova..." name="search">
+                </div>
+                <div style="width:70%" class="input-group">
+                    <input type="number" class="form-control" placeholder="Unesite max. broj bodova..." name="search">
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
+            <button class="btn btn-success" ng-click="brisanjeKursa()" style="float:right">SaÄ�uvaj</button>
+          </div>
+        </div>
+
+      </div>
+</div>
+<div id="brisanjeObaveze" class="modal fade" role="dialog">
           <div class="modal-dialog" style="margin-top:10%">
 
             <!-- Modal content-->
             <div class="panel panel-primary">
               <div class="panel panel-heading">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="panel-title" style="text-align:center;">Dodavanje nastavnih obaveza</h3>
+                <h3 class="panel-title" style="text-align:center;">Brisanje nastavne obaveze</h3>
               </div>
               <div class="panel-body">
-                <div class="col-md-6" style="margin-top:1%">
-                    <div><strong>Naziv obaveze</strong></div>
-                    <div><strong>Minimalni broj bodova</strong></div>
-                    <div><strong>Maksimalni broj bodova</strong></div>
+                <div class="page-header">
+                    <h5>Da li ste sigurni da Å¾elite da obriÅ¡ete nastavnu obavezu:</h5>
                 </div>
-                <div class="col-md-6">
-                   <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Unesite naziv obaveze..." name="search">
-                    </div>
-                    <div id="unosNazivaKursa" class="input-group">
-                        <input type="number" class="form-control" placeholder="Unesite min. broj bodova..." name="search">
-                    </div>
-                    <div id="unosNazivaKursa" class="input-group">
-                        <input type="number" class="form-control" placeholder="Unesite max. broj bodova..." name="search">
-                    </div>
+                <div class="col-md-12">
+                   <p><strong>{{nazivObavezeInit}}</strong></p>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Sačuvaj</button>
+                <button class="btn btn-danger" ng-click="brisanjeObaveze()" style="float:right;width:10%">BriÅ¡i</button>
               </div>
             </div>
 
