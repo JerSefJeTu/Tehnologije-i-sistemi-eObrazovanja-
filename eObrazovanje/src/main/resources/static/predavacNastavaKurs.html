@@ -9,11 +9,10 @@
         </div>
     </div>
     <div class="row" style="margin-bottom:3%">
-        <div class="col-md-6"><button class="btn btn-success" style="width:100%" id="addKursBtn" data-toggle="modal" data-target="#dodavanjeKursa">Add</button></div>
-        <div class="col-md-6"><button style="width:100%" ng-click="" class="btn btn-danger" id="delKursBtn" data-toggle="modal" data-target="#brisanjeKursa">Remove</button></div>
+        <div class="col-md-12"><button class="btn btn-success center-block" style="" id="addKursBtn" data-toggle="modal" data-target="#dodavanjeKursa">Dodaj nov kurs</button></div>
     </div>
     <div class="list-group single-select" id="predavacKurseviLista">
-        <a ng-click="izborKursa(kurs.id)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}<div style="float:right;"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs" data-toggle="modal" ng-click='brisanjeKursaInit(kurs.id,kurs.naziv)' data-target="#brisanjeKursa"><span class="glyphicon glyphicon-remove"></span></button></div></a>
+        <a ng-click="izborKursa(kurs.id,kurs.naziv)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}<div style="float:right;"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs" data-toggle="modal" ng-click='brisanjeKursaInit(kurs.id,kurs.naziv)' data-target="#brisanjeKursa"><span class="glyphicon glyphicon-remove"></span></button></div></a>
     </div>
     <div id="paginacijaKurseva">
         <ul class="pagination pagination-sm">
@@ -41,13 +40,13 @@
                 </div>
                 <div class="col-md-8">
                     <div id="unosNazivaKursa" class="input-group">
-                        <input type="text" class="form-control" placeholder="Unesite naziv kursa..." name="search">
+                        <input type="text" class="form-control" ng-model="kurs.naziv" placeholder="Unesite naziv kursa..." name="search">
                     </div>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Zatvori</button>
-                <button class="btn btn-success" ng-click="alert()" style="float:right;">Sačuvaj</button>
+                <button class="btn btn-success" ng-click="dodavanje()" style="float:right;">SaÄ�uvaj</button>
               </div>
             </div>
 
@@ -109,7 +108,8 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Sačuvaj</button>
+                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">SaÄ�uvaj</button>
+>>>>>>> branch 'master' of https://github.com/JerSefJeTu/Tehnologije-i-sistemi-eObrazovanja-.git
               </div>
             </div>
 

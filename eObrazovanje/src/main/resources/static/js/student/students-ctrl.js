@@ -1,5 +1,5 @@
 (function(angular){
-    angular.module('student', ['authentication'])
+    angular.module('student', ['authentication','uplata.resource'])
            .controller('StudentsCtrl',
             function($scope, $localStorage, StudentsResource, AuthenticationService){
 
@@ -185,4 +185,74 @@
         //
         // }
     });
+}(angular));
+        }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
+     	   
+     	   
+     	   $scope.uplata = new Uplata();
+     	   $scope.uplata.$findByStudent({'UserName':$localStorage.currentUser.username}).then(function(item){
+		    	 
+	                console.log( $scope.uplata);
+	                
+	               
+	                $scope.uplate=$scope.uplata;
+	 
+	            });
+     	   
+     	     
+     	   $scope.Filter= function(){
+     		   
+     		   
+     		   for (var i = 0; i <  $scope.uplata.uplate.length; i++) {
+     			   console.log($scope.range.maxPrice);
+					if($scope.uplata.uplate[i].iznos <= $scope.range.minPrice && $scope.uplata.uplate[i].iznos >= $scope.range.maxPrice){
+						console.log("uslo u if");
+						$scope.uplate.uplate.remove(i);
+					}
+				}
+     	   };
+     	  
+    	}).directive('fileModel', ['$parse', function ($parse) {
+            return {
+                restrict: 'A',
+                link: function(scope, element, attrs) {
+                   var model = $parse(attrs.fileModel);
+                   var modelSetter = model.assign;
+                   
+                   element.bind('change', function(){
+                      scope.$apply(function(){
+                         modelSetter(scope, element[0].files[0]);
+                      });
+                   });
+                }
+             };
+          }]).service('fileUpload', [ function ($http) {
+              this.uploadFileToUrl = function(file, uploadUrl,imeFajla){
+                  var fd = new FormData();
+                  fd.append('file', file);
+                   fd.append('imeFajla',imeFajla);
+               
+                  $http.post(uploadUrl, fd, {
+                     transformRequest: angular.identity,
+                     headers: {'Content-Type': undefined}
+                  })
+               
+                  .then(function(){
+                  })
+               
+                  .catch(function(){
+                  });
+               }
+            }]).controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+                $scope.uploadFile = function(){
+                    var file = $scope.myFile;
+                     var imeFajla = $scope.dokument.naziv;
+                    
+                    console.log('file is ' );
+                    console.dir(file);
+                    
+                    var uploadUrl = "/api/student/uploadFile";
+                    fileUpload.uploadFileToUrl(file, uploadUrl,imeFajla);
+                 };
+              }]);
 }(angular));
