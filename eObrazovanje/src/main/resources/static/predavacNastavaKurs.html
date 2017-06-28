@@ -41,13 +41,13 @@
                 </div>
                 <div class="col-md-8">
                     <div id="unosNazivaKursa" class="input-group">
-                        <input type="text" class="form-control" placeholder="Unesite naziv kursa..." name="search">
+                        <input type="text" class="form-control" ng-model="kurs.naziv" placeholder="Unesite naziv kursa..." name="search">
                     </div>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Zatvori</button>
-                <button class="btn btn-success" ng-click="alert()" style="float:right;">Sačuvaj</button>
+                <button class="btn btn-success" ng-click="alert()" style="float:right;">SaÄ�uvaj</button>
               </div>
             </div>
 
@@ -65,7 +65,7 @@
               </div>
               <div class="panel-body">
                 <div class="page-header">
-                    <h5>Da li ste sigurni da želite da obrišete kurs:</h5>
+                    <h5>Da li ste sigurni da Å¾elite da obriÅ¡ete kurs:</h5>
                 </div>
                 <div class="col-md-12">
                    <p><strong>{{nazivKursaInit}}</strong></p>
@@ -73,7 +73,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Briši</button>
+                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">BriÅ¡i</button>
               </div>
             </div>
 
@@ -109,7 +109,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Sačuvaj</button>
+                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">SaÄ�uvaj</button>
               </div>
             </div>
 
