@@ -5,7 +5,9 @@
     .config(config)
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-        //$urlRouterProvider.otherwise('/student');
+   
+
+        
         $stateProvider
 		.state('index', {
 			url: '/',
