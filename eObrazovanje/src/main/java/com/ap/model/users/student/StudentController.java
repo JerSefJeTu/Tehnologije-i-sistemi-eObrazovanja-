@@ -153,7 +153,7 @@ public class StudentController {
     }
 	
 	@RequestMapping(path = "/getDokumentsByStudent", method = RequestMethod.GET)
-    public ResponseEntity<ArrayList<DokumentDTO>> getDokumentsForStudent(@RequestParam("userName") String userName) {
+    public ResponseEntity<ArrayList<DokumentDTO>> getDokumentsForStudent(@RequestParam("username") String userName) {
 		Student student=studentService.findByUserName(userName);
 		List<Dokument> dokumentiStudenta=dokumentService.getByStudent(student);
 		ArrayList<DokumentDTO> dokumentDTOs = new ArrayList<>();

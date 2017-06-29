@@ -2,19 +2,17 @@
     <div class="col-md-4">
        <div class="panel panel-default">
            <div class="panel-heading">
-               <h3 class="panel-title" style="text-align:center;">Studenti <span class="badge"></span></h3>
+               <h3 class="panel-title" style="text-align:center;">Studenti <span class="badge">{{numberOfStudents}}</span></h3>
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
-                    <input type="text" class="form-control" placeholder="Pretraga studenata..." name="search">
+                    <input type="text" class="form-control" placeholder="Pretraga studenata..." name="search" ng-model="search.pretragaStudenata.firstname">
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
                 <div id="upisaniStudenti" class="list-group checked-list-box single-select">
-                    <a href="" class="list-group-item">Marko Marković</a>
-                    <a href="" class="list-group-item">Marko Marković</a>
-                    <a href="" class="list-group-item">Marko Marković</a>
+                    <a ng-click="findObavezeByStudent(student)" class="list-group-item" ng-repeat="student in studentsByCourse | filter: search.pretragaStudenata.firstname">{{student.student.firstname + ' ' + student.student.lastname}}</a>
                 </div>
                 <div id="paginacijaUpisanihStudenata" style="padding-left:5%;">
                     <ul class="pagination pagination-sm">
@@ -44,37 +42,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Kolokvijum 1</td>
-                    <td>15/30</td>
-                    <td><strong>8</strong></td>
+                <tr ng-repeat="obaveza in predispitneObaveze">
+                    <td>{{$index +1}}</td>
+                    <td>{{obaveza.nazivObaveze}}</td>
+                    <td>{{obaveza.minBodova}} / {{obaveza.maxBodova}}</td>
+                    <td><strong>{{obaveza.brojBodova}}</strong></td>
                     <td style="width:3%">
                     <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
                     </td>
                 </tr>
                 <tr>
-                    <td>2</td>
-                    <td>Kolokvijum 2</td>
-                    <td>15/30</td>
-                    <td><strong>15</strong></td>
-                    <td>
-                    <button class="btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Ispit</td>
-                    <td>25/40</td>
-                    <td><strong>0</strong></td>
-                    <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
-                    </td>
-                </tr>
-                <tr>
                     <td colspan="3" style="text-align:center;"><strong>Ukupno</strong></td>
-                    <td><strong>23</strong></td>
+                    <td><strong>{{findSum(predispitneObaveze)}}</strong></td>
                 </tr>
             </tbody>
         </table>
