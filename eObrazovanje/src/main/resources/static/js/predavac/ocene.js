@@ -5,7 +5,6 @@
 
 
 			$scope.predavac = new Predavac.get({username: $localStorage.currentUser.username});
-			console.log($scope.predavac);
 		}
 		loadEntries();
 
@@ -16,12 +15,11 @@
 		$scope.pickCourseInformation = function(kurs) {
 			$scope.pohadjanja= new Pohadjanja();
 			$scope.pohadjanja.$findByKurs({"idKursa": kurs.id}).then(function(item){
-				console.log(item);
+				$scope.numberOfStudents = item.pohadjanja.length;
+				$scope.studentsByCourse = item.pohadjanja;
+				console.log(item.pohadjanja);
 			})
 			$scope.singleCourse = kurs;
-			var pohadjanja = findAttendingsByCourse(kurs);
-			console.log(pohadjanja);
-			//$scope.numberOfStudents = pohadjanja.data;
 		}
 
 		function findAttendingsByCourse(kurs) {
@@ -30,6 +28,19 @@
 			});
 		}
 
+		$scope.findObavezeByStudent = function(student) {
+			console.log(student);
+			$scope.predispitneObaveze = student.polaganje.predispitneObaveze;
+		}
+
+		$scope.findSum = function(obaveze) {
+			var sum = 0;
+			for(obaveza in obaveze) {
+				sum += obaveze[obaveza].brojBodova;
+			}
+
+			return sum;
+		}
 	});
 
 
