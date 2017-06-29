@@ -44,6 +44,7 @@
                var username = AuthenticationService.getCurrentUser().username;
                var student = {};
                var pohadjanja = {};
+               var dokumenti = {};
 
             StudentsResource.getStudentByUsername(username).then(function(item){
                 student = item.data;
@@ -128,6 +129,10 @@
                    $scope.pohadjanja = item.data.content;
                    $scope.totalPages = createDummyArray(item.data.totalPages);
                    examComputation(item.data.content);
+               });
+
+               StudentsResource.getDokumenti(student.username).then(function(item){
+                  $scope.dokumenti = item.data; 
                });
            });
 

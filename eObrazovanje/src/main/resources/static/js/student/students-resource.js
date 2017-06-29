@@ -9,6 +9,7 @@
                const POST_STUDENT = "api/student";
                const DELETE_STUDENT = "api/student";
                const GET_STUDENT_ATTENDING_BY_ID = "api/pohadjanje/findByStudent/";
+               const GET_DOCUMENT_BY_STUDENT = "api/student/getDokumentsByStudent";
 
                var students = [];
                var pohadjanja = [];
@@ -105,6 +106,18 @@
                    })
                    .catch(function(data, status){
                        console.log(status);
+                   });
+               }
+
+               studentsObj.getDokumenti = function(username) {
+                   return $http.get(GET_DOCUMENT_BY_STUDENT,
+                   {params:{"username" : username}
+                   })
+                   .then(function(data, status){
+                       return data;
+                   })
+                   .catch(function(data, status){
+                      console.log(status); 
                    });
                }
 

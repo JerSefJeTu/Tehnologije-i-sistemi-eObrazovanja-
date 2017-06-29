@@ -43,7 +43,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="obaveza in predispitneObaveze">
-                    <td>1</td>
+                    <td>{{$index +1}}</td>
                     <td>{{obaveza.nazivObaveze}}</td>
                     <td>{{obaveza.minBodova}} / {{obaveza.maxBodova}}</td>
                     <td><strong>{{obaveza.brojBodova}}</strong></td>
