@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student', 'ocene']);
 
 	app
     .config(config)
@@ -17,9 +17,9 @@
     })
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-   
 
-        
+
+
         $stateProvider
 		.state('index', {
 			url: '/',
@@ -59,12 +59,12 @@
       .state('student.profil', {
           url: '/profil',
           templateUrl: 'studentProfil.html',
-          controller: 'myCtrl'
+          controller: 'StudentsCtrl'
       })
       .state('predavac', {
           url: '/predavac',
           templateUrl: 'predavacFrame.html'
-        	  
+
 
       })
 
@@ -72,31 +72,39 @@
           url: '/nastava',
           templateUrl: 'predavacNastavaTop.html',
           controller:'PredavacCtrl'
-          
+
 
       })
           .state('predavac.nastava.kursevi', {
           url: '/kursevi',
           templateUrl: 'predavacNastavaKurs.html',
           controller:'kursCtrl'
-         
+
 
       })
-      
-            .state('predavac.nastava.kursevi.info', {
+
+        .state('predavac.nastava.kursevi.info', {
           url: '/info',
           templateUrl: 'predavacNastavaInfoKursa.html',
           controller:'kursCtrl'
-        	  
+
 
       })
 
       .state('predavac.ocene', {
           url: '/ocene',
-          templateUrl: 'predavacOceneKurs.html'
-
+          templateUrl: 'predavacOceneTop.html'
       })
 
+	  .state('predavac.ocene.kurs', {
+		  url: '/kurs',
+		  templateUrl: 'predavacOceneKurs.html'
+	  })
+
+	  .state('predavac.ocene.kurs.information', {
+		  url: '/information',
+		  templateUrl: 'predavacOceneInfoKursa.html'
+	  })
 
        .state('login', {
         url: '/login',

@@ -35,7 +35,7 @@
                         $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
 
                         callback(true);
-                        for (i = 0; i < currentUser.role.length; i++) { 
+                        for (i = 0; i < currentUser.role.length; i++) {
                         	console.log(currentUser.role[i])
                         	if(currentUser.role[i].authority == "ADMIN") {
                         		console.log("admin")
@@ -48,7 +48,7 @@
                             	$state.go('student.studije');
                             }
                         }
-                        
+
 
 
                 }).catch( function(response) {

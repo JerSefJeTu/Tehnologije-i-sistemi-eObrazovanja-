@@ -1,6 +1,6 @@
 <div id="userGuiContentStudije">
     <div id="pretragaPredmeta" class="input-group">
-        <input type="text" class="form-control" placeholder="Pretraga predmeta..." name="search">
+        <input type="text" class="form-control" placeholder="Pretraga predmeta..." name="search" ng-model="searchPretragaPredmeta.naziv">
         <div class="input-group-btn">
             <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
         </div>
@@ -11,7 +11,7 @@
         <li role="presentation"><a href="#">Nepoloženi</a></li>
     </ul>
     <div id="studentStudijeDiv">
-       <div ng-repeat="pohadjanje in pohadjanja" class="kartica">
+       <div ng-repeat="pohadjanje in pohadjanja | filter:{kurs:{naziv:searchPretragaPredmeta.naziv}}" class="kartica">
         <div class="{{cardClass(pohadjanje)}}">
             <div class="panel-heading">
                 <h3 class="panel-title">{{pohadjanje.kurs.naziv}}</h3>
@@ -40,11 +40,9 @@
     <div id="paginacijaStudije">
         <ul class="pagination pagination-sm">
           <li><a href=""><span>&laquo;</span></a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
+          <li ng-class="page == 1 ? 'active' : ''" ng-repeat="page in totalPages">
+              <a href="#">{{page}}</a>
+          </li>
           <li><a href=""><span>&raquo;</span></a></li>
         </ul>
     </div>
