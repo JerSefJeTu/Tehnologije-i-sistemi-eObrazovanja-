@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.users.student.Student;
+import com.ap.web.dto.KursDTO;
 
 
 @RestController
@@ -32,13 +33,13 @@ public class KursController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Kurs> getKurs(@PathVariable Long id){
+	public ResponseEntity<KursDTO> getKurs(@PathVariable Long id){
 		Kurs Kurs = kursService.findOne(id);
 		if(Kurs == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(Kurs, HttpStatus.OK);
+		return new ResponseEntity<>(new KursDTO(Kurs), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")

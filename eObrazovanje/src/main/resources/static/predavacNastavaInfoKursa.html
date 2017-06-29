@@ -48,60 +48,17 @@
                     </div>
                 </div>
                 <div id="selektovaniStudenti" class="well">
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+                    <div ng-repeat="privremeniStudent in listaPrivremenihStudenata"  class="selektovaniStudentItem">
+                        <span>{{privremeniStudent.firstname }}  {{privremeniStudent.lastname}}</span>
+                        <button ng-click="vratiStudentaUlistu(privremeniStudent)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
                     </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
-                    <div class="selektovaniStudentItem">
-                        <span>Ime Prezime</span>
-                        <button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
-                    </div>
+                    
                 </div>
                 <div id="sviStudenti" class="list-group">
-                    <a href="" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
+                    <a ng-click="dodajStudentaUPrivremenuListu(student)" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
                    
                 </div>
-                <button class="btn btn-success" style="width:100%">Dodaj</button>
+                <button ng-click="dodajStudenteNaKurs()" class="btn btn-success" style="width:100%">Dodaj</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
                     <ul class="pagination pagination-sm">
                         <li><a href="#"><span>&laquo;</span></a></li>

@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.GET, "/**")
 					.access("hasAnyAuthority('STUDENT','ADMIN')")
 					.antMatchers(HttpMethod.POST, "/api/**")
-					.access("hasAnyAuthority('STUDENT','ADMIN')")
+					.access("hasAnyAuthority('STUDENT','ADMIN','PREDAVAC')")
 				.anyRequest().authenticated();
 		
 		// Custom JWT based authentication
