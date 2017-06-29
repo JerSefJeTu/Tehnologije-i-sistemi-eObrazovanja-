@@ -22,9 +22,10 @@
         	    };
 
         	    $scope.downloadFile = function(file){
-        	    	
-        	        $http.post("http://localhost:8080/download",file).
+        	    	console.log(file);
+        	        $http.post("api/student/download", {params:{"filename" : file.naziv}}).
         	        then(function(data) {
+        	        	console.log(data);
         	            // this callback will be called asynchronously
         	            // when the response is available
         	        	var file = new Blob([data], {type: 'application/pdf'});

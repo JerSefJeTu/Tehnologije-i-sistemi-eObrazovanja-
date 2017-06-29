@@ -48,7 +48,7 @@ public class StudentController {
 	@Autowired
 	DokumentService dokumentService;
 	
-	  private static final String filePath = "downloads//";
+	  private static final String filePath = "downloads\\";
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<StudentDTO>> getStudenti(){
@@ -142,9 +142,10 @@ public class StudentController {
 	}
 	
 	@RequestMapping(path = "/download", method = RequestMethod.POST)
-    public ResponseEntity<Resource> download(@RequestParam("fileName") String imeFajla) throws IOException {
+	@ResponseBody
+    public ResponseEntity<Resource> download(@RequestParam("filename") String filename) throws IOException {
 		String storagePath = ResourceBundle.getBundle("app").getString("storage");
-        File file = new File(filePath+imeFajla);
+        File file = new File(storagePath+filename);
 
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 
@@ -154,6 +155,7 @@ public class StudentController {
     }
 	
 	@RequestMapping(path = "/getDokumentsByStudent", method = RequestMethod.GET)
+	@ResponseBody
     public ResponseEntity<ArrayList<DokumentDTO>> getDokumentsForStudent(@RequestParam("username") String userName) {
 		Student student=studentService.findByUserName(userName);
 		List<Dokument> dokumentiStudenta=dokumentService.getByStudent(student);
