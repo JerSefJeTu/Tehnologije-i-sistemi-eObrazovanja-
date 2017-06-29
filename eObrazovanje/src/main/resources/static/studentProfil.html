@@ -48,7 +48,7 @@
                                 <tr ng-repeat="dokument in dokumenti">
                                     <td>{{$index +1}}</td>
                                     <td><a>{{dokument.naziv}}</a></td>
-                                    <td><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></td>
+                                    <td><button ng-click="downloadFile(dokument.naziv)" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></td>
                                 </tr>
                                 <tr></tr>
                                 <tr></tr>
