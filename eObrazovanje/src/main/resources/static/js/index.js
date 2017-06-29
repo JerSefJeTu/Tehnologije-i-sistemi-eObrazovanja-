@@ -14,6 +14,20 @@
 	            });
 	        }
     	}
+    }).directive('svrhaPopover', function () {
+        return {
+            restrict: 'A',
+            template: '<span>{{svrhaUplate}}</span>',
+            link: function (scope, el, attrs) {
+                scope.label = attrs.popoverLabel;
+                $(el).popover({
+                    trigger: 'click',
+                    html: true,
+                    content: attrs.popoverHtml,
+                    placement: attrs.popoverPlacement
+                });
+            }
+        };
     })
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {

@@ -69,11 +69,11 @@
                     <tr ng-repeat="uplata in uplata.uplate">
                         <td></td>
                         <td>01.05.2017.</td>
+                        <script>
+                        </script>
                         <td>{{uplata.iznos | currency  }} RSD</td>
                         <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate školarine">
-                            <span class="glyphicon glyphicon-info-sign"></span>
-                            </a>
+                            <span class="glyphicon glyphicon-info-sign" svrhaPopover popover-html={{svrhaUplate}}></span>
                         </td>
                     </tr>
                 </tbody>
