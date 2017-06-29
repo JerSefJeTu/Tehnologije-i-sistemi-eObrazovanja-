@@ -1,5 +1,5 @@
 (function(angular) {
-    angular.module('ocene', ['predavac.resource'])
+    angular.module('ocene', [])
            .controller('OceneCtrl',
             function($scope, $localStorage, OceneResource, Predavac) {
 
@@ -11,6 +11,7 @@
                     $scope.predavac = predavac;
 
                     
+
                 });
 
             });

@@ -69,20 +69,17 @@
 
       .state('predavac.ocene', {
           url: '/ocene',
-          templateUrl: 'predavacOceneTop.html',
-		  controller: 'OceneCtrl'
+          templateUrl: 'predavacOceneTop.html'
       })
 
 	  .state('predavac.ocene.kurs', {
 		  url: '/kurs',
-		  templateUrl: 'predavacOceneKurs.html',
-		  controller: 'OceneCtrl'
+		  templateUrl: 'predavacOceneKurs.html'
 	  })
 
 	  .state('predavac.ocene.kurs.information', {
 		  url: '/information',
-		  templateUrl: 'predavacOceneInfoKursa.html',
-		  controller: 'OceneCtrl'
+		  templateUrl: 'predavacOceneInfoKursa.html'
 	  })
 
        .state('login', {

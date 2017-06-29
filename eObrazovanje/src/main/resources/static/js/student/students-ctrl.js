@@ -2,8 +2,8 @@
     angular.module('student', ['authentication','uplata.resource'])
            .controller('StudentsCtrl',
             function($http,$scope, $localStorage, StudentsResource, AuthenticationService){
-        	   
-        	   
+
+
         	   $scope.addDokument = function(files){
         	    	var fd = new FormData();
         	        //Take the first selected file
@@ -19,7 +19,7 @@
         	        }).then().catch();
 
         	    };
-        	    
+
         	    $scope.downloadKnjiga = function(dokument){
         	        $http.post("/api/student/download",dokument.id).
         	        then(function(data) {
@@ -28,22 +28,21 @@
         	        	var file = new Blob([data], {type: 'application/pdf'});
         	        	var fileURL = URL.createObjectURL(file);
         	            $window.open(fileURL);
-        	            
-        	            
+
+
         	          }).
         	          catch(function(data, status, headers, config) {
         	            // called asynchronously if an error occurs
         	            // or server returns response with an error status.
         	          });
 
-        	      
-        	        
+
+
         	    };
 
                var username = AuthenticationService.getCurrentUser().username;
                var student = {};
                var pohadjanja = {};
-               var pohadjanja_final = {};
 
             StudentsResource.getStudentByUsername(username).then(function(item){
                 student = item.data;
@@ -127,6 +126,7 @@
                 StudentsResource.getPohadjanjaPages(student.id, 0, 4).then(function(item){
                    $scope.pohadjanja = item.data.content;
                    $scope.totalPages = createDummyArray(item.data.totalPages);
+                   examComputation(item.data.content);
                });
            });
 
@@ -183,7 +183,7 @@
         }
 
         $scope.cardClass = function(pohadjanje) {
-            if(pohadjanje.polaganje.brojBodova >= 55) {
+            if(pohadjanje.polaganje.brojBodova >= 51) {
                 return 'panel panel-success';
             } else if(pohadjanje.polaganje.brojBodova <= 0 ||
                 isNaN(pohadjanje.polaganje.brojBodova)) {
@@ -200,35 +200,7 @@
             return student.dateOfBirth;
         }
 
-        // $scope.allExams() = function() {
-        //     // TODO
-        // }
-        //
-        // $scope.passedExams = function() {
-        //     if(pohadjanje.brojBodova >= 55) {
-        //         return pohadjanje;
-        //     }
-        // }
-        //
-        // $scope.failedExams = function() {
-        //     if(pohadjanje.brojBodova < 55) {
-        //         return pohadjanje;
-        //     }
-        // }
-
-        // TODO
-        // function refreshData() {
-        //     StudentsResource.getPohadjanjaPages(student.id, 0, 4).then(function(item){
-        //        $scope.pohadjanja = item.data.content;
-        //        $scope.totalPages = createDummyArray(item.data.totalPages);
-        //    });
-        // }
-
-        // Paginacija
-        // $scope.pagination = function()
-        //
-        // }
-    }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
+        }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
 
 
      	   $scope.uplata = new Uplata();
@@ -252,6 +224,7 @@
 						$scope.uplate.uplate.remove(i);
 					}
 				}
-     	   };     	  
+     	   };
+
     	});
 }(angular));
