@@ -82,14 +82,14 @@ public class StudentController {
         }
 	}
 	
-//	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-//	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
-//		
-//		
-//	
-//		Student = studentService.save(Student);
-//		return new ResponseEntity<>( HttpStatus.CREATED);	
-//	}
+	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
+		
+		
+	
+		Student = studentService.save(Student);
+		return new ResponseEntity<>( HttpStatus.CREATED);	
+	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<Student> updateStudent(@RequestBody Student Student){

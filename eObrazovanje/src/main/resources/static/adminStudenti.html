@@ -48,37 +48,45 @@
                 <div style="margin-top:3%"><strong>Ime</strong></div>
                 <div style="margin-top:5%"><strong>Prezime</strong></div>
                 <div style="margin-top:8%"><strong>JMBG</strong></div>
-                <div style="margin-top:8%"><strong>Datum roÄ‘enja</strong></div>
-                <div style="margin-top:8%"><strong>Mesto roÄ‘enja</strong></div>
-                <div style="margin-top:5%"><strong>Adresa stanovanja</strong></div>
-                <div style="margin-top:5%"><strong>Broj telefona</strong></div>
-                <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
+                <div style="margin-top:8%"><strong>userName</strong></div>
+                <div style="margin-top:8%"><strong>password</strong></div>
+                <div style="margin-top:5%"><strong>Datum rodjenja</strong></div>
+                <div style="margin-top:5%"><strong>Mesto rodjenja</strong></div>
+                <div style="margin-top:8%"><strong>trenutna adresa</strong></div>
+                 <div style="margin-top:8%"><strong>telefon</strong></div>
+                  <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
             </div>
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.ime" placeholder="Unesite ime studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.first_name" placeholder="Unesite ime studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.prezime" placeholder="Unesite prezime studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.last_name" placeholder="Unesite prezime studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
                     <input type="text" class="form-control" ng-model="student.jmbg" placeholder="Unesite JMBG studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.datumrodjenja" placeholder="Unesite datum roÄ‘enja(YYYY-MM-DD)" name="search">
+                    <input type="text" class="form-control" ng-model="student.userName" placeholder="(YYYY-MM-DD)" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.mestorodjenja" placeholder="Unesite mesto roÄ‘enja studenta..." name="search">
+                    <input type="password" class="form-control" ng-model="student.password" placeholder="Unesite mesto roÄ‘enja studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.adresa" placeholder="Unesite adresu studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.dateOfBirth" placeholder="Unesite adresu studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.brtel" placeholder="Unesite broj telefona studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.placeOfOrigin" placeholder="Unesite broj telefona studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.email" placeholder="Unesite e-mail studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.currentAddress" placeholder="Unesite e-mail studenta..." name="search">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" ng-model="student.phoneNumber" placeholder="Unesite e-mail studenta..." name="search">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" ng-model="student.eMail" placeholder="Unesite e-mail studenta..." name="search">
                 </div>
             </div>
                 <div class="modal-footer">

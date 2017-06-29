@@ -10,5 +10,12 @@
 		}
 		loadEntries();
     	 
+		$scope.dodavanjeStudenta = function(){
+			$http.post("api/student",$scope.student)
+			.then(function(data, status, headers, config){
+				loadEntries();
+    			
+    		})
+		}
    });
 }(angular));
