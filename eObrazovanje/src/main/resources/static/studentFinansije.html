@@ -10,7 +10,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <div class="input-group date" id="pretragaFinansijaPocetniDatum">
-                    <input type="text" class="form-control" placeholder="Izaberite poÄ�etni datum..."/>
+                    <input type="text" class="form-control" placeholder="Izaberite početni datum..."/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -38,8 +38,8 @@
            </script>
         </div> <!-- drugi date picker-->
         <div class="col-md-4">
-          <button class="btn btn-default" style="float:right;margin-right:33%;margin-left:3%">PoniÅ¡ti</button>
-          <button class="btn btn-primary" ng-click="Filter()" style="float:right">TraÅ¾i</button>
+          <button class="btn btn-default" style="float:right;margin-right:33%;margin-left:3%">Poništi</button>
+          <button class="btn btn-primary" ng-click="Filter()" style="float:right">Traži</button>
         </div>
     </div>
     <div class="row">
@@ -71,7 +71,7 @@
                         <td>01.05.2017.</td>
                         <td>{{uplata.iznos | currency  }} RSD</td>
                         <td>
-                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate Å¡kolarine">
+                           <a href="#" title="Svrha uplate" data-toggle="popover" data-trigger="focus" data-content="Uplata 4. rate školarine">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             </a>
                         </td>
@@ -89,14 +89,14 @@
            <div class="panel panel-primary">
                <div class="panel-heading">
                    <h5 class="panel-title">
-                       <a href="#racunInfo" data-toggle="collapse">Podaci o raÄ�unu</a>
+                       <a href="#racunInfo" data-toggle="collapse">Podaci o računu</a>
                    </h5>
                </div>
            </div>
            <div id="racunInfo" class="panel-collapse collapse">
                <ul class="list-group">
                    <div class="panel panel-default">
-                       <div class="panel-heading">Stanje na raÄ�unu</div>
+                       <div class="panel-heading">Stanje na računu</div>
                        <div class="panel-body"><strong>127000</strong></div>
                    </div>
                    <div class="panel panel-default" style="margin-bottom:3%">
