@@ -26,8 +26,8 @@
                     <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button class="btn btn-danger btn-xs" ng-click='brisanjeObavezeInit(obaveza.id,obaveza.nazivObaveze)' data-toggle="modal" data-target="#brisanjeObaveze"><span class="glyphicon glyphicon-remove"></span></button>
                     </td>
-                
-                
+
+
                 </tr>
             </tbody>
         </table>
@@ -55,8 +55,13 @@
                     
                 </div>
                 <div id="sviStudenti" class="list-group">
+
                     <a ng-click="dodajStudentaUPrivremenuListu(student)" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
                    
+
+                    <a href="" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
+
+
                 </div>
                 <button ng-click="dodajStudenteNaKurs()" class="btn btn-success" style="width:100%">Dodaj</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
@@ -104,6 +109,8 @@
         </div>
     </div>
 </div>
+</div>
+<div id="dodavanjeObaveza" class="modal fade" role="dialog">
 </div>
 <div id="dodavanjeObaveze" class="modal fade" role="dialog">
       <div class="modal-dialog" style="margin-top:10%">

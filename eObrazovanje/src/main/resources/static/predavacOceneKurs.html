@@ -3,15 +3,13 @@
         <h4 style="text-align:center;">Kurs</h4>
     </div>
     <div id="pretragaKurseva" class="input-group">
-        <input type="text" class="form-control" placeholder="Pretraga kurseva..." name="search">
+        <input type="text" class="form-control" placeholder="Pretraga kurseva..." name="search" ng-model="search.pretragaKursa.naziv">
         <div class="input-group-btn">
             <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
         </div>
     </div>
     <div class="list-group single-select" id="predavacKurseviLista">
-        <a href="" class="list-group-item">Matematika 1 2014</a>
-        <a href="" class="list-group-item active">Matematika 1 2015</a>
-        <a href="" class="list-group-item">Matematika 2 2015</a>
+        <a ng-click="pickCourseInformation(course)" class="list-group-item" ui-sref=".information" ng-repeat="course in selectedCourses | filter:search.pretragaKursa.naziv">{{course.naziv}}</a>
     </div>
     <div id="paginacijaKurseva">
         <ul class="pagination pagination-sm">
@@ -25,4 +23,5 @@
         </ul>
     </div>
 </div>
+<div ui-view></div>
 <!-- ubaci ovde predavacOceneInfoKursa -->

@@ -2,11 +2,12 @@
     angular.module('student', ['authentication','uplata.resource'])
            .controller('StudentsCtrl',
             function($http,$scope, $localStorage, StudentsResource, AuthenticationService){
-        	   
-        	   
+
+
         	   $scope.addDokument = function(files){
         	    	var fd = new FormData();
         	        //Take the first selected file
+        	    	$scope.student.dateOfBirth=null;
         	        fd.append("file", files[0]);
         	        fd.append('student', new Blob([angular.toJson($scope.student)], {
         	            type: "application/json"
@@ -19,8 +20,8 @@
         	        }).then().catch();
 
         	    };
-        	    
-        	    $scope.downloadKnjiga = function(dokument){
+
+        	    $scope.downloadFile = function(dokument){
         	        $http.post("/api/student/download",dokument.id).
         	        then(function(data) {
         	            // this callback will be called asynchronously
@@ -28,16 +29,16 @@
         	        	var file = new Blob([data], {type: 'application/pdf'});
         	        	var fileURL = URL.createObjectURL(file);
         	            $window.open(fileURL);
-        	            
-        	            
+
+
         	          }).
         	          catch(function(data, status, headers, config) {
         	            // called asynchronously if an error occurs
         	            // or server returns response with an error status.
         	          });
 
-        	      
-        	        
+
+
         	    };
 
                var username = AuthenticationService.getCurrentUser().username;
@@ -114,11 +115,19 @@
                     console.log(pohadjanja);
                 }
 
+                function createDummyArray(range) {
+                    var array = [];
+                    for(i = 0; i < range; i++) {
+                        array[i] = i + 1;
+                    }
 
-                StudentsResource.getPohadjanja(student.id).then(function(item){
-                   $scope.pohadjanja = item.data;
-                   examComputation(item.data);
-                   console.log($scope.pohadjanja);
+                    return array;
+                }
+
+                StudentsResource.getPohadjanjaPages(student.id, 0, 4).then(function(item){
+                   $scope.pohadjanja = item.data.content;
+                   $scope.totalPages = createDummyArray(item.data.totalPages);
+                   examComputation(item.data.content);
                });
            });
 
@@ -185,23 +194,30 @@
             }
         }
 
+        $scope.dateLabel = function(student) {
+            var convertDate = new Date(student.dateOfBirth);
+            student.dateOfBirth = convertDate.getDate() + "." +
+            (convertDate.getMonth() + 1) + "." + convertDate.getFullYear() + ".";
+            return student.dateOfBirth;
+        }
+
         }).controller('uplateController', function($scope, $location,Uplata,$localStorage,$http){
-     	   
-     	   
+
+
      	   $scope.uplata = new Uplata();
      	   $scope.uplata.$findByStudent({'UserName':$localStorage.currentUser.username}).then(function(item){
-		    	 
+
 	                console.log( $scope.uplata);
-	                
-	               
+
+
 	                $scope.uplate=$scope.uplata;
-	 
+
 	            });
-     	   
-     	     
+
+
      	   $scope.Filter= function(){
-     		   
-     		   
+
+
      		   for (var i = 0; i <  $scope.uplata.uplate.length; i++) {
      			   console.log($scope.range.maxPrice);
 					if($scope.uplata.uplate[i].iznos <= $scope.range.minPrice && $scope.uplata.uplate[i].iznos >= $scope.range.maxPrice){
@@ -210,6 +226,6 @@
 					}
 				}
      	   };
-     	  
+
     	});
 }(angular));

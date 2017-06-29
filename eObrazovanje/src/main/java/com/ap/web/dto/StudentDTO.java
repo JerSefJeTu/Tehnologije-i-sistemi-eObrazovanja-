@@ -25,7 +25,7 @@ public class StudentDTO {
 	private String phoneNumber;
 	private String email;
 	
-	private Set<Dokument> dokumenti=new HashSet<Dokument>();
+	
 	
 	
 	private Set<Uplata> uplate=new HashSet<Uplata>();
@@ -35,7 +35,7 @@ public class StudentDTO {
 		super();
 		this.id= student.getId() ;
 		this.stanje = student.getStanje();
-		this.dokumenti = student.getDokumenti();
+		
 		this.uplate = this.getUplate();
 		this.firstname = student.getFirstName();
 		this.lastname = student.getLastName();
@@ -59,15 +59,6 @@ public class StudentDTO {
 	public void setStanje(double stanje) {
 		this.stanje = stanje;
 	}
-
-	public Set<Dokument> getDokumenti() {
-		return dokumenti;
-	}
-
-	public void setDokumenti(Set<Dokument> dokumenti) {
-		this.dokumenti = dokumenti;
-	}
-
 
 	public Set<Uplata> getUplate() {
 		return uplate;

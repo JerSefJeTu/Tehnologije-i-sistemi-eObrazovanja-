@@ -1,5 +1,7 @@
 package com.ap.model.users.student;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +13,10 @@ import java.util.ResourceBundle;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ap.model.dokument.Dokument;
+import com.ap.model.dokument.DokumentService;
 import com.ap.model.users.korisnik.Korisnik;
+import com.ap.web.dto.DokumentDTO;
 import com.ap.web.dto.StudentDTO;
 
 
@@ -37,6 +44,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	DokumentService dokumentService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<StudentDTO>> getStudenti(){
@@ -72,14 +82,14 @@ public class StudentController {
         }
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
-		
-		
-	
-		Student = studentService.save(Student);
-		return new ResponseEntity<>( HttpStatus.CREATED);	
-	}
+//	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+//	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
+//		
+//		
+//	
+//		Student = studentService.save(Student);
+//		return new ResponseEntity<>( HttpStatus.CREATED);	
+//	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
 	public ResponseEntity<Student> updateStudent(@RequestBody Student Student){
@@ -116,7 +126,10 @@ public class StudentController {
 	            byte[] bytes = file.getBytes();
 	            Path path = Paths.get(storagePath + file.getOriginalFilename());
 	            Files.write(path, bytes);
-
+	            Dokument dokument = new Dokument();
+	            dokument.setNaziv(file.getOriginalFilename());
+	            dokument.setStudent(student);
+	            dokumentService.save(dokument);
 	            
 
 	        } catch (IOException e) {
@@ -126,5 +139,30 @@ public class StudentController {
 		
 			
 	}
+	
+	@RequestMapping(path = "/download", method = RequestMethod.GET)
+    public ResponseEntity<Resource> download(@RequestParam("fileName") String imeFajla) throws IOException {
+		String storagePath = ResourceBundle.getBundle("app").getString("storage");
+        File file = new File(storagePath+imeFajla);
+
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/pdf"))
+                .body(resource);
+    }
+	
+	@RequestMapping(path = "/getDokumentsByStudent", method = RequestMethod.GET)
+    public ResponseEntity<ArrayList<DokumentDTO>> getDokumentsForStudent(@RequestParam("userName") String userName) {
+		Student student=studentService.findByUserName(userName);
+		List<Dokument> dokumentiStudenta=dokumentService.getByStudent(student);
+		ArrayList<DokumentDTO> dokumentDTOs = new ArrayList<>();
+		for (Dokument dokument : dokumentiStudenta) {
+			dokumentDTOs.add(new DokumentDTO(dokument));
+		}
+		
+		return new ResponseEntity<>(dokumentDTOs,HttpStatus.OK);
+	}
+		
 	
 }
