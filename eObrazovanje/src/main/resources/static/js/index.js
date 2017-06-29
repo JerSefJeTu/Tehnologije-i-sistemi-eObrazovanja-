@@ -35,7 +35,7 @@
       .state('student.profil', {
           url: '/profil',
           templateUrl: 'studentProfil.html',
-          controller: 'myCtrl'
+          controller: 'StudentsCtrl'
       })
       .state('predavac', {
           url: '/predavac',

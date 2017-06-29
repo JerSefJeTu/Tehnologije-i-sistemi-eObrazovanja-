@@ -1,7 +1,44 @@
 (function(angular){
     angular.module('student', ['authentication','uplata.resource'])
            .controller('StudentsCtrl',
-            function($scope, $localStorage, StudentsResource, AuthenticationService){
+            function($http,$scope, $localStorage, StudentsResource, AuthenticationService){
+        	   
+        	   
+        	   $scope.addDokument = function(files){
+        	    	var fd = new FormData();
+        	        //Take the first selected file
+        	        fd.append("file", files[0]);
+        	        fd.append('student', new Blob([angular.toJson($scope.student)], {
+        	            type: "application/json"
+        	        }));
+        	        console.log(fd);
+        	        $http.post('/api/student/upload', fd, {
+        	            withCredentials: true,
+        	            headers: {'Content-Type': undefined },
+        	            transformRequest: angular.identity
+        	        }).then().catch();
+
+        	    };
+        	    
+        	    $scope.downloadKnjiga = function(dokument){
+        	        $http.post("/api/student/download",dokument.id).
+        	        then(function(data) {
+        	            // this callback will be called asynchronously
+        	            // when the response is available
+        	        	var file = new Blob([data], {type: 'application/pdf'});
+        	        	var fileURL = URL.createObjectURL(file);
+        	            $window.open(fileURL);
+        	            
+        	            
+        	          }).
+        	          catch(function(data, status, headers, config) {
+        	            // called asynchronously if an error occurs
+        	            // or server returns response with an error status.
+        	          });
+
+        	      
+        	        
+        	    };
 
                var username = AuthenticationService.getCurrentUser().username;
                var student = {};
@@ -174,47 +211,5 @@
 				}
      	   };
      	  
-    	}).directive('fileModel', ['$parse', function ($parse) {
-            return {
-                restrict: 'A',
-                link: function(scope, element, attrs) {
-                   var model = $parse(attrs.fileModel);
-                   var modelSetter = model.assign;
-                   
-                   element.bind('change', function(){
-                      scope.$apply(function(){
-                         modelSetter(scope, element[0].files[0]);
-                      });
-                   });
-                }
-             };
-          }]).service('fileUpload', [ function ($http) {
-              this.uploadFileToUrl = function(file, uploadUrl,imeFajla){
-                  var fd = new FormData();
-                  fd.append('file', file);
-                   fd.append('imeFajla',imeFajla);
-               
-                  $http.post(uploadUrl, fd, {
-                     transformRequest: angular.identity,
-                     headers: {'Content-Type': undefined}
-                  })
-               
-                  .then(function(){
-                  })
-               
-                  .catch(function(){
-                  });
-               }
-            }]).controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
-                $scope.uploadFile = function(){
-                    var file = $scope.myFile;
-                     var imeFajla = $scope.dokument.naziv;
-                    
-                    console.log('file is ' );
-                    console.dir(file);
-                    
-                    var uploadUrl = "/api/student/uploadFile";
-                    fileUpload.uploadFileToUrl(file, uploadUrl,imeFajla);
-                 };
-              }]);
+    	});
 }(angular));

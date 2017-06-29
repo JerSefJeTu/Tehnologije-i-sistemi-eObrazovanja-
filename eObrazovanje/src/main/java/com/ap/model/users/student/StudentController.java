@@ -106,15 +106,15 @@ public class StudentController {
 		}
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes = {"multipart/form-data"})
+	@RequestMapping(method=RequestMethod.POST, consumes = {"multipart/form-data"} ,value="/upload")
 	@ResponseBody
-	public  void  saveEBook(@RequestPart("knjiga") Dokument dokument,@RequestPart("file") MultipartFile file) throws IOException{
+	public  void  saveEBook(@RequestPart("student") Student student,@RequestPart("file") MultipartFile file) throws IOException{
 		String storagePath = ResourceBundle.getBundle("app").getString("storage");
 		 try {
 
 	            // Get the file and save it somewhere
 	            byte[] bytes = file.getBytes();
-	            Path path = Paths.get(storagePath + dokument.getNaziv());
+	            Path path = Paths.get(storagePath + file.getOriginalFilename());
 	            Files.write(path, bytes);
 
 	            
