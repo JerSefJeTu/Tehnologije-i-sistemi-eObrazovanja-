@@ -69,7 +69,8 @@
 
       .state('predavac.ocene', {
           url: '/ocene',
-          templateUrl: 'predavacOceneTop.html'
+          templateUrl: 'predavacOceneTop.html',
+		  controller: 'OceneCtrl'
       })
 
 	  .state('predavac.ocene.kurs', {
