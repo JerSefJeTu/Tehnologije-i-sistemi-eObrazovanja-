@@ -6,6 +6,11 @@ body {
     background: url(../res/pozadina5.jpg) no-repeat fixed center;
     background-size: cover;
 }
+#adminGuiDiv{
+	width: 30%;
+    margin-left: 35%;
+    margin-top: 5%;
+}
 #userGuiDiv {
 	width: 60%;
     margin-left: 20%;

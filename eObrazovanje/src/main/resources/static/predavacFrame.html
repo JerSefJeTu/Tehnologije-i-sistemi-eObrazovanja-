@@ -1,12 +1,11 @@
 <div class="panel panel-primary" id="userGuiDiv">
     <div class="panel-heading" id="naslov">
-       <h3 class="panel-title">Korisnički panel</h3>
+       <h3 class="panel-title">Korisnički panel<button class="btn btn-warning btn-xs" ng-click="logout()" title="Odjava sa sistema" data-toggle="tooltip" data-placement="top" tooltip style="float:right"><i class="glyphicon glyphicon-log-out"></i></button></h3>
     </div>
     <div id="teacherGuiContent" class="panel-body">
         <nav class="nav nav-tabs" role="tablist">
             <li ui-sref=".nastava" role="presentation" class="active"><a href="">Nastava</a></li>
             <li ui-sref=".ocene" role="presentation"><a href="">Ocene</a></li>
-            <li role="presentation"><a ng-click="logout()">odjava</a></li>
         </nav>
         <div ui-view></div>
     </div>

@@ -3,6 +3,18 @@
 
 	app
     .config(config)
+    .directive("tooltip", function(){
+    	return {
+	        restrict: 'A',
+	        link: function(scope, element, attrs){
+	            $(element).hover(function(){
+	                $(element).tooltip('show');
+	            }, function(){
+	                $(element).tooltip('hide');
+	            });
+	        }
+    	}
+    })
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
    
@@ -19,6 +31,18 @@
           templateUrl: 'studentFrame.html',
 		  controller: 'StudentsCtrl'
       })
+        .state('admin',{
+            url: '/admin',
+            templateUrl: 'adminFrame.html'
+        })
+        .state('admin.studenti',{
+            url: '/studenti',
+            templateUrl: 'adminStudenti.html'
+        })
+        .state('admin.predavaci',{
+            url: '/predavaci',
+            templateUrl: 'adminPredavaci.html'
+        })
       .state('student.studije', {
           url: '/studije',
           templateUrl: 'studentStudije.html'
