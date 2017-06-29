@@ -7,6 +7,7 @@
         	   $scope.addDokument = function(files){
         	    	var fd = new FormData();
         	        //Take the first selected file
+        	    	$scope.student.dateOfBirth=null;
         	        fd.append("file", files[0]);
         	        fd.append('student', new Blob([angular.toJson($scope.student)], {
         	            type: "application/json"
@@ -20,7 +21,7 @@
 
         	    };
 
-        	    $scope.downloadKnjiga = function(dokument){
+        	    $scope.downloadFile = function(dokument){
         	        $http.post("/api/student/download",dokument.id).
         	        then(function(data) {
         	            // this callback will be called asynchronously

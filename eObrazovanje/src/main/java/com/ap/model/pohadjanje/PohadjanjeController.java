@@ -144,4 +144,12 @@ public class PohadjanjeController {
 		return new ResponseEntity<>(pohadjanjaDTO, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/many", method=RequestMethod.POST ,consumes="application/json")
+	public ResponseEntity<Pohadjanje> getMany(@RequestBody ArrayList<Pohadjanje> pohadjanja) {
+		for (Pohadjanje pohadjanje : pohadjanja) {
+			
+		}
+		return new ResponseEntity<>( HttpStatus.CREATED);	
+	}
+	
 }

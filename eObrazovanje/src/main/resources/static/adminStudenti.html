@@ -14,11 +14,8 @@
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <span href="" class="list-group-item">Ime1 Prezime1 <div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta"><i class="glyphicon glyphicon-remove"></i></button></div></span>
-                   <span href="" class="list-group-item">Ime2 Prezime2<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta"><i class="glyphicon glyphicon-remove"></i></button></div></span>
-                   <span href="" class="list-group-item">Ime3 Prezime3<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta"><i class="glyphicon glyphicon-remove"></i></button></div></span>
-                   <span href="" class="list-group-item">Ime4 Prezime4<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta"><i class="glyphicon glyphicon-remove"></i></button></div></span>
-                   
+                   <span ng-repeat="student in sviStudent" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta"><i class="glyphicon glyphicon-remove"></i></button></div></span>
+             
                 </div>
                 <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog studenta</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
@@ -51,8 +48,8 @@
                 <div style="margin-top:3%"><strong>Ime</strong></div>
                 <div style="margin-top:5%"><strong>Prezime</strong></div>
                 <div style="margin-top:8%"><strong>JMBG</strong></div>
-                <div style="margin-top:8%"><strong>Datum rođenja</strong></div>
-                <div style="margin-top:8%"><strong>Mesto rođenja</strong></div>
+                <div style="margin-top:8%"><strong>Datum roÄ‘enja</strong></div>
+                <div style="margin-top:8%"><strong>Mesto roÄ‘enja</strong></div>
                 <div style="margin-top:5%"><strong>Adresa stanovanja</strong></div>
                 <div style="margin-top:5%"><strong>Broj telefona</strong></div>
                 <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
@@ -69,10 +66,10 @@
                     <input type="text" class="form-control" ng-model="student.jmbg" placeholder="Unesite JMBG studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.datumrodjenja" placeholder="Unesite datum rođenja(YYYY-MM-DD)" name="search">
+                    <input type="text" class="form-control" ng-model="student.datumrodjenja" placeholder="Unesite datum roÄ‘enja(YYYY-MM-DD)" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.mestorodjenja" placeholder="Unesite mesto rođenja studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.mestorodjenja" placeholder="Unesite mesto roÄ‘enja studenta..." name="search">
                 </div>
                 <div style="width:80%" class="input-group">
                     <input type="text" class="form-control" ng-model="student.adresa" placeholder="Unesite adresu studenta..." name="search">
@@ -86,7 +83,7 @@
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
-                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%">Sačuvaj</button>
+                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%">SaÄ�uvaj</button>
                 </div>
             </form>
           </div>
@@ -106,7 +103,7 @@
               </div>
               <div class="panel-body">
                 <div class="page-header">
-                    <h5>Da li ste sigurni da želite da obrišete studenta:</h5>
+                    <h5>Da li ste sigurni da Å¾elite da obriÅ¡ete studenta:</h5>
                 </div>
                 <div class="col-md-12">
                    <p><strong>IME STUDENTA</strong></p>
@@ -114,7 +111,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeStudenta()" style="float:right;width:10%">Briši</button>
+                <button class="btn btn-danger" ng-click="brisanjeStudenta()" style="float:right;width:10%">BriÅ¡i</button>
               </div>
             </div>
 

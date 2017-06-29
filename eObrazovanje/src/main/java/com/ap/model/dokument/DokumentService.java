@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ap.model.users.student.Student;
+
 
 @Service
 public class DokumentService{
@@ -26,6 +28,10 @@ public class DokumentService{
 
 	public void remove(Long id) {
 		dokumentRepository.delete(id);
+	}
+	
+	public List<Dokument> getByStudent(Student student) {
+		return dokumentRepository.findByStudent(student);
 	}
 
 }

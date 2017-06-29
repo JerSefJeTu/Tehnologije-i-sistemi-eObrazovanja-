@@ -47,16 +47,8 @@
 	    $scope.details = function (blogEntry) {
 	      $location.path('/blogEntries/'+blogEntry._id);
 	    }
-	    $scope.kurseviPredmeta = function(idPredmeta){
 
 
-
-	      $scope.kurseviSelektovanogPredmeta= new Predmet.get({id:idPredmeta})
-	      console.log($scope.kurseviSelektovanogPredmeta);
-
-
-
-	    };
 	})
 	.controller('kursCtrl', function($scope, $location,Predmet,Student,Pohadjanja ,Kurs,Predavac,$localStorage,$http){
 
@@ -127,5 +119,66 @@
         $scope.brisanjeObaveze = function(){
             alert("brise se "+$scope.nazivObavezeInit+", kursa "+$scope.nazivKursaInit);
         }
+        
+        $scope.listaPrivremenihStudenata=[];
+        
+        $scope.dodajStudentaUPrivremenuListu=function(student){
+        	$scope.listaPrivremenihStudenata.push(student);
+        	for(student1 in $scope.sviStudent) {
+        		var index = $scope.sviStudent.findIndex(t => t.id == student.id);
+        		if(index != -1) {
+        			$scope.sviStudent.splice(index, 1);
+        		}
+        	}
+        	
+        }
+        
+        $scope.vratiStudentaUlistu = function(student){
+        	$scope.sviStudent.push(student);
+        	for(student1 in $scope.listaPrivremenihStudenata) {
+        		var index = $scope.listaPrivremenihStudenata.findIndex(t => t.id == student.id);
+        		if(index != -1) {
+        			$scope.listaPrivremenihStudenata.splice(index, 1);
+        		}
+        	}
+        }
+        
+        $scope.novaPohadjanja=[];
+        $scope.dodajStudenteNaKurs= function(){
+       	 $http.get("api/kurs/"+$scope.idKursaInit).
+          then(function(data, status, headers, config) {
+              // this callback will be called asynchronously
+              // when the response is available
+        	  $scope.kurs=data.data;
+        	  console.log(data.data);
+        		$scope.kursa=$scope.kurs;
+            	$scope.pohadjanje={};
+            	
+            	for (var i = 0; i <  $scope.listaPrivremenihStudenata.length; i++) {
+    				
+    			 
+            		$scope.pohadjanje.student=$scope.listaPrivremenihStudenata[i];
+            		$scope.pohadjanje.kurs=$scope.kursa;
+            		$scope.novaPohadjanja.push($scope.pohadjanje);
+            		$http.post("api/pohadjanja/many",$scope.novaPohadjanja).then(function(data, status, headers, config){
+            		
+            			
+            		})
+            		
+            		
+            		
+    			}
+            	console.log($scope.novaPohadjanja);
+              
+              
+              
+            }).
+            catch(function(data, status, headers, config) {
+              // called asynchronously if an error occurs
+              // or server returns response with an error status.
+            });
+       
+        	
+        } 
 	});
 }(angular));

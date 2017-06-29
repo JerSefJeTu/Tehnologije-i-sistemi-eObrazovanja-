@@ -1,5 +1,5 @@
 (function (angular) {
-	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student', 'ocene']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student', 'ocene','admin']);
 
 	app
     .config(config)
@@ -37,11 +37,13 @@
         })
         .state('admin.studenti',{
             url: '/studenti',
-            templateUrl: 'adminStudenti.html'
+            templateUrl: 'adminStudenti.html',
+            controller:'AdminCtrl'
         })
         .state('admin.predavaci',{
             url: '/predavaci',
             templateUrl: 'adminPredavaci.html'
+            	
         })
       .state('student.studije', {
           url: '/studije',
