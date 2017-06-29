@@ -3,31 +3,31 @@
 	.controller('PredavacCtrl', function($scope, $location,Predmet ,Predavac,$localStorage,$http) {
 		var loadEntries = function () {
 
-					
+
 			$scope.predavac = new Predavac.get({username: $localStorage.currentUser.username});
-			console.log($scope.predavac); 
+			console.log($scope.predavac);
 		}
 		loadEntries();
-		
+
 		 $scope.kurseviPredmeta = function(idPredmeta){
 		    	console.log("aa");
-		      
+
 		      $scope.idPredmeta=idPredmeta;
 		      $scope.kurseviSelektovanogPredmeta= new Predmet.get({id:idPredmeta})
 		      console.log($scope.kurseviSelektovanogPredmeta);
 
-		      
-		        
-		    };
-	
 
-  
+
+		    };
+
+
+
         $scope.brisanjeKursaInit = function(idKursa,naziv) {
             $scope.nazivKursaInit=naziv;
             $scope.idKursaInit=idKursa;
         }
         $scope.brisanjeKursa = function(){
-            
+
         }
 
 		$scope.save = function () {
@@ -35,9 +35,9 @@
 				$scope.blogEntry.$save(loadEntries);
 			}
 			else{
-				$scope.blogEntry.$update(loadEntries);				
+				$scope.blogEntry.$update(loadEntries);
 			}
-		} 
+		}
 		$scope.delete = function (blogEntry) {
 			blogEntry.$delete(loadEntries);
 		}
@@ -48,23 +48,23 @@
 	      $location.path('/blogEntries/'+blogEntry._id);
 	    }
 	    $scope.kurseviPredmeta = function(idPredmeta){
-	    	
-	      
-	     
+
+
+
 	      $scope.kurseviSelektovanogPredmeta= new Predmet.get({id:idPredmeta})
 	      console.log($scope.kurseviSelektovanogPredmeta);
 
-	      
-	        
+
+
 	    };
 	})
 	.controller('kursCtrl', function($scope, $location,Predmet,Student,Pohadjanja ,Kurs,Predavac,$localStorage,$http){
-		
+
 		$scope.pohadjanje = new Pohadjanja();
 		$scope.predmetService = new Predmet();
 	      $scope.dodavanje = function() {
 	        	console.log($scope.kurs);
-	        	
+
 	        	$http.get("api/predmet/"+$scope.idPredmeta).
 	            then(function(data, status, headers, config) {
 	            	$scope.predmet=data.data;
@@ -73,11 +73,11 @@
 	 	            then(function(data, status, headers, config) {
 	 	                // this callback will be called asynchronously
 	 	                // when the response is available
-	 	            	
+
 	 	                console.log(data);
-	 	                
-	 	                
-	 	                
+
+
+
 	 	              }).
 	 	              catch(function(data, status, headers, config) {
 	 	                // called asynchronously if an error occurs
@@ -86,20 +86,20 @@
 	              }).
 	              catch(function(data, status, headers, config) {
 	              });
-	        	
+
 	        	console.log($scope.kurs);
-	        	
-	        	
+
+
 	        }
 		$scope.izborKursa = function(idKursa){
 
 
-	    	
+
 		     $scope.idKursaInit=idKursa;
 
 		      $scope.sviStudent = new Student.query();
 		      $scope.pohadjanje.$findByKurs({'idKursa':idKursa}).then(function(item){
-		    	 
+
 		    	  console.log($scope.kurs);
 	                $scope.pohadjanja = item;
 	                $scope.obaveze= $scope.pohadjanja.pohadjanja[0].polaganje.predispitneObaveze;
@@ -109,7 +109,7 @@
 	            });
 
 	            };
-		      
+
         $scope.dodavanjeObaveze = function(){
                 console.log($scope.obaveza);
             }
@@ -129,5 +129,3 @@
         }
 	});
 }(angular));
-
-

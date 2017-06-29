@@ -1,13 +1,13 @@
 (function (angular) {
-	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student', 'ocene']);
 
 	app
     .config(config)
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-   
 
-        
+
+
         $stateProvider
 		.state('index', {
 			url: '/',
@@ -35,7 +35,7 @@
       .state('student.profil', {
           url: '/profil',
           templateUrl: 'studentProfil.html',
-          controller: 'myCtrl'
+          controller: 'StudentsCtrl'
       })
       .state('predavac', {
           url: '/predavac',
@@ -70,17 +70,19 @@
       .state('predavac.ocene', {
           url: '/ocene',
           templateUrl: 'predavacOceneTop.html',
-		  controller: 'PredavacCtrl'
+		  controller: 'OceneCtrl'
       })
 
 	  .state('predavac.ocene.kurs', {
 		  url: '/kurs',
-		  templateUrl: 'predavacOceneKurs.html'
+		  templateUrl: 'predavacOceneKurs.html',
+		  controller: 'OceneCtrl'
 	  })
 
 	  .state('predavac.ocene.kurs.information', {
 		  url: '/information',
-		  templateUrl: 'predavacOceneInfoKursa.html'
+		  templateUrl: 'predavacOceneInfoKursa.html',
+		  controller: 'OceneCtrl'
 	  })
 
        .state('login', {
