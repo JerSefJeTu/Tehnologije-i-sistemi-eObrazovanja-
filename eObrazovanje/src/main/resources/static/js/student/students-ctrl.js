@@ -188,5 +188,33 @@
                    });
                 }
              };
-          }]);
+          }]).service('fileUpload', [ function ($http) {
+              this.uploadFileToUrl = function(file, uploadUrl,imeFajla){
+                  var fd = new FormData();
+                  fd.append('file', file);
+                   fd.append('imeFajla',imeFajla);
+               
+                  $http.post(uploadUrl, fd, {
+                     transformRequest: angular.identity,
+                     headers: {'Content-Type': undefined}
+                  })
+               
+                  .then(function(){
+                  })
+               
+                  .catch(function(){
+                  });
+               }
+            }]).controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload){
+                $scope.uploadFile = function(){
+                    var file = $scope.myFile;
+                     var imeFajla = $scope.dokument.naziv;
+                    
+                    console.log('file is ' );
+                    console.dir(file);
+                    
+                    var uploadUrl = "/api/student/uploadFile";
+                    fileUpload.uploadFileToUrl(file, uploadUrl,imeFajla);
+                 };
+              }]);
 }(angular));
