@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ap.model.kurs.Kurs;
+
 
 @Service
 public class PredispitnaObavezaService {
@@ -26,6 +28,10 @@ public class PredispitnaObavezaService {
 
 	public void remove(Long id) {
 		predispitnaObavezaRepiository.delete(id);
+	}
+	
+	public List<PredispitnaObaveza> findByKurs(Kurs kurs) {
+		return predispitnaObavezaRepiository.findByKurs(kurs);
 	}
 
 }

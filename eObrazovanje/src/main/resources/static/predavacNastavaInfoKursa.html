@@ -21,7 +21,7 @@
                     <td>{{$index +1}}</td>
                     <td>{{obaveza.nazivObaveze}}</td>
                     <td>{{obaveza.minBodova}}</td>
-                    <td>{{obaveza.maxBodova}}</td>
+                    <td>{{obaveza.maxbodova}}</td>
                     <td>
                     <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button class="btn btn-danger btn-xs" ng-click='brisanjeObavezeInit(obaveza.id,obaveza.nazivObaveze)' data-toggle="modal" data-target="#brisanjeObaveze"><span class="glyphicon glyphicon-remove"></span></button>
@@ -59,7 +59,7 @@
                     <a ng-click="dodajStudentaUPrivremenuListu(student)" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
                    
 
-                    <a href="" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
+                  
 
 
                 </div>
@@ -81,7 +81,7 @@
     <div class="col-md-6">
        <div class="panel panel-success">
            <div class="panel-heading">
-               <h3 class="panel-title" style="text-align:center;">Upisani studenti <span class="badge">{{pohadjanja.pohadjanja.length}}</span></h3>
+               <h3 class="panel-title" style="text-align:center;">Upisani studenti <span class="badge">{{studentNaIzabranomKursu.length}}</span></h3>
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div id="upisaniStudenti" class="list-group checked-list-box">
-                    <a href="" class="list-group-item" ng-repeat="pohadjanje in pohadjanja.pohadjanja | filter:search.pretragaStudenataKursa.firstname">{{pohadjanje.student.firstname}}</a>
+                    <a href="" class="list-group-item" ng-repeat="studentKursa in studentNaIzabranomKursu | filter:search.pretragaStudenataKursa.firstname">{{studentKursa.student.firstname}}</a>
                 </div>
                 <button class="btn btn-danger" style="width:100%">Ukloni</button>
                 <div id="paginacijaUpisanihStudenata" style="padding-left:25%;">

@@ -7,7 +7,12 @@
 				update:{method:'PUT'},
 				findByKurs:{//custom post metoda koja dobavlja pohadjanja odredjenog kursa
 					method:'GET',
-					url:'/api/pohadjanje/findByKurs/:idKursa'
+					url:'/api/pohadjanje/findByKurs/:idKursa',
+					isArray:true
+				},getByKurs:{//custom post metoda koja dobavlja predispitne odredjenog kursa
+					method:'GET',
+					url:'/api/predispitnaObaveza/getPredispitneByKurs/:idKursa',
+					isArray:true
 				}
 			}
 			);

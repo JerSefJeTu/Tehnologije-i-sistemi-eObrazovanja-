@@ -4,8 +4,10 @@ package com.ap.model.pohadjanje;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.kurs.Kurs;
 import com.ap.model.kurs.KursService;
+import com.ap.model.polaganjeIspita.PolaganjeIspita;
+import com.ap.model.polaganjeIspita.PolaganjeIspitaService;
+import com.ap.model.predispitnaObaveza.PredispitnaObaveza;
+import com.ap.model.predispitnaObaveza.PredispitnaObavezaService;
 import com.ap.model.users.student.Student;
 import com.ap.model.users.student.StudentService;
 import com.ap.web.dto.PohadjanjeDTO;
@@ -38,6 +44,10 @@ public class PohadjanjeController {
 	KursService kursService;
 	@Autowired
 	StudentService studentService;
+	@Autowired
+	PredispitnaObavezaService predispitnaObavezaService;
+	@Autowired
+	PolaganjeIspitaService polaganjeIspitaService;
 	
 	@RequestMapping(method=RequestMethod.GET, 
 		      params = { "page", "size" })
@@ -104,16 +114,15 @@ public class PohadjanjeController {
 	}
 	
 	@RequestMapping(value="/findByKurs/{idKursa}" ,method=RequestMethod.GET)
-	public ResponseEntity<Map<String, ArrayList<PohadjanjeDTO>>> getPohadjanjabyKurs(@PathVariable Long idKursa){
+	public ResponseEntity<List<PohadjanjeDTO>> getPohadjanjabyKurs(@PathVariable Long idKursa){
 		Kurs kurs = kursService.findOne(idKursa);
 		List<Pohadjanje> pohadjanja = pohadjanjeService.findByKurs(kurs);
 		List<PohadjanjeDTO> pohadjanjeDTOs = new ArrayList<>();
 		for (Pohadjanje pohadjanje : pohadjanja) {
 			pohadjanjeDTOs.add(new PohadjanjeDTO(pohadjanje));
 		}
-		Map<String, ArrayList<PohadjanjeDTO>> pohadjanjaMapa = new HashMap<>();
-		pohadjanjaMapa.put("pohadjanja", new ArrayList<>(pohadjanjeDTOs));
-		return new ResponseEntity<>(pohadjanjaMapa, HttpStatus.OK);
+		
+		return new ResponseEntity<>(pohadjanjeDTOs, HttpStatus.OK);
 		
 	}
 	
@@ -146,8 +155,17 @@ public class PohadjanjeController {
 	
 	@RequestMapping(value = "/many", method=RequestMethod.POST ,consumes="application/json")
 	public ResponseEntity<Pohadjanje> getMany(@RequestBody ArrayList<Pohadjanje> pohadjanja) {
+		Kurs kurs = pohadjanja.get(0).getKurs();
+		List<PredispitnaObaveza> predispitnaObavezaKursa=predispitnaObavezaService.findByKurs(kurs);
+		Set<PredispitnaObaveza> predispitne = new HashSet<PredispitnaObaveza>(predispitnaObavezaKursa);
+		
+		
 		for (Pohadjanje pohadjanje : pohadjanja) {
-			
+			PolaganjeIspita polaganjeIspita = new PolaganjeIspita();
+			polaganjeIspita.setPredispitneObaveze(predispitne);
+			polaganjeIspitaService.save(polaganjeIspita);
+			pohadjanje.setPolaganje(polaganjeIspita);
+			pohadjanjeService.save(pohadjanje);
 		}
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}

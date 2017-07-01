@@ -33,7 +33,7 @@
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
-
+    	$urlRouterProvider.otherwise('/student/studije');
         $stateProvider
 		.state('index', {
 			url: '/',

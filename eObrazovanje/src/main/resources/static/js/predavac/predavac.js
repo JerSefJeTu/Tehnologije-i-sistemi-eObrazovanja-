@@ -86,15 +86,16 @@
 		$scope.izborKursa = function(idKursa){
 
 
-
+			
 		     $scope.idKursaInit=idKursa;
-
+		     $scope.ucitavanjeStudenataSaKursa();
+		     console.log( $scope.pohadjanje);
 		      $scope.sviStudent = new Student.query();
-		      $scope.pohadjanje.$findByKurs({'idKursa':idKursa}).then(function(item){
-
-		    	  console.log($scope.kurs);
-	                $scope.pohadjanja = item;
-	                $scope.obaveze= $scope.pohadjanja.pohadjanja[0].polaganje.predispitneObaveze;
+		      Pohadjanja.getByKurs({'idKursa':idKursa}).$promise.then(function(item){
+		    	  
+		    	  console.log(item);
+	               
+	                $scope.obaveze= $scope.predispitneObaveze;
 	                console.log($scope.obaveze);
 	                console.log($scope.pohadjanja);
 
@@ -105,6 +106,16 @@
         $scope.dodavanjeObaveze = function(){
                 console.log($scope.obaveza);
             }
+        $scope.ucitavanjeStudenataSaKursa = function(){
+        	
+        	 Pohadjanja.findByKurs({'idKursa':$scope.idKursaInit}).$promise.then(function(item){
+		    	  console.log(item);
+		    	  $scope.studentNaIzabranomKursu=item;
+	               
+	                
+
+	            });
+        }
         $scope.brisanjeKursaInit = function(idKursa,naziv) {
             $scope.nazivKursaInit=naziv;
             $scope.idKursaInit=idKursa;
@@ -153,21 +164,22 @@
         	  console.log(data.data);
         		$scope.kursa=$scope.kurs;
             	$scope.pohadjanje={};
-            	
+            	console.log($scope.listaPrivremenihStudenata);
             	for (var i = 0; i <  $scope.listaPrivremenihStudenata.length; i++) {
-    				
-    			 
+            		$scope.pohadjanje={};
+            		
+            		
             		$scope.pohadjanje.student=$scope.listaPrivremenihStudenata[i];
+            		
             		$scope.pohadjanje.kurs=$scope.kursa;
+            		console.log($scope.pohadjanje);
             		$scope.novaPohadjanja.push($scope.pohadjanje);
-            		$http.post("api/pohadjanja/many",$scope.novaPohadjanja).then(function(data, status, headers, config){
-            		
-            			
-            		})
-            		
-            		
-            		
     			}
+            	
+            	$http.post("api/pohadjanje/many",$scope.novaPohadjanja).then(function(data, status, headers, config){
+            		
+        			
+        		})
             	console.log($scope.novaPohadjanja);
               
               

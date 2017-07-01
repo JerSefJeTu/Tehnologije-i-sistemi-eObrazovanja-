@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.ap.model.kurs.Kurs;
 import com.ap.model.polaganjeIspita.PolaganjeIspita;
 import com.ap.model.users.predavac.Predavac;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,6 +25,9 @@ public class PredispitnaObaveza {
 	private Date datumPolaganja;
 	private boolean polozio;
 	private String nazivObaveze;
+	
+	@ManyToOne
+	private Kurs kurs;
 	
 	@ManyToMany(cascade =CascadeType.MERGE)
 	@JoinTable(name = "predispitna_predavac", joinColumns = { @JoinColumn(name = "predispitna_id") }, inverseJoinColumns = { @JoinColumn(name = "predavac_id") })

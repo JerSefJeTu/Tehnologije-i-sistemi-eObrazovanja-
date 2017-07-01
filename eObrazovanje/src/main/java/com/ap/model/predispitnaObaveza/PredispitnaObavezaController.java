@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ap.model.kurs.Kurs;
+import com.ap.model.kurs.KursService;
+
 
 
 @RestController
@@ -20,6 +23,9 @@ public class PredispitnaObavezaController {
 	
 	@Autowired
 	PredispitnaObavezaService predispitnaObavezaService;
+	
+	@Autowired
+	KursService kursService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<PredispitnaObaveza>> getKursevi(){
@@ -70,6 +76,14 @@ public class PredispitnaObavezaController {
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(method=RequestMethod.GET,value="/getPredispitneByKurs/{kursId}")
+	public ResponseEntity<List<PredispitnaObaveza>> getPredispitneByKurs(@PathVariable Long kursId){
+		Kurs kurs = kursService.findOne(kursId);
+		List<PredispitnaObaveza> pohadjanja = predispitnaObavezaService.findByKurs(kurs);
+		return new ResponseEntity<>(pohadjanja, HttpStatus.OK);
+		
 	}
 	
 }
