@@ -48,6 +48,10 @@ insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg
 insert into student(korisnik_id,stanje) values(6,0);
 insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin)values('steva','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','Stevan','Stevanović','11109950164365','Stevina ulica 2, Kragujevac','1995-10-11','steva@mail.net','066/555-333','Kragujevac, Srbija');
 insert into student(korisnik_id,stanje) values(7,0);
+insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin)values('laza','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','Stevan','Stevanović','11109950164365','Stevina ulica 2, Kragujevac','1995-10-11','steva@mail.net','066/555-333','Kragujevac, Srbija');
+insert into student(korisnik_id,stanje) values(8,0);
+insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin)values('djoka','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','Stevan','Stevanović','11109950164365','Stevina ulica 2, Kragujevac','1995-10-11','steva@mail.net','066/555-333','Kragujevac, Srbija');
+insert into student(korisnik_id,stanje) values(9,0);
 
 insert into predavac_predmeti values(2,1);
 insert into predavac_predmeti values(2,2);

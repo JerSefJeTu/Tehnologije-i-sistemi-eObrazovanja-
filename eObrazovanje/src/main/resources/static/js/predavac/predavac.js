@@ -1,5 +1,5 @@
 (function (angular) {
-	angular.module('predavac',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource'])
+	angular.module('predavac',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource','predispitna.resource'])
 	.controller('PredavacCtrl', function($scope, $location,Predmet ,Predavac,$localStorage,$http) {
 		var loadEntries = function () {
 
@@ -13,7 +13,8 @@
 		    	console.log("aa");
 
 		      $scope.idPredmeta=idPredmeta;
-		      $scope.kurseviSelektovanogPredmeta= new Predmet.get({id:idPredmeta})
+
+		      $scope.kurseviSelektovanogPredmeta= new Predmet.get({id:idPredmeta});
 		      console.log($scope.kurseviSelektovanogPredmeta);
 
 
@@ -26,9 +27,7 @@
             $scope.nazivKursaInit=naziv;
             $scope.idKursaInit=idKursa;
         }
-        $scope.brisanjeKursa = function(){
 
-        }
 
 		$scope.save = function () {
 			if(!$scope.blogEntry._id){
@@ -50,7 +49,7 @@
 
 
 	})
-	.controller('kursCtrl', function($scope, $location,Predmet,Student,Pohadjanja ,Kurs,Predavac,$localStorage,$http){
+	.controller('kursCtrl', function($scope, $location,Predmet,PredispitnaObaveza,Student,Pohadjanja ,Kurs,Predavac,$localStorage,$http){
 
 		$scope.pohadjanje = new Pohadjanja();
 		$scope.predmetService = new Predmet();
@@ -86,16 +85,17 @@
 		$scope.izborKursa = function(idKursa){
 
 
-			
+				$scope.selektovaniKurs=Kurs.get({id:idKursa});
+				console.log($scope.selektovaniKurs);
 		     $scope.idKursaInit=idKursa;
 		     $scope.ucitavanjeStudenataSaKursa();
 		     console.log( $scope.pohadjanje);
 		      $scope.sviStudent = new Student.query();
 		      Pohadjanja.getByKurs({'idKursa':idKursa}).$promise.then(function(item){
-		    	  
+
 		    	  console.log(item);
-	               
-	                $scope.obaveze= $scope.predispitneObaveze;
+
+	                $scope.obaveze=item;
 	                console.log($scope.obaveze);
 	                console.log($scope.pohadjanja);
 
@@ -104,15 +104,24 @@
 	            };
 
         $scope.dodavanjeObaveze = function(){
-                console.log($scope.obaveza);
+        	$http.get("api/kurs/"+$scope.idKursaInit).
+            then(function(data, status, headers, config) {
+        		$scope.obaveza.kurs=data.data;
+	                console.log($scope.obaveza);
+	                PredispitnaObaveza.save($scope.obaveza, function() {
+	            	    console.log($scope.obaveza);
+	            	  });
+	            });
+
+
             }
         $scope.ucitavanjeStudenataSaKursa = function(){
-        	
+
         	 Pohadjanja.findByKurs({'idKursa':$scope.idKursaInit}).$promise.then(function(item){
 		    	  console.log(item);
 		    	  $scope.studentNaIzabranomKursu=item;
-	               
-	                
+
+
 
 	            });
         }
@@ -120,19 +129,31 @@
             $scope.nazivKursaInit=naziv;
             $scope.idKursaInit=idKursa;
         }
-        $scope.brisanjeKursa = function(){
+        $scope.brisanjeKursa = function(idKursa){
+        	Kurs.delete({'id':$scope.idKursaInit},function(){
+        		console.log("Aa");
+        		$scope.kurseviSelektovanogPredmeta=Predmet.get({id:$scope.idPredmeta});
+        	}).$promise.then(function(item){
+		    	  console.log(item);
+		    	  $scope.studentNaIzabranomKursu=item;
+
+
+
+	            });
+
 
         }
         $scope.brisanjeObavezeInit = function(idObaveze, naziv) {
             $scope.idObavezeInit = idObaveze;
             $scope.nazivObavezeInit = naziv;
+
         }
         $scope.brisanjeObaveze = function(){
-            alert("brise se "+$scope.nazivObavezeInit+", kursa "+$scope.nazivKursaInit);
+            PredispitnaObaveza.delete({'id':$scope.idObavezeInit});
         }
-        
+
         $scope.listaPrivremenihStudenata=[];
-        
+
         $scope.dodajStudentaUPrivremenuListu=function(student){
         	$scope.listaPrivremenihStudenata.push(student);
         	for(student1 in $scope.sviStudent) {
@@ -141,9 +162,9 @@
         			$scope.sviStudent.splice(index, 1);
         		}
         	}
-        	
+
         }
-        
+
         $scope.vratiStudentaUlistu = function(student){
         	$scope.sviStudent.push(student);
         	for(student1 in $scope.listaPrivremenihStudenata) {
@@ -153,7 +174,7 @@
         		}
         	}
         }
-        
+
         $scope.novaPohadjanja=[];
         $scope.dodajStudenteNaKurs= function(){
        	 $http.get("api/kurs/"+$scope.idKursaInit).
@@ -167,30 +188,28 @@
             	console.log($scope.listaPrivremenihStudenata);
             	for (var i = 0; i <  $scope.listaPrivremenihStudenata.length; i++) {
             		$scope.pohadjanje={};
-            		
-            		
             		$scope.pohadjanje.student=$scope.listaPrivremenihStudenata[i];
-            		
             		$scope.pohadjanje.kurs=$scope.kursa;
             		console.log($scope.pohadjanje);
             		$scope.novaPohadjanja.push($scope.pohadjanje);
     			}
-            	
-            	$http.post("api/pohadjanje/many",$scope.novaPohadjanja).then(function(data, status, headers, config){
-            		
-        			
+
+            	$http.post("api/pohadjanje/many",$scope.novaPohadjanja).
+            	then(function(data, status, headers, config){
+
+
         		})
             	console.log($scope.novaPohadjanja);
-              
-              
-              
+            	$scope.ucitavanjeStudenataSaKursa();
+
+
             }).
             catch(function(data, status, headers, config) {
               // called asynchronously if an error occurs
               // or server returns response with an error status.
             });
-       
-        	
-        } 
+
+
+        }
 	});
 }(angular));

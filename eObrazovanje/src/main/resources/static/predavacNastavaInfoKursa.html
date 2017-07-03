@@ -21,7 +21,7 @@
                     <td>{{$index +1}}</td>
                     <td>{{obaveza.nazivObaveze}}</td>
                     <td>{{obaveza.minBodova}}</td>
-                    <td>{{obaveza.maxbodova}}</td>
+                    <td>{{obaveza.maxBodova}}</td>
                     <td>
                     <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button class="btn btn-danger btn-xs" ng-click='brisanjeObavezeInit(obaveza.id,obaveza.nazivObaveze)' data-toggle="modal" data-target="#brisanjeObaveze"><span class="glyphicon glyphicon-remove"></span></button>
@@ -130,13 +130,13 @@
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="obaveza.naziv" placeholder="Unesite naziv obaveze..." name="search">
+                    <input type="text" class="form-control" ng-model="obaveza.nazivObaveze" placeholder="Unesite naziv obaveze..." name="search">
                 </div>
                 <div style="width:70%" class="input-group">
-                    <input type="number" class="form-control" ng-model="obaveza.min" placeholder="Unesite min. broj bodova..." name="search">
+                    <input type="number" class="form-control" ng-model="obaveza.minBodova" placeholder="Unesite min. broj bodova..." name="search">
                 </div>
                 <div style="width:70%" class="input-group">
-                    <input type="number" class="form-control" ng-model="obaveza.max" placeholder="Unesite max. broj bodova..." name="search">
+                    <input type="number" class="form-control" ng-model="obaveza.maxbodova" placeholder="Unesite max. broj bodova..." name="search">
                 </div>
             </div>
                 <div class="modal-footer">

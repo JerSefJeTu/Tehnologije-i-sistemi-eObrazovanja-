@@ -1,5 +1,6 @@
 package com.ap.model.predispitnaObaveza;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.kurs.Kurs;
 import com.ap.model.kurs.KursService;
+import com.ap.web.dto.PredsipitnaObavezaDTO;
 
 
 
@@ -46,8 +48,6 @@ public class PredispitnaObavezaController {
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<PredispitnaObaveza> saveKurs(@RequestBody PredispitnaObaveza PredispitnaObaveza){
-		
-		
 	
 		PredispitnaObaveza = predispitnaObavezaService.save(PredispitnaObaveza);
 		return new ResponseEntity<>( HttpStatus.CREATED);	
@@ -67,8 +67,8 @@ public class PredispitnaObavezaController {
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	
-	@RequestMapping( method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKurs(@RequestParam("id") Long id){
+	@RequestMapping( method=RequestMethod.DELETE ,value="/{id}")
+	public ResponseEntity<Void> deleteKurs(@PathVariable Long id){
 		PredispitnaObaveza PredispitnaObaveza = predispitnaObavezaService.findOne(id);
 		if (PredispitnaObaveza != null){
 			predispitnaObavezaService.remove(id);
@@ -79,10 +79,15 @@ public class PredispitnaObavezaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET,value="/getPredispitneByKurs/{kursId}")
-	public ResponseEntity<List<PredispitnaObaveza>> getPredispitneByKurs(@PathVariable Long kursId){
+	public ResponseEntity<List<PredsipitnaObavezaDTO>> getPredispitneByKurs(@PathVariable Long kursId){
 		Kurs kurs = kursService.findOne(kursId);
-		List<PredispitnaObaveza> pohadjanja = predispitnaObavezaService.findByKurs(kurs);
-		return new ResponseEntity<>(pohadjanja, HttpStatus.OK);
+		List<PredispitnaObaveza> predispitne = predispitnaObavezaService.findByKurs(kurs);
+		List<PredsipitnaObavezaDTO> predispitnaObavezaDTOs= new ArrayList<>();
+		for (PredispitnaObaveza predispitnaObaveza : predispitne) {
+			predispitnaObavezaDTOs.add(new PredsipitnaObavezaDTO(predispitnaObaveza));
+		}
+		
+		return new ResponseEntity<>(predispitnaObavezaDTOs, HttpStatus.OK);
 		
 	}
 	

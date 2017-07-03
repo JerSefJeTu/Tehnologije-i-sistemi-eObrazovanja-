@@ -1,5 +1,6 @@
 package com.ap.model.kurs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ap.model.users.student.Student;
 import com.ap.web.dto.KursDTO;
+import com.ap.web.dto.PohadjanjeDTO;
 
 
 @RestController
@@ -65,12 +67,17 @@ public class KursController {
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	
-	@RequestMapping( method=RequestMethod.DELETE)
-	public ResponseEntity<Void> deleteKurs(@RequestParam("id") Long id){
+	@RequestMapping( method=RequestMethod.DELETE ,value="/{id}")
+	public ResponseEntity<List<KursDTO>> deleteKurs(@PathVariable Long id){
 		Kurs Kurs = kursService.findOne(id);
 		if (Kurs != null){
 			kursService.remove(id);
-			return new ResponseEntity<>(HttpStatus.OK);
+			List<Kurs> kursevi = kursService.findAll();
+			List<KursDTO> kursDTOs = new ArrayList<>();
+			for (Kurs kurs2 : kursevi) {
+				kursDTOs.add(new KursDTO(kurs2));
+			}
+			return new ResponseEntity<>(kursDTOs,HttpStatus.OK);
 		} else {		
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

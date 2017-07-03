@@ -46,21 +46,29 @@ public class PredispitnaObaveza {
 		
 	}
 
-	public PredispitnaObaveza(Long id, Date datumPolaganja, boolean polozio, String nazivObaveze,
-			Set<Predavac> dezurniPredavaci, double brojBodova, double minBodova,PolaganjeIspita polaganjeIspita,double maxBodova) {
+
+	
+	
+
+	public PredispitnaObaveza(Long id, Date datumPolaganja, boolean polozio, String nazivObaveze, Kurs kurs,
+			Set<Predavac> dezurniPredavaci, double brojBodova, double minBodova, double maxbodova,
+			PolaganjeIspita polaganjeIspita) {
 		super();
 		this.id = id;
 		this.datumPolaganja = datumPolaganja;
 		this.polozio = polozio;
 		this.nazivObaveze = nazivObaveze;
+		this.kurs = kurs;
 		this.dezurniPredavaci = dezurniPredavaci;
 		this.brojBodova = brojBodova;
 		this.minBodova = minBodova;
-		this.polaganjeIspita=polaganjeIspita;
-		this.maxbodova=maxBodova;
+		this.maxbodova = maxbodova;
+		this.polaganjeIspita = polaganjeIspita;
 	}
-	
-	
+
+
+
+
 
 	public double getMaxbodova() {
 		return maxbodova;
@@ -132,6 +140,14 @@ public class PredispitnaObaveza {
 
 	public void setPolaganjeIspita(PolaganjeIspita polaganjeIspita) {
 		this.polaganjeIspita = polaganjeIspita;
+	}
+
+	public Kurs getKurs() {
+		return kurs;
+	}
+
+	public void setKurs(Kurs kurs) {
+		this.kurs = kurs;
 	}
 	
 	

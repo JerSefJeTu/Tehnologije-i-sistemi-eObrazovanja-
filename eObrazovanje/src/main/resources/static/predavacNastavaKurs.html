@@ -12,7 +12,7 @@
         <div class="col-md-12"><button class="btn btn-success center-block" style="" id="addKursBtn" data-toggle="modal" data-target="#dodavanjeKursa">Dodaj nov kurs</button></div>
     </div>
     <div class="list-group single-select" id="predavacKurseviLista">
-        <a ng-click="izborKursa(kurs.id,kurs.naziv)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}<div style="float:right;"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs" data-toggle="modal" ng-click='brisanjeKursaInit(kurs.id,kurs.naziv)' data-target="#brisanjeKursa"><span class="glyphicon glyphicon-remove"></span></button></div></a>
+        <a ng-class="{active : selektovaniKurs.naziv==kurs.naziv}"  ng-click="izborKursa(kurs.id,kurs.naziv,kurs)" ui-sref=".info" class="list-group-item" ng-repeat="kurs in kurseviSelektovanogPredmeta.kursevi | filter:search.pretragaKurseva.naziv">{{kurs.naziv}}<div style="float:right;"><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-danger btn-xs" data-toggle="modal" ng-click='brisanjeKursaInit(kurs.id,kurs.naziv)' data-target="#brisanjeKursa"><span class="glyphicon glyphicon-remove"></span></button></div></a>
     </div>
     <div id="paginacijaKurseva">
         <ul class="pagination pagination-sm">
@@ -52,7 +52,7 @@
 
           </div>
     </div>
-    
+
     <div id="brisanjeKursa" class="modal fade" role="dialog">
           <div class="modal-dialog" style="margin-top:10%">
 
@@ -72,13 +72,13 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeKursa()" style="float:right;width:10%">Briši</button>
+                <button class="btn btn-danger" ng-click="brisanjeKursa(kurs)" style="float:right;width:10%">Briši</button>
               </div>
             </div>
 
           </div>
     </div>
-    
+
     <div id="dodavanjeObaveza" class="modal fade" role="dialog">
           <div class="modal-dialog" style="margin-top:10%">
 

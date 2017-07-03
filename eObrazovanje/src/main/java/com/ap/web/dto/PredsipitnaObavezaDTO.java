@@ -12,6 +12,7 @@ public class PredsipitnaObavezaDTO {
 	private double brojBodova;
 	private double minBodova;
 	private double maxBodova;
+	private KursDTO kurs;
 	
 	
 	public PredsipitnaObavezaDTO() {
@@ -26,6 +27,7 @@ public class PredsipitnaObavezaDTO {
 		this.brojBodova = predispitnaObaveza.getBrojBodova();
 		this.minBodova = predispitnaObaveza.getMinBodova();
 		this.maxBodova=predispitnaObaveza.getMaxbodova();
+		this.kurs=new KursDTO(predispitnaObaveza.getKurs());
 	}
 	public Long getId() {
 		return id;
@@ -68,6 +70,12 @@ public class PredsipitnaObavezaDTO {
 	}
 	public void setMaxBodova(double maxBodova) {
 		this.maxBodova = maxBodova;
+	}
+	public KursDTO getKurs() {
+		return kurs;
+	}
+	public void setKurs(KursDTO kurs) {
+		this.kurs = kurs;
 	}
 	
 	
