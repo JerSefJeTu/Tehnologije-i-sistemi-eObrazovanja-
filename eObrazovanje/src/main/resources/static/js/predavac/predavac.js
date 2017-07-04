@@ -103,8 +103,6 @@
 	                console.log($scope.obaveze);
 	                console.log($scope.pohadjanja);
 
-	            });
-
 	            };
 
         $scope.dodavanjeObaveze = function(){
@@ -113,7 +111,7 @@
         		$scope.obaveza.kurs=data.data;
 	                console.log($scope.obaveza);
 	                PredispitnaObaveza.save($scope.obaveza, function() {
-	            	    console.log($scope.obaveza);
+	            	   $scope.obaveze= Pohadjanja.getByKurs({'idKursa':$scope.idKursaInit})
 	            	  });
 	            });
 
@@ -153,7 +151,10 @@
 
         }
         $scope.brisanjeObaveze = function(){
-            PredispitnaObaveza.delete({'id':$scope.idObavezeInit});
+            PredispitnaObaveza.delete({'id':$scope.idObavezeInit},function(){
+							$scope.obaveze= Pohadjanja.getByKurs({'idKursa':$scope.idKursaInit})
+							
+						});
         }
 
         $scope.listaPrivremenihStudenata=[];
@@ -198,13 +199,15 @@
             		$scope.novaPohadjanja.push($scope.pohadjanje);
     			}
 
-            	$http.post("api/pohadjanje/many",$scope.novaPohadjanja).
-            	then(function(data, status, headers, config){
+            	Pohadjanja.dodavanjeStudenataNaKurss($scope.novaPohadjanja,function(){
+								$scope.listaPrivremenihStudenata=[];
+								$scope.novaPohadjanja=[];
+								console.log($scope.listaPrivremenihStudenata);
+								$scope.studentNaIzabranomKursu=Pohadjanja.findByKurs({'idKursa':$scope.idKursaInit})
+							})
 
-
-        		})
             	console.log($scope.novaPohadjanja);
-            	$scope.ucitavanjeStudenataSaKursa();
+
 
 
             }).
