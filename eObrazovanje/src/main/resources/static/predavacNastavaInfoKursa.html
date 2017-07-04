@@ -23,7 +23,7 @@
                     <td>{{obaveza.minBodova}}</td>
                     <td>{{obaveza.maxBodova}}</td>
                     <td>
-                    <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-default btn-xs" data-toggle="modal" ng-click="izmenaObavezeInit(obaveza.id)" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button class="btn btn-danger btn-xs" ng-click='brisanjeObavezeInit(obaveza.id,obaveza.nazivObaveze)' data-toggle="modal" data-target="#brisanjeObaveze"><span class="glyphicon glyphicon-remove"></span></button>
                     </td>
 
