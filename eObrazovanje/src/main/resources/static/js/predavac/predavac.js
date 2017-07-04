@@ -21,7 +21,11 @@
 
 		    };
 
-
+        $scope.izmenaObavezeInit = function(obaveza){
+            $scope.izmenaObavezeInit = obaveza;
+            console.log("!!!");
+            console.log($scope.izmenaObavezeInit);
+        }
 
         $scope.brisanjeKursaInit = function(idKursa,naziv) {
             $scope.nazivKursaInit=naziv;
@@ -97,9 +101,7 @@
 
 	                $scope.obaveze=item;
 	                console.log($scope.obaveze);
-
-
-	            });
+	                console.log($scope.pohadjanja);
 
 	            };
 

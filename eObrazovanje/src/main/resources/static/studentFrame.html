@@ -5,11 +5,10 @@
     </div>
     <div id="userGuiContent" class="panel-body">
         <nav class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a ui-sref=".studije">Studije</a></li>
-            <li role="presentation"><a ui-sref=".finansije">Finansije</a></li>
-            <li role="presentation"><a ui-sref=".profil">Profil</a></li>
+            <li role="presentation" ng-click="tabClicked = 1" ng-class="{active: tabClicked == 1}"><a ui-sref=".studije">Studije</a></li>
+            <li role="presentation" ng-click="tabClicked = 2" ng-class="{active: tabClicked == 2}"><a ui-sref=".finansije">Finansije</a></li>
+            <li role="presentation" ng-click="tabClicked = 3" ng-class="{active: tabClicked == 3}"><a ui-sref=".profil">Profil</a></li>
         </nav>
         <div ui-view></div>
     </div>
-
 </div>

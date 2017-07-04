@@ -38,7 +38,7 @@ insert into administrator(korisnik_id) values(1);
 insert into korisnik(user_name,password,tip_korisnika) values('predavac','$2a$10$YNBzKhqMEAz6VT3ShzmpruOiUrytz3tLec/nwyN/GTifF/leWq7cK','PREDAVAC');
 insert into predavac(korisnik_id,aktivan) values(2,true);
 
-insert into korisnik(user_name,password,tip_korisnika,first_name)values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','govnusina');
+insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin)values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','Imenko','Prezimenković','06069967132007','Studentska ulica 17, Sombor', '1996-06-06', 'student@mail.net','067/555-333','Sombor, Srbija');
 insert into student(korisnik_id,stanje) values(3,0);
 insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin)values('pera','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','Petar','Petrović','01019900185332','Perina ulica 1, Novi Sad','1990-01-01','pera@mail.net','063/555-333','Novi Sad, Srbija');
 insert into student(korisnik_id,stanje) values(4,0);
