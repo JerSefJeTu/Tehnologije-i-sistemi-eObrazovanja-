@@ -14,10 +14,10 @@
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <span ng-repeat="student in sviStudent" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta"><i class="glyphicon glyphicon-remove"></i></button></div></span>
-             
+                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="pickStudentForUpdate(student, 'update')" data-target="#dodavanjeStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta" ng-click="pickStudent(student)"><i class="glyphicon glyphicon-remove"></i></button></div></span>
+
                 </div>
-                <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog studenta</button>
+                <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta" ng-click="currentMode('create')">Kreiraj novog studenta</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
                     <ul class="pagination pagination-sm">
                         <li><a href="#"><span>&laquo;</span></a></li>
@@ -59,34 +59,34 @@
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.first_name" placeholder="Unesite ime studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.first_name" placeholder="{{placeholder.firstname}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.last_name" placeholder="Unesite prezime studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.last_name" placeholder="{{placeholder.lastname}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.jmbg" placeholder="Unesite JMBG studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.jmbg" placeholder="{{placeholder.jmbg}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.userName" placeholder="(YYYY-MM-DD)" name="search">
+                    <input type="text" class="form-control" ng-model="student.userName" placeholder="{{placeholder.username}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="password" class="form-control" ng-model="student.password" placeholder="Unesite mesto roÄ‘enja studenta..." name="search">
+                    <input type="password" class="form-control" ng-model="student.password" placeholder="{{placeholder.password}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.dateOfBirth" placeholder="Unesite adresu studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.dateOfBirth" placeholder="{{placeholder.date}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.placeOfOrigin" placeholder="Unesite broj telefona studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.placeOfOrigin" placeholder="{{placeholder.placeOfBirth}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.currentAddress" placeholder="Unesite e-mail studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.currentAddress" placeholder="{{placeholder.address}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.phoneNumber" placeholder="Unesite e-mail studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.phoneNumber" placeholder="{{placeholder.phoneNumber}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.eMail" placeholder="Unesite e-mail studenta..." name="search">
+                    <input type="text" class="form-control" ng-model="student.eMail" placeholder="{{placeholder.email}}" name="search">
                 </div>
             </div>
                 <div class="modal-footer">
@@ -95,7 +95,7 @@
                 </div>
             </form>
           </div>
-          
+
         </div>
 
       </div>
@@ -114,12 +114,12 @@
                     <h5>Da li ste sigurni da Å¾elite da obriÅ¡ete studenta:</h5>
                 </div>
                 <div class="col-md-12">
-                   <p><strong>IME STUDENTA</strong></p>
+                   <p><strong>{{selectedStudent.firstname}} {{selectedStudent.lastname}}</strong></p>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-danger" ng-click="brisanjeStudenta()" style="float:right;width:10%">BriÅ¡i</button>
+                <button class="btn btn-danger" ng-click="brisanjeStudenta()" style="float:right;width:10%" data-dismiss="modal">BriÅ¡i</button>
               </div>
             </div>
 

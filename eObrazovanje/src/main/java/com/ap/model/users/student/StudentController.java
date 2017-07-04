@@ -62,13 +62,14 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Student> getStudent(@PathVariable("id") Long id){
+	public ResponseEntity<StudentDTO> getStudent(@PathVariable("id") Long id){
 		Student Student = studentService.findOne(id);
-		if(Student == null){
+		StudentDTO studentDTO = new StudentDTO(Student);
+		if(studentDTO == null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return new ResponseEntity<>(Student, HttpStatus.OK);
+		return new ResponseEntity<>(studentDTO, HttpStatus.OK);
 	}
 
 	

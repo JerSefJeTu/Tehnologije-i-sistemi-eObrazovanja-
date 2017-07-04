@@ -39,7 +39,7 @@
                         	console.log(currentUser.role[i])
                         	if(currentUser.role[i].authority == "ADMIN") {
                         		console.log("admin")
-                            	$state.go('admin');
+                            	$state.go('admin.studenti');
                             } else if(currentUser.role[i].authority == "PREDAVAC") {
                             	console.log("predavac")
                             	$state.go('predavac.nastava');
