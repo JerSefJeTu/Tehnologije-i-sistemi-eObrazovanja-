@@ -13,6 +13,10 @@
 					method:'GET',
 					url:'/api/predispitnaObaveza/getPredispitneByKurs/:idKursa',
 					isArray:true
+				},
+				dodavanjeStudenataNaKurss:{//custom post metoda koja dobavlja predispitne odredjenog kursa
+					method:'POST',
+					url:'api/pohadjanje/many'
 				}
 			}
 			);
