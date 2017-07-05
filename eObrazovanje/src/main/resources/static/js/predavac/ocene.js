@@ -13,12 +13,8 @@
 		}
 
 		$scope.pickCourseInformation = function(kurs) {
-			$scope.pohadjanja= new Pohadjanja();
-			$scope.pohadjanja.$findByKurs({"idKursa": kurs.id}).then(function(item){
-				$scope.numberOfStudents = item.pohadjanja.length;
-				$scope.studentsByCourse = item.pohadjanja;
-				console.log(item.pohadjanja);
-			})
+
+			$scope.studentsByCourse = Pohadjanja.findByKurs({"idKursa": kurs.id})
 			$scope.singleCourse = kurs;
 		}
 
@@ -33,6 +29,12 @@
 			$scope.predispitneObaveze = student.polaganje.predispitneObaveze;
 		}
 
+		$scope.oceniObavezuInit = function(obaveza){
+
+		}
+		$scope.updateOcene = function(obaveza){
+			Pohadjanja.update({PredispitnaObaveza: obaveza});
+		}
 		$scope.findSum = function(obaveze) {
 			var sum = 0;
 			for(obaveza in obaveze) {
