@@ -27,8 +27,14 @@ public class PredsipitnaObavezaDTO {
 		this.brojBodova = predispitnaObaveza.getBrojBodova();
 		this.minBodova = predispitnaObaveza.getMinBodova();
 		this.maxBodova=predispitnaObaveza.getMaxbodova();
+		if(predispitnaObaveza.getKurs()==null){
+			this.kurs=null;
+		}else{
 		this.kurs=new KursDTO(predispitnaObaveza.getKurs());
+		}
 	}
+	
+
 	public Long getId() {
 		return id;
 	}

@@ -166,6 +166,13 @@ public class PohadjanjeController {
 			polaganjeIspitaService.save(polaganjeIspita);
 			pohadjanje.setPolaganje(polaganjeIspita);
 			pohadjanjeService.save(pohadjanje);
+			for (PredispitnaObaveza predispitnaObaveza : predispitne) {
+				PredispitnaObaveza kopijaPredispitnaObaveza = new PredispitnaObaveza(predispitnaObaveza);
+				kopijaPredispitnaObaveza.setPolaganjeIspita(polaganjeIspita);
+				predispitnaObavezaService.save(kopijaPredispitnaObaveza);
+				
+			}
+	
 		}
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}
