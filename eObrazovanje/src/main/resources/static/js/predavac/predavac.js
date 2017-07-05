@@ -8,6 +8,7 @@
 			console.log($scope.predavac);
 		}
 		loadEntries();
+		
 
 		 $scope.kurseviPredmeta = function(idPredmeta){
 		    	console.log("aa");
@@ -21,11 +22,6 @@
 
 		    };
 
-        $scope.izmenaObavezeInit = function(obaveza){
-            $scope.izmenaObavezeInit = obaveza;
-            console.log("!!!");
-            console.log($scope.izmenaObavezeInit);
-        }
 
         $scope.brisanjeKursaInit = function(idKursa,naziv) {
             $scope.nazivKursaInit=naziv;
@@ -101,7 +97,9 @@
 
 	                $scope.obaveze=item;
 	                console.log($scope.obaveze);
-	                console.log($scope.pohadjanja);
+
+
+	            });
 
 	            };
 
@@ -153,8 +151,21 @@
         $scope.brisanjeObaveze = function(){
             PredispitnaObaveza.delete({'id':$scope.idObavezeInit},function(){
 							$scope.obaveze= Pohadjanja.getByKurs({'idKursa':$scope.idKursaInit})
-							
+
 						});
+        }
+        
+        $scope.izmenaObavezeInit = function(obaveza){
+            $scope.izmenaObavezeTempOrig = obaveza;
+            $scope.izmenaObavezeTempCopy = angular.copy(obaveza);
+        }
+        
+        $scope.izmenaObaveze = function(){
+            console.log("@#@#");
+            console.log($scope.izmenaObavezeTempCopy);
+//            PredispitnaObaveza.update($scope.izmenaObavezeTempCopy);
+            $scope.izmenaObavezeTempOrig=$scope.izmenaObavezeTempCopy;
+            
         }
 
         $scope.listaPrivremenihStudenata=[];

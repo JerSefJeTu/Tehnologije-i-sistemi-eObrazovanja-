@@ -23,7 +23,7 @@
                     <td>{{obaveza.minBodova}}</td>
                     <td>{{obaveza.maxBodova}}</td>
                     <td>
-                    <button class="btn btn-default btn-xs" data-toggle="modal" ng-click="izmenaObavezeInit(obaveza.id)" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-default btn-xs" data-toggle="modal" ng-click="izmenaObavezeInit(obaveza)" data-target="#izmenaObaveze"><span class="glyphicon glyphicon-pencil"></span></button>
                     <button class="btn btn-danger btn-xs" ng-click='brisanjeObavezeInit(obaveza.id,obaveza.nazivObaveze)' data-toggle="modal" data-target="#brisanjeObaveze"><span class="glyphicon glyphicon-remove"></span></button>
                     </td>
 
@@ -157,7 +157,7 @@
         <div class="panel panel-primary">
           <div class="panel panel-heading">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3 class="panel-title" style="text-align:center;">Dodavanje nastavnih obaveza</h3>
+            <h3 class="panel-title" style="text-align:center;">Izmena nastavnih obaveza</h3>
           </div>
           <div class="panel-body">
             <div class="col-md-5">
@@ -167,19 +167,19 @@
             </div>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" placeholder="......." name="search">
+                    <input type="text" class="form-control" ng-model="izmenaObavezeTempCopy.nazivObaveze" placeholder="{{izmenaObavezeTempCopy.nazivObaveze}}">
                 </div>
                 <div style="width:70%" class="input-group">
-                    <input type="number" class="form-control" placeholder="Unesite min. broj bodova..." name="search">
+                    <input type="number" class="form-control" ng-model="izmenaObavezeTempCopy.minBodova" placeholder="{{izmenaObavezeTempCopy.minBodova}}">
                 </div>
                 <div style="width:70%" class="input-group">
-                    <input type="number" class="form-control" placeholder="Unesite max. broj bodova..." name="search">
+                    <input type="number" class="form-control" ng-model="izmenaObavezeTempCopy.maxBodova" placeholder="{{izmenaObavezeTempCopy.maxBodova}}">
                 </div>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-            <button class="btn btn-success" ng-click="brisanjeKursa()" style="float:right">Sačuvaj</button>
+            <button class="btn btn-success" ng-click="izmenaObaveze()" style="float:right">Sačuvaj</button>
           </div>
         </div>
 
