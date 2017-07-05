@@ -66,6 +66,22 @@ public class PredispitnaObaveza {
 		this.polaganjeIspita = polaganjeIspita;
 	}
 
+	
+
+
+
+
+	public PredispitnaObaveza(PredispitnaObaveza predispitnaObaveza) {
+		this.id=null;
+		this.datumPolaganja = predispitnaObaveza.getDatumPolaganja();
+		this.polozio = predispitnaObaveza.isPolozio();
+		this.nazivObaveze = predispitnaObaveza.getNazivObaveze();
+		this.brojBodova = predispitnaObaveza.getBrojBodova();
+		this.minBodova = predispitnaObaveza.getMinBodova();
+		this.maxbodova = predispitnaObaveza.getMaxbodova();
+		this.polaganjeIspita = predispitnaObaveza.getPolaganjeIspita();
+	}
+
 
 
 

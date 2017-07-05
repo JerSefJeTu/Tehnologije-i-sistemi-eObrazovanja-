@@ -167,8 +167,9 @@ public class PohadjanjeController {
 			pohadjanje.setPolaganje(polaganjeIspita);
 			pohadjanjeService.save(pohadjanje);
 			for (PredispitnaObaveza predispitnaObaveza : predispitne) {
-				predispitnaObaveza.setPolaganjeIspita(polaganjeIspita);
-				predispitnaObavezaService.save(predispitnaObaveza);
+				PredispitnaObaveza kopijaPredispitnaObaveza = new PredispitnaObaveza(predispitnaObaveza);
+				kopijaPredispitnaObaveza.setPolaganjeIspita(polaganjeIspita);
+				predispitnaObavezaService.save(kopijaPredispitnaObaveza);
 				
 			}
 	
