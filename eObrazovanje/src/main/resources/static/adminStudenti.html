@@ -14,7 +14,8 @@
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="pickStudentForUpdate(student, 'update')" data-target="#dodavanjeStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta" ng-click="pickStudent(student)"><i class="glyphicon glyphicon-remove"></i></button></div></span>
+                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="pickStudentForUpdate(student, 'update')" data-target="#izmenaStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button>
+                       <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta" ng-click="pickStudent(student)"><i class="glyphicon glyphicon-remove"></i></button></div></span>
 
                 </div>
                 <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta" ng-click="currentMode('create')">Kreiraj novog studenta</button>
@@ -48,27 +49,27 @@
                 <div style="margin-top:3%"><strong>Ime</strong></div>
                 <div style="margin-top:5%"><strong>Prezime</strong></div>
                 <div style="margin-top:8%"><strong>JMBG</strong></div>
-                <div style="margin-top:8%"><strong>userName</strong></div>
-                <div style="margin-top:8%"><strong>password</strong></div>
-                <div style="margin-top:5%"><strong>Datum rodjenja</strong></div>
-                <div style="margin-top:5%"><strong>Mesto rodjenja</strong></div>
-                <div style="margin-top:8%"><strong>trenutna adresa</strong></div>
-                 <div style="margin-top:8%"><strong>telefon</strong></div>
+                <div style="margin-top:8%"><strong>Username</strong></div>
+                <div style="margin-top:8%"><strong>Password</strong></div>
+                <div style="margin-top:5%"><strong>Datum rođenja</strong></div>
+                <div style="margin-top:5%"><strong>Mesto rođenja</strong></div>
+                <div style="margin-top:8%"><strong>Trenutna adresa</strong></div>
+                 <div style="margin-top:8%"><strong>Telefon</strong></div>
                   <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
             </div>
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.firstname" placeholder="{{placeholder.firstname}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.firstName" placeholder="{{placeholder.firstname}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.lastname" placeholder="{{placeholder.lastname}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.lastName" placeholder="{{placeholder.lastname}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
                     <input type="text" class="form-control" ng-model="student.jmbg" placeholder="{{placeholder.jmbg}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.username" placeholder="{{placeholder.username}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.userName" placeholder="{{placeholder.username}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
                     <input type="password" class="form-control" ng-model="student.password" placeholder="{{placeholder.password}}" name="search">
@@ -86,12 +87,12 @@
                     <input type="text" class="form-control" ng-model="student.phoneNumber" placeholder="{{placeholder.phoneNumber}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.email" placeholder="{{placeholder.email}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.eMail" placeholder="{{placeholder.email}}" name="search">
                 </div>
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
-                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%" data-dismiss="modal">SaÄ�uvaj</button>
+                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%" data-dismiss="modal">Sačuvaj</button>
                 </div>
             </form>
           </div>
@@ -100,6 +101,69 @@
 
       </div>
 </div>
+<div id="izmenaStudenta" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="margin-top:10%">
+
+        <!-- Modal content-->
+        <div class="panel panel-primary">
+          <div class="panel panel-heading">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="panel-title" style="text-align:center;">Izmena studenta</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-5">
+                <div style="margin-top:3%"><strong>Ime</strong></div>
+                <div style="margin-top:5%"><strong>Prezime</strong></div>
+                <div style="margin-top:8%"><strong>JMBG</strong></div>
+                <div style="margin-top:8%"><strong>Username</strong></div>
+                <div style="margin-top:5%"><strong>Datum rođenja</strong></div>
+                <div style="margin-top:5%"><strong>Mesto rođenja</strong></div>
+                <div style="margin-top:8%"><strong>Trenutna adresa</strong></div>
+                 <div style="margin-top:8%"><strong>Telefon</strong></div>
+                  <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
+            </div>
+              <form>
+            <div class="col-md-7">
+               <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.firstname}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.lastname}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.jmbg}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.username}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.date}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control"  name="search" value="{{placeholder.placeOfBirth}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.address}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.phoneNumber}}">
+                </div>
+                <div style="width:80%" class="input-group">
+                    <input type="text" class="form-control" name="search" value="{{placeholder.email}}">
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
+                    <button class="btn btn-success" ng-click="izmenaStudenta()" style="float:right;margin-top:3%" data-dismiss="modal">Izmeni</button>
+                </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+</div>
+
 <div id="brisanjeStudenta" class="modal fade" role="dialog">
           <div class="modal-dialog" style="margin-top:10%">
 
@@ -111,7 +175,7 @@
               </div>
               <div class="panel-body">
                 <div class="page-header">
-                    <h5>Da li ste sigurni da Å¾elite da obriÅ¡ete studenta:</h5>
+                    <h5>Da li ste sigurni da želite da obrišete studenta:</h5>
                 </div>
                 <div class="col-md-12">
                    <p><strong>{{selectedStudent.firstname}} {{selectedStudent.lastname}}</strong></p>
