@@ -4,9 +4,8 @@
     </div>
     <div id="adminGuiContent" class="panel-body">
         <nav class="nav nav-tabs" role="tablist">
-            <li ui-sref=".studenti" role="presentation" class="active"><a href="">Studenti</a></li>
-            <li ui-sref=".predavaci" role="presentation"><a href="">Nastavno osoblje</a></li>
-<!--            <li role="presentation"><a ng-click="logout()">odjava</a></li>-->
+            <li ui-sref=".studenti" role="presentation" ng-click="tabClicked = 1" ng-class="{active: tabClicked == 1}"><a href="">Studenti</a></li>
+            <li ui-sref=".predavaci" role="presentation" ng-click="tabClicked = 2" ng-class="{active: tabClicked == 2}"><a href="">Nastavno osoblje</a></li>
         </nav>
         <div ui-view></div>
     </div>

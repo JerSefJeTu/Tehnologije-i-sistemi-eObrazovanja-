@@ -89,7 +89,8 @@ public class StudentController {
 	public ResponseEntity<Student> saveStudent(@RequestBody Student Student){
 			
 	
-		Student = studentService.save(Student);
+//		Student = studentService.save(Student);
+		studentService.save(Student);
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}
 	

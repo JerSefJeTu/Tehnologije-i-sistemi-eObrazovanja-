@@ -23,6 +23,7 @@
 		    };
 
 
+
         $scope.brisanjeKursaInit = function(idKursa,naziv) {
             $scope.nazivKursaInit=naziv;
             $scope.idKursaInit=idKursa;
