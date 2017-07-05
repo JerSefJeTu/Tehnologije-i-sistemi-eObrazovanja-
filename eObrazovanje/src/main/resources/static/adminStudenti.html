@@ -59,16 +59,16 @@
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.first_name" placeholder="{{placeholder.firstname}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.firstname" placeholder="{{placeholder.firstname}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.last_name" placeholder="{{placeholder.lastname}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.lastname" placeholder="{{placeholder.lastname}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
                     <input type="text" class="form-control" ng-model="student.jmbg" placeholder="{{placeholder.jmbg}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.userName" placeholder="{{placeholder.username}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.username" placeholder="{{placeholder.username}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
                     <input type="password" class="form-control" ng-model="student.password" placeholder="{{placeholder.password}}" name="search">
@@ -86,12 +86,12 @@
                     <input type="text" class="form-control" ng-model="student.phoneNumber" placeholder="{{placeholder.phoneNumber}}" name="search">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.eMail" placeholder="{{placeholder.email}}" name="search">
+                    <input type="text" class="form-control" ng-model="student.email" placeholder="{{placeholder.email}}" name="search">
                 </div>
             </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
-                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%">SaÄ�uvaj</button>
+                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%" data-dismiss="modal">SaÄ�uvaj</button>
                 </div>
             </form>
           </div>
