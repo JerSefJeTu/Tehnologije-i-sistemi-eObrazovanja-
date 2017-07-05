@@ -21,11 +21,7 @@
 
 		    };
 
-        $scope.izmenaObavezeInit = function(obaveza){
-            $scope.izmenaObavezeInit = obaveza;
-            console.log("!!!");
-            console.log($scope.izmenaObavezeInit);
-        }
+
 
         $scope.brisanjeKursaInit = function(idKursa,naziv) {
             $scope.nazivKursaInit=naziv;
@@ -101,7 +97,9 @@
 
 	                $scope.obaveze=item;
 	                console.log($scope.obaveze);
-	                console.log($scope.pohadjanja);
+
+
+	            });
 
 	            };
 
@@ -153,7 +151,7 @@
         $scope.brisanjeObaveze = function(){
             PredispitnaObaveza.delete({'id':$scope.idObavezeInit},function(){
 							$scope.obaveze= Pohadjanja.getByKurs({'idKursa':$scope.idKursaInit})
-							
+
 						});
         }
 
