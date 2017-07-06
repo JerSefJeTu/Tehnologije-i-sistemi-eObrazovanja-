@@ -1,7 +1,6 @@
 (function(angular) {
    angular.module('admin',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource'])
     .controller('AdminCtrl', function($scope, Predmet, Predavac, Student, $http){
-       
        $scope.izmenaStudentaInit = function(student){
            $scope.tempStudentIzmena = angular.copy(student);
            console.log($scope.tempStudentIzmena);
@@ -36,23 +35,18 @@
         $scope.placeholder = {};
         $scope.selectedStudentDTO = {};
         $scope.editedStudent = {};
-
-        $scope.placeholder.firstname = "Unesite ime studenta...";
-        $scope.placeholder.lastname = "Unesite prezime studenta...";
-        $scope.placeholder.jmbg = "Unesite JMBG studenta...";
-        $scope.placeholder.username = "Unesite korisnicko ime studenta...";
-        $scope.placeholder.password = "Unesite lozinku studenta...";
-        $scope.placeholder.password2 = "Ponovite lozinku studenta...";
-        $scope.placeholder.date = "(YYYY-MM-DD)";
-        $scope.placeholder.placeOfBirth = "Unesite mesto rođenja studenta...";
-        $scope.placeholder.address = "Unesite adresu studenta...";
-        $scope.placeholder.phoneNumber = "Unesite broj telefona studenta...";
-        $scope.placeholder.email = "Unesite e-mail studenta...";
+        $scope.tempPredmeti = [];
 
     	var loadEntries = function () {
 
-    		$scope.sviStudent = new Student.query();
+    		$scope.sviStudent = Student.query();
+            $scope.sviPredmeti = Predmet.query();
+            $http.get("api/predavac").then(function(data, status){
+                $scope.sviPredavaci = data.data;
+                console.log($scope.sviPredavaci);
+            })
     		console.log($scope.sviStudent);
+            console.log($scope.sviPredmeti);
 		}
 
 		loadEntries();
@@ -130,6 +124,49 @@
             $scope.selectedStudentDTO.phoneNumber = $scope.editedStudent.phoneNumber;
             $scope.selectedStudentDTO.email = $scope.editedStudent.eMail;
             $scope.selectedStudentDTO.jmbg = $scope.editedStudent.jmbg;
+        }
+
+        $scope.deletePredavac = function(predavac) {
+            var index = $scope.sviPredavaci
+            .findIndex(i => i.id == predavac.id);
+            $http.delete("api/predavac",
+            {params:{"id" : predavac.id}})
+            .then(function(data, status){
+                $scope.sviPredavaci.splice(index, 1);
+                return data;
+            })
+            .catch(function(data, status){
+                console.log(status);
+            })
+        }
+
+        $scope.dodajPredmetUtempListu = function(predmet) {
+            $scope.tempPredmeti.push(predmet);
+            var index = $scope.sviPredmeti
+            .findIndex(i => i.id == predmet.id);
+            $scope.sviPredmeti.splice(index, 1);
+        }
+
+        $scope.vratiPredmetUlistu = function(predmet) {
+            $scope.sviPredmeti.push(predmet);
+            var index = $scope.tempPredmeti
+            .findIndex(i => i.id == predmet.id);
+            $scope.tempPredmeti.splice(index, 1);
+        }
+
+        $scope.dodavanjePredavaca = function() {
+            $http.post("api/predavac", $scope.predavac)
+            .then(function(data){
+                $http.get("api/predavac/findByUsername",{params:{"username":$scope.predavac.userName}
+            }).then(function(data){
+                $scope.predavac.predmeti = $scope.tempPredmeti;
+                $http.post("api/predavac", $scope.predavac)
+                .then(function(data){
+                    console.log(data);
+                    $scope.sviPredavaci.push($scope.predavac);
+                });
+            });
+        });
         }
    });
 }(angular));

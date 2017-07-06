@@ -56,8 +56,8 @@
         })
         .state('admin.predavaci',{
             url: '/predavaci',
-            templateUrl: 'adminPredavaci.html'
-            	
+            templateUrl: 'adminPredavaci.html',
+			controller: 'AdminCtrl'
         })
       .state('student.studije', {
           url: '/studije',

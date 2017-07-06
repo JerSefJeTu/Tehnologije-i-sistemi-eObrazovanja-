@@ -1,5 +1,6 @@
 package com.ap.model.predmet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,13 @@ public class PredmetController {
 	PredmetService predmetService;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Predmet>> getPredmet(){
+	public ResponseEntity<List<PredmetDto>> getPredmet(){
 		List<Predmet> predmet = predmetService.findAll();
-		return new ResponseEntity<>(predmet, HttpStatus.OK);
+		List<PredmetDto> predmetiDTO = new ArrayList<>();
+		for(Predmet p : predmet) {
+			predmetiDTO.add(new PredmetDto(p));
+		}
+		return new ResponseEntity<>(predmetiDTO, HttpStatus.OK);
 		
 	}
 	
