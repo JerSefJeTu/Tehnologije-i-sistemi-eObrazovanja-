@@ -3,22 +3,19 @@
     <div class="col-md-12">
        <div class="panel panel-default">
            <div class="panel-heading">
-               <h3 class="panel-title" style="text-align:center;">Svi predavači <span class="badge">{{sviStudent.length}}</span></h3>
+               <h3 class="panel-title" style="text-align:center;">Svi predavači <span class="badge">{{sviPredavaci.length}}</span></h3>
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
-                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga studenata..." >
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihPredavaca.firstname" placeholder="Pretraga predavaca..." >
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <a href="" class="list-group-item">Ime1 Prezime1 <div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></div></a>
-                   <a href="" class="list-group-item">Ime2 Prezime2<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></div></a>
-                   <a href="" class="list-group-item">Ime3 Prezime3<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></div></a>
-                   <a href="" class="list-group-item">Ime4 Prezime4<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></div></a>
-                   
+                   <a ng-repeat="predavac in sviPredavaci | filter: search.pretragaSvihPredavaca.firstname" class="list-group-item">{{predavac.firstname}} {{predavac.lastname}}<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" ng-click="deletePredavac(predavac)"><i class="glyphicon glyphicon-remove"></i></button></div></a>
+
                 </div>
                 <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog predavača</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
@@ -51,6 +48,7 @@
                 <div class="col-md-5">
                     <div style="margin-top:5%"><strong>Ime</strong></div>
                     <div style="margin-top:8%"><strong>Prezime</strong></div>
+                    <div style="margin-top:8%"><strong>Korisničko ime</strong></div>
                     <div style="margin-top:8%"><strong>JMBG</strong></div>
                     <div style="margin-top:8%"><strong>Datum rođenja</strong></div>
                     <div style="margin-top:8%"><strong>Mesto rođenja</strong></div>
@@ -61,32 +59,35 @@
                   <form>
                 <div class="col-md-7">
                    <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.ime" placeholder="Unesite ime predavača..." >
+                        <input type="text" class="form-control" ng-model="predavac.firstName" placeholder="Unesite ime predavača..." >
                     </div>
                     <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.prezime" placeholder="Unesite prezime predavača..." >
+                        <input type="text" class="form-control" ng-model="predavac.lastName" placeholder="Unesite prezime predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.userName" placeholder="Unesite korisničko ime predavača..." >
                     </div>
                     <div style="width:100%" class="input-group">
                         <input type="text" class="form-control" ng-model="predavac.jmbg" placeholder="Unesite JMBG predavača..." >
                     </div>
                     <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.datumrodjenja" placeholder="Unesite datum (YYYY-MM-DD)" >
+                        <input type="text" class="form-control" ng-model="predavac.dateOfBirth" placeholder="Unesite datum (YYYY-MM-DD)" >
                     </div>
                     <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.mestorodjenja" placeholder="Unesite mesto rođenja predavača..." >
+                        <input type="text" class="form-control" ng-model="predavac.placeOfOrigin" placeholder="Unesite mesto rođenja predavača..." >
                     </div>
                     <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.adresa" placeholder="Unesite adresu predavača..." >
+                        <input type="text" class="form-control" ng-model="predavac.currentAddress" placeholder="Unesite adresu predavača..." >
                     </div>
                     <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.brtel" placeholder="Unesite broj telefona predavača..." >
+                        <input type="text" class="form-control" ng-model="predavac.phoneNumber" placeholder="Unesite broj telefona predavača..." >
                     </div>
                     <div style="width:100%" class="input-group">
-                        <input type="text" class="form-control" ng-model="predavac.email" placeholder="Unesite e-mail predavača..." >
+                        <input type="text" class="form-control" ng-model="predavac.eMail" placeholder="Unesite e-mail predavača..." >
                     </div>
                 </div>
-                      
-                
+
+
             </form>
           </div>
           <div class="col-md-5" style="margin-top:3%">
@@ -96,21 +97,20 @@
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
-                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga predmeta..." >
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihPredmeta.naziv" placeholder="Pretraga predmeta..." >
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
                 </div>
                 <div id="selektovaniStudenti" class="well">
-                    <div ng-repeat="privremeniStudent in listaPrivremenihStudenata"  class="selektovaniStudentItem">
-                        <span>{{privremeniStudent.firstname }}  {{privremeniStudent.lastname}}</span>
-                        <button ng-click="vratiStudentaUlistu(privremeniStudent)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+                    <div ng-repeat="predmet in tempPredmeti"  class="selektovaniStudentItem">
+                        <span>{{predmet.naziv}}</span>
+                        <button ng-click="vratiPredmetUlistu(predmet)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
                     </div>
                 </div>
                 <div id="sviStudenti" class="list-group">
-                    <a ng-click="dodajStudentaUPrivremenuListu(student)" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
+                    <a ng-click="dodajPredmetUtempListu(predmet)" class="list-group-item" ng-repeat="predmet in sviPredmeti|filter:search.pretragaSvihPredmeta.naziv">{{predmet.naziv}}</a>
                 </div>
-                <button ng-click="dodajStudenteNaKurs()" class="btn btn-success" style="width:100%">Dodaj</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
                     <ul class="pagination pagination-sm">
                         <li><a href="#"><span>&laquo;</span></a></li>
@@ -128,11 +128,11 @@
           <div class="row">
               <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
-                    <button class="btn btn-success" ng-click="dodavanjePredavaca()" style="float:right;margin-top:3%">Sačuvaj</button>
+                    <button class="btn btn-success" ng-click="dodavanjePredavaca()" style="float:right;margin-top:3%" data-dismiss="modal">Sačuvaj</button>
                 </div>
           </div>
           </div>
-          
+
         </div>
 
       </div>
