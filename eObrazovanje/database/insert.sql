@@ -57,9 +57,9 @@ insert into predavac_predmeti values(2,1);
 insert into predavac_predmeti values(2,2);
 insert into predavac_kursevi values(2,1);
 
-insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,naziv_obaveze,kurs_id)values(11,10,15,1,1,'Kolokvijum 1',1);
-insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,naziv_obaveze,kurs_id)values(11,10,15,1,1,'Kolokvijum 2',1);
-insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,naziv_obaveze,kurs_id)values(11,10,15,1,1,'Usmeni',1);
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,naziv_obaveze,kurs_id)values(0,10,15,1,'Kolokvijum 1',1);
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,naziv_obaveze,kurs_id)values(0,10,15,1,'Kolokvijum 2',1);
+insert into predispitna_obaveza(broj_bodova,min_bodova,maxbodova,polozio,naziv_obaveze,kurs_id)values(0,10,15,1,'Usmeni',1);
 
 
 

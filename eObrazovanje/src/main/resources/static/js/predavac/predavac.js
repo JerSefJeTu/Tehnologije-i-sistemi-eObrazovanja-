@@ -6,7 +6,7 @@
 
 
 			$scope.predavac = new Predavac.get({username: $localStorage.currentUser.username});
-			$scope.predmeti= Predmet.qu
+			
 			console.log($scope.predavac);
 		}
 		loadEntries();
