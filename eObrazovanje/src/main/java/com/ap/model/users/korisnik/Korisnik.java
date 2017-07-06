@@ -45,7 +45,7 @@ public abstract class Korisnik {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		JMBG = jMBG;
+		this.JMBG = jMBG;
 		this.userName = userName;
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
@@ -69,10 +69,10 @@ public abstract class Korisnik {
 		this.lastName = lastName;
 	}
 	public Long getJMBG() {
-		return JMBG;
+		return this.JMBG;
 	}
 	public void setJMBG(Long jMBG) {
-		JMBG = jMBG;
+		this.JMBG = jMBG;
 	}
 	public String getUserName() {
 		return userName;
