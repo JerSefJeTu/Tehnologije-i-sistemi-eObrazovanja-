@@ -70,5 +70,19 @@ public class PredavacController {
 		predavacService.save(predavac);
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}
+	
+	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
+	public ResponseEntity<PredavacDTO> updateStudent(@RequestBody Predavac predavac){
+		//a Student must exist
+		
+		if (predavac == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		
+	
+		predavac = predavacService.save(predavac);
+		return new ResponseEntity<>(new PredavacDTO(predavac), HttpStatus.OK);	
+	}
 
 }
