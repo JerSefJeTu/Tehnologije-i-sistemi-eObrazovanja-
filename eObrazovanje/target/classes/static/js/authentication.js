@@ -35,11 +35,11 @@
                         $http.defaults.headers.common['X-Auth-Token'] = $localStorage.currentUser.token;
 
                         callback(true);
-                        for (i = 0; i < currentUser.role.length; i++) {
+                        for (i = 0; i < currentUser.role.length; i++) { 
                         	console.log(currentUser.role[i])
                         	if(currentUser.role[i].authority == "ADMIN") {
                         		console.log("admin")
-                            	$state.go('admin.studenti');
+                            	$state.go('admin');
                             } else if(currentUser.role[i].authority == "PREDAVAC") {
                             	console.log("predavac")
                             	$state.go('predavac.nastava');
@@ -48,11 +48,10 @@
                             	$state.go('student.studije');
                             }
                         }
-
+                        
 
 
                 }).catch( function(response) {
-                  
                 	callback(false);
                 console.log("invalid login");
               });

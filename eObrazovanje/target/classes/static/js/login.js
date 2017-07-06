@@ -10,8 +10,6 @@
 				$log.info('success!');
 			}
 			else{
-				$scope.errormsg="Pogresan username ili password";
-				
             	$scope.user.username="";
             	$scope.user.password="";
 				$log.info('failure!');

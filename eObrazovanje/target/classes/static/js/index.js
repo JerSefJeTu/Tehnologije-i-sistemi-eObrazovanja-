@@ -1,39 +1,11 @@
 (function (angular) {
-	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student', 'ocene','admin']);
+	var app = angular.module('app',['authentication','login','ui.router','ui.router.state.events','predavac', 'student']);
 
 	app
     .config(config)
-    .directive("tooltip", function(){
-    	return {
-	        restrict: 'A',
-	        link: function(scope, element, attrs){
-	            $(element).hover(function(){
-	                $(element).tooltip('show');
-	            }, function(){
-	                $(element).tooltip('hide');
-	            });
-	        }
-    	}
-    }).directive('svrhaPopover', function () {
-        return {
-            restrict: 'A',
-            template: '<span>{{svrhaUplate}}</span>',
-            link: function (scope, el, attrs) {
-                scope.label = attrs.popoverLabel;
-                $(el).popover({
-                    trigger: 'click',
-                    html: true,
-                    content: attrs.popoverHtml,
-                    placement: attrs.popoverPlacement
-                });
-            }
-        };
-    })
     .run(run);
     function config($stateProvider, $urlRouterProvider, $locationProvider) {
-
-
-    	$urlRouterProvider.otherwise('/student/studije');
+        $urlRouterProvider.otherwise('/student');
         $stateProvider
 		.state('index', {
 			url: '/',
@@ -45,20 +17,6 @@
           templateUrl: 'studentFrame.html',
 		  controller: 'StudentsCtrl'
       })
-        .state('admin',{
-            url: '/admin',
-            templateUrl: 'adminFrame.html'
-        })
-        .state('admin.studenti',{
-            url: '/studenti',
-            templateUrl: 'adminStudenti.html',
-            controller:'AdminCtrl'
-        })
-        .state('admin.predavaci',{
-            url: '/predavaci',
-            templateUrl: 'adminPredavaci.html'
-            	
-        })
       .state('student.studije', {
           url: '/studije',
           templateUrl: 'studentStudije.html'
@@ -68,19 +26,18 @@
       })
       .state('student.finansije', {
           url: '/finansije',
-          templateUrl: 'studentFinansije.html',
-          controller:'uplateController'
+          templateUrl: 'studentFinansije.html'
 
       })
       .state('student.profil', {
           url: '/profil',
-          templateUrl: 'studentProfil.html',
-          controller: 'StudentsCtrl'
+          templateUrl: 'studentProfil.html'
+
       })
       .state('predavac', {
           url: '/predavac',
           templateUrl: 'predavacFrame.html'
-
+        	  
 
       })
 
@@ -88,40 +45,31 @@
           url: '/nastava',
           templateUrl: 'predavacNastavaTop.html',
           controller:'PredavacCtrl'
-
+          
 
       })
           .state('predavac.nastava.kursevi', {
           url: '/kursevi',
           templateUrl: 'predavacNastavaKurs.html',
           controller:'kursCtrl'
-
+         
 
       })
-
-        .state('predavac.nastava.kursevi.info', {
+      
+            .state('predavac.nastava.kursevi.info', {
           url: '/info',
           templateUrl: 'predavacNastavaInfoKursa.html',
           controller:'kursCtrl'
-
+        	  
 
       })
 
       .state('predavac.ocene', {
           url: '/ocene',
-          templateUrl: 'predavacOceneTop.html',
-		  controller: 'OceneCtrl'
+          templateUrl: 'predavacOceneKurs.html'
+
       })
 
-	  .state('predavac.ocene.kurs', {
-		  url: '/kurs',
-		  templateUrl: 'predavacOceneKurs.html'
-	  })
-
-	  .state('predavac.ocene.kurs.information', {
-		  url: '/information',
-		  templateUrl: 'predavacOceneInfoKursa.html'
-	  })
 
        .state('login', {
         url: '/login',

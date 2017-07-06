@@ -35,7 +35,7 @@ insert into kurs (naziv,predmet_id) values('Osnove Programiranja 2016' ,1);
 insert into korisnik(user_name,password,tip_korisnika) values('admin','$2a$04$SwzgBrIJZhfnzOw7KFcdzOTiY6EFVwIpG7fkF/D1w26G1.fWsi.aK','ADMIN');
 insert into administrator(korisnik_id) values(1);
 
-insert into korisnik(user_name,password,tip_korisnika) values('predavac','$2a$10$YNBzKhqMEAz6VT3ShzmpruOiUrytz3tLec/nwyN/GTifF/leWq7cK','PREDAVAC');
+insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin) values('predavac','$2a$10$YNBzKhqMEAz6VT3ShzmpruOiUrytz3tLec/nwyN/GTifF/leWq7cK','PREDAVAC','Predavač','Predavačić','06069667132007','Predavačka ulica 11, Novi Sad', '1966-06-06', 'predavač@mail.net','067/333-333','Novi Sad, Srbija');
 insert into predavac(korisnik_id,aktivan) values(2,true);
 
 insert into korisnik(user_name,password,tip_korisnika,first_name, last_name,jmbg,current_address,date_of_birth,e_mail,phone_number,place_of_origin)values('student','$2a$10$MGAEQ8fwJbZxknoCoXdnwuZAZiZeU30bm55kDhinBQhC4KFxuToBK','STUDENT','Imenko','Prezimenković','06069967132007','Studentska ulica 17, Sombor', '1996-06-06', 'student@mail.net','067/555-333','Sombor, Srbija');
