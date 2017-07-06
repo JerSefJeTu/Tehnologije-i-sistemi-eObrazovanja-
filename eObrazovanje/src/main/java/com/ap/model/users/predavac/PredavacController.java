@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.encoding.BasePasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +21,8 @@ import com.ap.web.dto.StudentDTO;
 @RestController
 @RequestMapping(value="api/predavac")
 public class PredavacController {
-	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	PredavacService predavacService;
 	
@@ -62,6 +65,8 @@ public class PredavacController {
 			
 	
 //		Student = studentService.save(Student);
+
+		predavac.setPassword(passwordEncoder.encode(predavac.getPassword()));
 		predavacService.save(predavac);
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}
