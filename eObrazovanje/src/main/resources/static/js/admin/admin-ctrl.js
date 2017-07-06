@@ -136,10 +136,11 @@
                 $http.get("api/predavac/findByUsername",{params:{"username":$scope.predavac.userName}
             }).then(function(data){
                 $scope.predavac.predmeti = $scope.tempPredmeti;
-                $http.post("api/predavac", $scope.predavac)
+                $scope.predavac.id = data.data.id;
+                $http.put("api/predavac", $scope.predavac)
                 .then(function(data){
                     console.log(data);
-                    $scope.sviPredavaci.push($scope.predavac);
+                    $scope.sviPredavaci.push(data.data);
                 });
             });
         });
