@@ -4,6 +4,17 @@
             function($http,$scope, $localStorage, StudentsResource, AuthenticationService){
 
 
+              $scope.polozeniIspit=function(student){
+                $scope.listaPrivremenihStudenata.push(student);
+                for(student1 in $scope.sviStudent) {
+                  var index = $scope.sviStudent.findIndex(t => t.id == student.id);
+                  if(index != -1) {
+                    $scope.sviStudent.splice(index, 1);
+                  }
+                }
+
+              }
+
         	   $scope.addDokument = function(files){
         	    	var fd = new FormData();
         	        //Take the first selected file
@@ -31,16 +42,16 @@
         	        	var file = new Blob([data], {type: 'application/pdf'});
         	        	var fileURL = URL.createObjectURL(file);
         	            $window.open(fileURL);
-        	            
-        	            
+
+
         	          }).
         	          catch(function(data, status, headers, config) {
         	            // called asynchronously if an error occurs
         	            // or server returns response with an error status.
         	          });
 
-        	      
-        	        
+
+
         	    };
 
                var username = AuthenticationService.getCurrentUser().username;
@@ -135,7 +146,7 @@
 
                StudentsResource.getDokumenti(student.username).then(function(item){
             	   console.log(item);
-                  $scope.dokumenti = item.data; 
+                  $scope.dokumenti = item.data;
                   console.log(item);
                });
            });
