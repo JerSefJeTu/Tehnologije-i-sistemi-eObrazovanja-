@@ -18,6 +18,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,8 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
-	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	DokumentService dokumentService;
 	
@@ -90,21 +92,32 @@ public class StudentController {
 			
 	
 //		Student = studentService.save(Student);
+		Student.setPassword(passwordEncoder.encode(Student.getPassword()));
 		studentService.save(Student);
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
-	public ResponseEntity<Student> updateStudent(@RequestBody Student Student){
+	@RequestMapping(method=RequestMethod.PUT, value="/{id}", consumes="application/json")
+	public ResponseEntity<Student> updateStudent(@RequestBody StudentDTO Student){
 		//a Student must exist
 		
 		if (Student == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		
-	
-		Student = studentService.save(Student);
+		Student student=studentService.findOne(Student.getId());
+		student.setUserName(Student.getUsername());
+		student.setUplate(Student.getUplate());
+		student.setStanje(Student.getStanje());
+		student.setPlaceOfOrigin(Student.getPlaceOfOrigin());
+		student.setPhoneNumber(Student.getPhoneNumber());
+		student.setLastName(Student.getLastname());
+		student.setJMBG(Student.getJMBG());
+		student.setFirstName(Student.getFirstname());
+		student.seteMail(Student.getEmail());
+		student.setDateOfBirth(Student.getDateOfBirth());
+		student.setCurrentAddress(Student.getCurrentAddress());
+		studentService.save(student);
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	
