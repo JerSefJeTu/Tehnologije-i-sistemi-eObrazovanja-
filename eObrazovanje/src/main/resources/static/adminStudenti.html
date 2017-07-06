@@ -14,11 +14,11 @@
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="pickStudentForUpdate(student, 'update')" data-target="#izmenaStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button>
+                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="pickStudent(student)" data-target="#izmenaStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button>
                        <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta" ng-click="pickStudent(student)"><i class="glyphicon glyphicon-remove"></i></button></div></span>
 
                 </div>
-                <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta" ng-click="currentMode('create')">Kreiraj novog studenta</button>
+                <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog studenta</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
                     <ul class="pagination pagination-sm">
                         <li><a href="#"><span>&laquo;</span></a></li>
@@ -125,31 +125,31 @@
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.firstname}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.firstname}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.lastname}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.lastname}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.jmbg}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.jmbg}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.username}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.username}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.date}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.dateOfBirth}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control"  name="search" value="{{placeholder.placeOfBirth}}">
+                    <input type="text" class="form-control"  name="search" value="{{selectedStudent.placeOfOrigin}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.address}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.currentAddress}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.phoneNumber}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.phoneNumber}}">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{placeholder.email}}">
+                    <input type="text" class="form-control" name="search" value="{{selectedStudent.email}}">
                 </div>
             </div>
                 <div class="modal-footer">
