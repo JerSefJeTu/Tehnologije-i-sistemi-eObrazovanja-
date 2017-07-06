@@ -9,7 +9,7 @@
            (convertDate.getMonth() + 1) + "." + convertDate.getFullYear() + "."
            $scope.tempStudentIzmenaDate= retVal;
        }
-       
+
        $scope.izmenaStudenta = function(){
            var split= $scope.tempStudentIzmenaDate.split(".");
            var stringToDate=new Date(split[2],split[1]-1,split[0],0,0,0,0);
@@ -30,13 +30,14 @@
            console.log(kajkut)
            Student.update(kajkut);
        }
-       
-       
+
+
         $scope.placeholder = {};
         $scope.selectedStudentDTO = {};
         $scope.editedStudent = {};
         $scope.tempPredmeti = [];
         $scope.predavacUpdate = {};
+        $scope.listaBezDuplikata = [];
 
     	var loadEntries = function () {
 
@@ -174,6 +175,13 @@
         $scope.updatePredavac = function(predavac) {
             $scope.predavacUpdate = predavac;
             console.log($scope.predavacUpdate);
+            for(var i = 0; i < $scope.predavacUpdate.predmeti.length; i++) {
+                for(var j = 0; j < $scope.sviPredmeti.length; j++) {
+                    if($scope.predavacUpdate.predmeti[i].id === $scope.sviPredmeti[j].id) {
+                        $scope.sviPredmeti.splice(j, 1);
+                    }
+                }
+            }
         }
    });
 }(angular));
