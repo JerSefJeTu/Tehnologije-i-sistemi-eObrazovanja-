@@ -1,0 +1,64 @@
+<div>
+    <div class="col-md-6">
+       <div class="panel panel-default">
+           <div class="panel-heading">
+               <h3 class="panel-title" style="text-align:center;">Svi kursevi <span class="badge">{{sviKursevi.length}}</span></h3>
+           </div>
+           <div class="panel-body">
+                <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga kurseva...">
+                </div>
+                <div id="selektovaniKursevi" class="well">
+                    <div ng-repeat="privremeniKurs in sviKursevi"  class="selektovaniStudentItem">
+                        <span>{{sviKursevi.nazivKursa }}</span>
+                        <button ng-click="vratiKursUlistu(privremeniStudent)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+                    </div>
+                </div>
+                <div id="sviStudenti" class="list-group">
+                    <a ng-click="dodajKursUPrivremenuListu(kurs)" class="list-group-item" ng-repeat="kurs in sviKursevi | filter:search.pretragaSvihKurseva.nazivKursa">{{kurs.nazivKursa}}</a>
+                </div>
+                <button ng-click="dodajStudenteNaKurs()" class="btn btn-success" style="width:100%">Dodaj</button>
+                <div style="padding-left:25%;" id="paginacijaSvihStudenata">
+                    <ul class="pagination pagination-sm">
+                        <li><a href="#"><span>&laquo;</span></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><span>&raquo;</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+       <div class="panel panel-success">
+           <div class="panel-heading">
+               <h3 class="panel-title" style="text-align:center;">Upisani studenti <span class="badge">{{studentNaIzabranomKursu.length}}</span></h3>
+           </div>
+           <div class="panel-body">
+                <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
+                    <input type="text" class="form-control" ng-model="search.pretragaStudenataKursa.firstname" placeholder="Pretraga studenata..." name="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                <div id="upisaniStudenti" class="list-group checked-list-box">
+                    <a href="" class="list-group-item" ng-repeat="studentKursa in studentNaIzabranomKursu | filter:search.pretragaStudenataKursa.firstname">{{studentKursa.student.firstname}}</a>
+                </div>
+                <button class="btn btn-danger" style="width:100%">Ukloni</button>
+                <div id="paginacijaUpisanihStudenata" style="padding-left:25%;">
+                    <ul class="pagination pagination-sm">
+                        <li><a href="#"><span>&laquo;</span></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><span>&raquo;</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -3,11 +3,11 @@
     <div class="col-md-12">
        <div class="panel panel-default">
            <div class="panel-heading">
-               <h3 class="panel-title" style="text-align:center;">Svi studenti <span class="badge">{{sviStudent.length}}</span></h3>
+               <h3 class="panel-title" style="text-align:center;">Svi predavači <span class="badge">{{sviStudent.length}}</span></h3>
            </div>
            <div class="panel-body">
                 <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
-                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga studenata..." name="search">
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga studenata..." >
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
@@ -20,7 +20,7 @@
                    <a href="" class="list-group-item">Ime4 Prezime4<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button></div></a>
                    
                 </div>
-                <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog studenta</button>
+                <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog predavača</button>
                 <div style="padding-left:25%;" id="paginacijaSvihStudenata">
                     <ul class="pagination pagination-sm">
                         <li><a href="#"><span>&laquo;</span></a></li>
@@ -38,57 +38,99 @@
     </div>
 </div>
 <div id="dodavanjeStudenta" class="modal fade" role="dialog">
-      <div class="modal-dialog" style="margin-top:10%">
+      <div class="modal-dialog modal-lg" style="margin-top:10%">
 
         <!-- Modal content-->
         <div class="panel panel-primary">
           <div class="panel panel-heading">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h3 class="panel-title" style="text-align:center;">Dodavanje studenata</h3>
+            <h3 class="panel-title" style="text-align:center;">Dodavanje predavača</h3>
           </div>
           <div class="panel-body">
-            <div class="col-md-5">
-                <div style="margin-top:3%"><strong>Ime</strong></div>
-                <div style="margin-top:5%"><strong>Prezime</strong></div>
-                <div style="margin-top:8%"><strong>JMBG</strong></div>
-                <div style="margin-top:8%"><strong>Datum rođenja</strong></div>
-                <div style="margin-top:8%"><strong>Mesto rođenja</strong></div>
-                <div style="margin-top:5%"><strong>Adresa stanovanja</strong></div>
-                <div style="margin-top:5%"><strong>Broj telefona</strong></div>
-                <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
-            </div>
-              <form>
-            <div class="col-md-7">
-               <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.ime" placeholder="Unesite ime studenta..." name="search">
+            <div class="col-md-7" style="margin-top:3%">
+                <div class="col-md-5">
+                    <div style="margin-top:5%"><strong>Ime</strong></div>
+                    <div style="margin-top:8%"><strong>Prezime</strong></div>
+                    <div style="margin-top:8%"><strong>JMBG</strong></div>
+                    <div style="margin-top:8%"><strong>Datum rođenja</strong></div>
+                    <div style="margin-top:8%"><strong>Mesto rođenja</strong></div>
+                    <div style="margin-top:8%"><strong>Adresa stanovanja</strong></div>
+                    <div style="margin-top:8%"><strong>Broj telefona</strong></div>
+                    <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
                 </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.prezime" placeholder="Unesite prezime studenta..." name="search">
+                  <form>
+                <div class="col-md-7">
+                   <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.ime" placeholder="Unesite ime predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.prezime" placeholder="Unesite prezime predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.jmbg" placeholder="Unesite JMBG predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.datumrodjenja" placeholder="Unesite datum (YYYY-MM-DD)" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.mestorodjenja" placeholder="Unesite mesto rođenja predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.adresa" placeholder="Unesite adresu predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.brtel" placeholder="Unesite broj telefona predavača..." >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" ng-model="predavac.email" placeholder="Unesite e-mail predavača..." >
+                    </div>
                 </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.jmbg" placeholder="Unesite JMBG studenta..." name="search">
-                </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.datumrodjenja" placeholder="Unesite datum rođenja(YYYY-MM-DD)" name="search">
-                </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.mestorodjenja" placeholder="Unesite mesto rođenja studenta..." name="search">
-                </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.adresa" placeholder="Unesite adresu studenta..." name="search">
-                </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.brtel" placeholder="Unesite broj telefona studenta..." name="search">
-                </div>
-                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" ng-model="student.email" placeholder="Unesite e-mail studenta..." name="search">
-                </div>
-            </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
-                    <button class="btn btn-success" ng-click="dodavanjeStudenta()" style="float:right;margin-top:3%">Sačuvaj</button>
-                </div>
+                      
+                
             </form>
+          </div>
+          <div class="col-md-5" style="margin-top:3%">
+              <div class="panel panel-default">
+           <div class="panel-heading">
+               <h3 class="panel-title" style="text-align:center;">Dodavanje na predmet</h3>
+           </div>
+           <div class="panel-body">
+                <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihStudenata.firstname" placeholder="Pretraga predmeta..." >
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                <div id="selektovaniStudenti" class="well">
+                    <div ng-repeat="privremeniStudent in listaPrivremenihStudenata"  class="selektovaniStudentItem">
+                        <span>{{privremeniStudent.firstname }}  {{privremeniStudent.lastname}}</span>
+                        <button ng-click="vratiStudentaUlistu(privremeniStudent)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+                    </div>
+                </div>
+                <div id="sviStudenti" class="list-group">
+                    <a ng-click="dodajStudentaUPrivremenuListu(student)" class="list-group-item" ng-repeat="student in sviStudent | filter:search.pretragaSvihStudenata.firstname">{{student.firstname}}</a>
+                </div>
+                <button ng-click="dodajStudenteNaKurs()" class="btn btn-success" style="width:100%">Dodaj</button>
+                <div style="padding-left:25%;" id="paginacijaSvihStudenata">
+                    <ul class="pagination pagination-sm">
+                        <li><a href="#"><span>&laquo;</span></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><span>&raquo;</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+          </div>
+          <div class="row">
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
+                    <button class="btn btn-success" ng-click="dodavanjePredavaca()" style="float:right;margin-top:3%">Sačuvaj</button>
+                </div>
+          </div>
           </div>
           
         </div>
