@@ -26,12 +26,17 @@
            kajkut["phoneNumber"]=$scope.tempStudentIzmena.phoneNumber;
            kajkut["eMail"]=$scope.tempStudentIzmena.email;
            kajkut["JMBG"]=$scope.tempStudentIzmena.jmbg;
-           console.log("!!!");
-           console.log(kajkut)
            Student.update(kajkut);
        }
 
-
+       
+       $scope.brisanjeStudentaInit=function(student){
+           $scope.brisanjeStudentaTemp=student;
+       }
+       $scope.brisanjeStudenta=function(){
+           Student.delete($scope.brisanjeStudentaTemp);
+       }
+       
         $scope.placeholder = {};
         $scope.selectedStudentDTO = {};
         $scope.editedStudent = {};

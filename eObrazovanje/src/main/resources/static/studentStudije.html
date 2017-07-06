@@ -14,7 +14,7 @@
        <div ng-repeat="pohadjanje in pohadjanja | filter:{kurs:{naziv:searchPretragaPredmeta.naziv}}" class="kartica">
         <div class="{{cardClass(pohadjanje)}}">
             <div class="panel-heading">
-                <h3 class="panel-title">{{pohadjanje.kurs.naziv}}</h3>
+                <h3 class="panel-title">{{pohadjanje.kurs.naziv}} <button class="btn btn-xs" data-toggle="modal" data-target="#infoKursa"><span><i class="glyphicon glyphicon-info"></i></span></button></h3>
             </div>
             <div class="panel-body">
                 <div class="progress">
@@ -46,4 +46,78 @@
           <li><a href=""><span>&raquo;</span></a></li>
         </ul>
     </div>
+</div>
+<div id="infoKursa" class="modal fade" role="dialog">
+      <div class="modal-dialog" style="margin-top:10%">
+
+        <!-- Modal content-->
+        <div class="panel panel-primary">
+          <div class="panel panel-heading">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="panel-title" style="text-align:center;">Informacije o kursu</h3>
+          </div>
+          <div class="panel-body">
+                    <div class="row">
+                        <h3 style="margin-bottom:2%">
+                            <span class="label label-info">Nastavno osoblje</span>
+                        </h3>
+                        <div class="col-md-5">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Ime</th>
+                                <th>Prezime</th>
+                                <th>E-mail</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{predavac.firstname}}</td>
+                                <td>{{predavac.lastname}}</td>
+                                <td><a href="mailto:{{predavac.email}}">{{predavac.email}}</a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <h3 style="margin-bottom:2%">
+                            <span class="label label-info">Nastavne obaveze</span>
+                        </h3>
+                        <div class="col-md-5">
+                            <table class="table table-hover">
+                             <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Naziv</th>
+                                <th>Minimum</th>
+                                <th>Maksimum</th>
+                                <th>Bodovi</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{{index+1}}</td>
+                                <td>{{obaveza.nazivObaveze}}</td>
+                                <td>{{obaveza.minBodova}}</td>
+                                <td>{{obaveza.maxBodova}}</td>
+                                <td><strong>{{obaveza.brojBodova}}</strong></td>
+                              </tr>
+                              <tr>
+                                  <td colspan=4>Ukupno</td>
+                                  <td><strong>59</strong></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+
+          <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Nazad</button>
+          </div>
+        </div>
+
+      </div>
 </div>
