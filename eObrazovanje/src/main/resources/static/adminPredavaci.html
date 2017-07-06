@@ -14,7 +14,8 @@
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <a ng-repeat="predavac in sviPredavaci | filter: search.pretragaSvihPredavaca.firstname" class="list-group-item">{{predavac.firstname}} {{predavac.lastname}}<div style="float:right"><button class="btn btn-default btn-xs"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" ng-click="deletePredavac(predavac)"><i class="glyphicon glyphicon-remove"></i></button></div></a>
+                   <a ng-repeat="predavac in sviPredavaci | filter: search.pretragaSvihPredavaca.firstname" class="list-group-item">{{predavac.firstname}} {{predavac.lastname}}<div style="float:right"><button class="btn btn-default btn-xs" ng-click="updatePredavac(predavac)" data-toggle="modal" data-target="#izmenaPredavaca"><i class="glyphicon glyphicon-pencil"></i></button><button class="btn btn-danger btn-xs" ng-click="deletePredavac(predavac)">
+                       <i class="glyphicon glyphicon-remove"></i></button></div></a>
 
                 </div>
                 <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog predavača</button>
@@ -84,6 +85,111 @@
                     </div>
                     <div style="width:100%" class="input-group">
                         <input type="text" class="form-control" ng-model="predavac.eMail" placeholder="Unesite e-mail predavača..." >
+                    </div>
+                </div>
+
+
+            </form>
+          </div>
+          <div class="col-md-5" style="margin-top:3%">
+              <div class="panel panel-default">
+           <div class="panel-heading">
+               <h3 class="panel-title" style="text-align:center;">Dodavanje na predmet</h3>
+           </div>
+           <div class="panel-body">
+                <div id="pretragaStudenataPredavac" class="input-group" style="margin-bottom:3%;">
+                    <input type="text" class="form-control" ng-model="search.pretragaSvihPredmeta.naziv" placeholder="Pretraga predmeta..." >
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                <div id="selektovaniStudenti" class="well">
+                    <div ng-repeat="predmet in tempPredmeti"  class="selektovaniStudentItem">
+                        <span>{{predmet.naziv}}</span>
+                        <button ng-click="vratiPredmetUlistu(predmet)" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></button>
+                    </div>
+                </div>
+                <div id="sviStudenti" class="list-group">
+                    <a ng-click="dodajPredmetUtempListu(predmet)" class="list-group-item" ng-repeat="predmet in sviPredmeti|filter:search.pretragaSvihPredmeta.naziv">{{predmet.naziv}}</a>
+                </div>
+                <div style="padding-left:25%;" id="paginacijaSvihStudenata">
+                    <ul class="pagination pagination-sm">
+                        <li><a href="#"><span>&laquo;</span></a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><span>&raquo;</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+          </div>
+          <div class="row">
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;margin-top:3%">Odustani</button>
+                    <button class="btn btn-success" ng-click="dodavanjePredavaca()" style="float:right;margin-top:3%" data-dismiss="modal">Sačuvaj</button>
+                </div>
+          </div>
+          </div>
+
+        </div>
+
+      </div>
+</div>
+<!-- ==================================================================== -->
+
+<div id="izmenaPredavaca" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg" style="margin-top:10%">
+
+        <!-- Modal content-->
+        <div class="panel panel-primary">
+          <div class="panel panel-heading">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="panel-title" style="text-align:center;">Izmena predavača</h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-7" style="margin-top:3%">
+                <div class="col-md-5">
+                    <div style="margin-top:5%"><strong>Ime</strong></div>
+                    <div style="margin-top:8%"><strong>Prezime</strong></div>
+                    <div style="margin-top:8%"><strong>Korisničko ime</strong></div>
+                    <div style="margin-top:8%"><strong>JMBG</strong></div>
+                    <div style="margin-top:8%"><strong>Datum rođenja</strong></div>
+                    <div style="margin-top:8%"><strong>Mesto rođenja</strong></div>
+                    <div style="margin-top:8%"><strong>Adresa stanovanja</strong></div>
+                    <div style="margin-top:8%"><strong>Broj telefona</strong></div>
+                    <div style="margin-top:8%"><strong>E-mail adresa</strong></div>
+                </div>
+                  <form>
+                <div class="col-md-7">
+                   <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.firstname}}">
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.lastname}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.username}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.jmbg}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.dateOfBirth}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.placeOfOrigin}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.currentAddress}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.phoneNumber}}" >
+                    </div>
+                    <div style="width:100%" class="input-group">
+                        <input type="text" class="form-control" value="{{predavacUpdate.email}}">
                     </div>
                 </div>
 

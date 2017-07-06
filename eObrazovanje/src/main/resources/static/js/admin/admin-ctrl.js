@@ -5,6 +5,7 @@
         $scope.selectedStudentDTO = {};
         $scope.editedStudent = {};
         $scope.tempPredmeti = [];
+        $scope.predavacUpdate = {};
 
     	var loadEntries = function () {
 
@@ -144,6 +145,11 @@
                 });
             });
         });
+        }
+
+        $scope.updatePredavac = function(predavac) {
+            $scope.predavacUpdate = predavac;
+            console.log($scope.predavacUpdate);
         }
    });
 }(angular));
