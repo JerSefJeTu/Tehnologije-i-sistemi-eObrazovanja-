@@ -5,6 +5,7 @@
                     <h3 class="panel-title" style="text-align:center;">Prijava</h3>
                 </div>
                 <div class="panel-body">
+                  <div style="text-align: center" ng-class="{'alert' : errormsg=='Pogresan username ili password', 'alert-danger' : errormsg=='Pogresan username ili password'}" text-al>{{errormsg}}</div>
                     <form>
 	                    <span>Korisničko ime</span>
 	                    <input id="username" type="text" ng-model="user.username">
