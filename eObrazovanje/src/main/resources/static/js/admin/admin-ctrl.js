@@ -1,7 +1,38 @@
 (function(angular) {
    angular.module('admin',['pohadjanja.resource','predavac.resource','predmet.resource','student.resource','kurs.resource'])
     .controller('AdminCtrl', function($scope, Predmet, Predavac, Student, $http){
-
+       
+       $scope.izmenaStudentaInit = function(student){
+           $scope.tempStudentIzmena = angular.copy(student);
+           console.log($scope.tempStudentIzmena);
+           var convertDate = new Date($scope.tempStudentIzmena.dateOfBirth);
+           var retVal = convertDate.getDate() + "." +
+           (convertDate.getMonth() + 1) + "." + convertDate.getFullYear() + "."
+           $scope.tempStudentIzmenaDate= retVal;
+       }
+       
+       $scope.izmenaStudenta = function(){
+           var split= $scope.tempStudentIzmenaDate.split(".");
+           var stringToDate=new Date(split[2],split[1]-1,split[0],0,0,0,0);
+           $scope.tempStudentIzmena.dateOfBirth=stringToDate;
+           var kajkut={};
+           kajkut["id"]=$scope.tempStudentIzmena.id;
+           kajkut["uplate"]=$scope.tempStudentIzmena.uplate;
+           kajkut["firstname"]=$scope.tempStudentIzmena.firstname;
+           kajkut["lastname"]=$scope.tempStudentIzmena.lastname;
+           kajkut["username"]=$scope.tempStudentIzmena.username;
+           kajkut["dateOfBirth"]=$scope.tempStudentIzmena.dateOfBirth;
+           kajkut["placeOfOrigin"]=$scope.tempStudentIzmena.placeOfOrigin;
+           kajkut["currentAddress"]=$scope.tempStudentIzmena.currentAddress;
+           kajkut["phoneNumber"]=$scope.tempStudentIzmena.phoneNumber;
+           kajkut["eMail"]=$scope.tempStudentIzmena.email;
+           kajkut["JMBG"]=$scope.tempStudentIzmena.jmbg;
+           console.log("!!!");
+           console.log(kajkut)
+           Student.update(kajkut);
+       }
+       
+       
         $scope.placeholder = {};
         $scope.selectedStudentDTO = {};
         $scope.editedStudent = {};
@@ -67,33 +98,26 @@
             $scope.selectedStudent = student;
         }
 
-        $scope.izmenaStudenta = function() {
-            var temp = {};
-            temp["firstName"] = $scope.selectedStudent.firstname;
-            temp["lastName"] = $scope.selectedStudent.lastname;
-            temp["jmbg"] = $scope.selectedStudent.jmbg;
-            temp["userName"] = $scope.selectedStudent.username;
-            temp["dateOfBirth"] = $scope.selectedStudent.dateOfBirth;
-            temp["placeOfOrigin"] = $scope.selectedStudent.placeOfOrigin;
-            temp["currentAddress"] = $scope.selectedStudent.currentAddress;
-            temp["phoneNumber"] = $scope.selectedStudent.phoneNumber;
-            temp["eMail"] = $scope.selectedStudent.email;
-
-            $http.put("api/student", temp)
-            .then(function(data, status, headers, config){
-                var index = $scope.sviStudent
-                .findIndex(i => i.id == $scope.selectedStudent.id);
-                //copy();
-                $scope.sviStudent[index] = $scope.selectedStudent;
-            })
-        }
-
-        $scope.dateLabel = function(date) {
-            var convertDate = new Date(date);
-            student.dateOfBirth = convertDate.getDate() + "." +
-            (convertDate.getMonth() + 1) + "." + convertDate.getFullYear() + ".";
-            return student.dateOfBirth;
-        }
+//        $scope.izmenaStudenta = function() {
+//            var temp = {};
+//            temp["firstName"] = $scope.selectedStudent.firstname;
+//            temp["lastName"] = $scope.selectedStudent.lastname;
+//            temp["jmbg"] = $scope.selectedStudent.jmbg;
+//            temp["userName"] = $scope.selectedStudent.username;
+//            temp["dateOfBirth"] = $scope.selectedStudent.dateOfBirth;
+//            temp["placeOfOrigin"] = $scope.selectedStudent.placeOfOrigin;
+//            temp["currentAddress"] = $scope.selectedStudent.currentAddress;
+//            temp["phoneNumber"] = $scope.selectedStudent.phoneNumber;
+//            temp["eMail"] = $scope.selectedStudent.email;
+//
+//            $http.put("api/student", temp)
+//            .then(function(data, status, headers, config){
+//                var index = $scope.sviStudent
+//                .findIndex(i => i.id == $scope.selectedStudent.id);
+//                //copy();
+//                $scope.sviStudent[index] = $scope.selectedStudent;
+//            })
+//        }
 
         function copy() {
             $scope.selectedStudentDTO.id = $scope.editedStudent.id;

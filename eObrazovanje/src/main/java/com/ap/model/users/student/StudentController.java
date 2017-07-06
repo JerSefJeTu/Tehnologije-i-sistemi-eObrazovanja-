@@ -94,17 +94,27 @@ public class StudentController {
 		return new ResponseEntity<>( HttpStatus.CREATED);	
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
-	public ResponseEntity<Student> updateStudent(@RequestBody Student Student){
+	@RequestMapping(method=RequestMethod.PUT, value="/{id}", consumes="application/json")
+	public ResponseEntity<Student> updateStudent(@RequestBody StudentDTO Student){
 		//a Student must exist
 		
 		if (Student == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		
-	
-		Student = studentService.save(Student);
+		Student student=studentService.findOne(Student.getId());
+		student.setUserName(Student.getUsername());
+		student.setUplate(Student.getUplate());
+		student.setStanje(Student.getStanje());
+		student.setPlaceOfOrigin(Student.getPlaceOfOrigin());
+		student.setPhoneNumber(Student.getPhoneNumber());
+		student.setLastName(Student.getLastname());
+		student.setJMBG(Student.getJMBG());
+		student.setFirstName(Student.getFirstname());
+		student.seteMail(Student.getEmail());
+		student.setDateOfBirth(Student.getDateOfBirth());
+		student.setCurrentAddress(Student.getCurrentAddress());
+		studentService.save(student);
 		return new ResponseEntity<>(HttpStatus.OK);	
 	}
 	

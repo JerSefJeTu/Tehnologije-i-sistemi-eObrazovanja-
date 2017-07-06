@@ -4,10 +4,10 @@
 		var loadEntries = function () {
 
 
-
+            
 			$scope.predavac = new Predavac.get({username: $localStorage.currentUser.username});
-			$scope.predmeti= Predmet.qu
 			console.log($scope.predavac);
+            $scope.tabClicked = 1;
 		}
 		loadEntries();
 		

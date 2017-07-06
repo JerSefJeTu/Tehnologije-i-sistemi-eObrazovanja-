@@ -14,8 +14,8 @@
                 </div>
 
                 <div id="sviStudenti" class="list-group">
-                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="pickStudent(student)" data-target="#izmenaStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button>
-                       <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta" ng-click="pickStudent(student)"><i class="glyphicon glyphicon-remove"></i></button></div></span>
+                   <span ng-repeat="student in sviStudent | filter: search.pretragaSvihStudenata.firstname" href="" class="list-group-item">{{student.firstname}} {{student.lastname}} <div style="float:right"><button class="btn btn-default btn-xs" ng-click="izmenaStudentaInit(student)" data-target="#izmenaStudenta" data-toggle="modal"><i class="glyphicon glyphicon-pencil"></i></button>
+                       <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#brisanjeStudenta" ng-click="brisanjeStudentaInit(student)"><i class="glyphicon glyphicon-remove"></i></button></div></span>
 
                 </div>
                 <button class="btn btn-success" style="width:100%" data-toggle="modal" data-target="#dodavanjeStudenta">Kreiraj novog studenta</button>
@@ -125,31 +125,31 @@
               <form>
             <div class="col-md-7">
                <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.firstname}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.firstname">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.lastname}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.lastname">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.jmbg}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.jmbg">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.username}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.username">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.dateOfBirth}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmenaDate">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control"  name="search" value="{{selectedStudent.placeOfOrigin}}">
+                    <input type="text" class="form-control"  ng-model="tempStudentIzmena.placeOfOrigin">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.currentAddress}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.currentAddress">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.phoneNumber}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.phoneNumber">
                 </div>
                 <div style="width:80%" class="input-group">
-                    <input type="text" class="form-control" name="search" value="{{selectedStudent.email}}">
+                    <input type="text" class="form-control" ng-model="tempStudentIzmena.email">
                 </div>
             </div>
                 <div class="modal-footer">
