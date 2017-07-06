@@ -73,13 +73,13 @@
                     <h5>Ocenjivanje nastavne obaveze:</h5>
                 </div>
                 <div class="col-md-12">
-                    <div class="col-md-7"><p><strong>{{obaveza.nazivObaveze}}</strong></p></div>
-                    <div class="col-md-5"><input type="number" class="form-control" ng-model="obaveza.brojBodova"></div>
+                    <div class="col-md-7"><p><strong>{{obavezaInitCopy.nazivObaveze}}</strong></p></div>
+                    <div class="col-md-5"><input type="number" class="form-control" ng-model="obavezaInitCopy.brojBodova"></div>
                 </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">Odustani</button>
-                <button class="btn btn-success" ng-click="brisanjeObaveze()" style="float:right;">Sačuvaj</button>
+                <button class="btn btn-success" ng-click="updateOcene()" style="float:right;">Sačuvaj</button>
               </div>
         </div>
     </div>
